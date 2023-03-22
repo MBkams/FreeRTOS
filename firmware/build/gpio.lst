@@ -1,0 +1,2307 @@
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gpio.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/gpio.c"
+  20              		.section	.text.MX_GPIO_Init,"ax",%progbits
+  21              		.align	1
+  22              		.global	MX_GPIO_Init
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	MX_GPIO_Init:
+  28              	.LFB141:
+   1:Core/Src/gpio.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/gpio.c **** /**
+   3:Core/Src/gpio.c ****   ******************************************************************************
+   4:Core/Src/gpio.c ****   * @file    gpio.c
+   5:Core/Src/gpio.c ****   * @brief   This file provides code for the configuration
+   6:Core/Src/gpio.c ****   *          of all used GPIO pins.
+   7:Core/Src/gpio.c ****   ******************************************************************************
+   8:Core/Src/gpio.c ****   * @attention
+   9:Core/Src/gpio.c ****   *
+  10:Core/Src/gpio.c ****   * Copyright (c) 2023 STMicroelectronics.
+  11:Core/Src/gpio.c ****   * All rights reserved.
+  12:Core/Src/gpio.c ****   *
+  13:Core/Src/gpio.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  14:Core/Src/gpio.c ****   * in the root directory of this software component.
+  15:Core/Src/gpio.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  16:Core/Src/gpio.c ****   *
+  17:Core/Src/gpio.c ****   ******************************************************************************
+  18:Core/Src/gpio.c ****   */
+  19:Core/Src/gpio.c **** /* USER CODE END Header */
+  20:Core/Src/gpio.c **** 
+  21:Core/Src/gpio.c **** /* Includes ------------------------------------------------------------------*/
+  22:Core/Src/gpio.c **** #include "gpio.h"
+  23:Core/Src/gpio.c **** 
+  24:Core/Src/gpio.c **** /* USER CODE BEGIN 0 */
+  25:Core/Src/gpio.c **** 
+  26:Core/Src/gpio.c **** /* USER CODE END 0 */
+  27:Core/Src/gpio.c **** 
+  28:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
+  29:Core/Src/gpio.c **** /* Configure GPIO                                                             */
+  30:Core/Src/gpio.c **** /*----------------------------------------------------------------------------*/
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 2
+
+
+  31:Core/Src/gpio.c **** /* USER CODE BEGIN 1 */
+  32:Core/Src/gpio.c **** 
+  33:Core/Src/gpio.c **** /* USER CODE END 1 */
+  34:Core/Src/gpio.c **** 
+  35:Core/Src/gpio.c **** /** Configure pins
+  36:Core/Src/gpio.c ****      PE4   ------> LTDC_B0
+  37:Core/Src/gpio.c ****      PE2   ------> QUADSPI_BK1_IO2
+  38:Core/Src/gpio.c ****      PG14   ------> ETH_TXD1
+  39:Core/Src/gpio.c ****      PE1   ------> FMC_NBL1
+  40:Core/Src/gpio.c ****      PE0   ------> FMC_NBL0
+  41:Core/Src/gpio.c ****      PB8   ------> I2C1_SCL
+  42:Core/Src/gpio.c ****      PB5   ------> USB_OTG_HS_ULPI_D7
+  43:Core/Src/gpio.c ****      PB4   ------> S_TIM3_CH1
+  44:Core/Src/gpio.c ****      PD7   ------> SPDIFRX_IN0
+  45:Core/Src/gpio.c ****      PC12   ------> SDMMC1_CK
+  46:Core/Src/gpio.c ****      PA15   ------> S_TIM2_CH1_ETR
+  47:Core/Src/gpio.c ****      PE5   ------> DCMI_D6
+  48:Core/Src/gpio.c ****      PE6   ------> DCMI_D7
+  49:Core/Src/gpio.c ****      PG13   ------> ETH_TXD0
+  50:Core/Src/gpio.c ****      PB9   ------> I2C1_SDA
+  51:Core/Src/gpio.c ****      PB7   ------> USART1_RX
+  52:Core/Src/gpio.c ****      PB6   ------> QUADSPI_BK1_NCS
+  53:Core/Src/gpio.c ****      PG15   ------> FMC_SDNCAS
+  54:Core/Src/gpio.c ****      PG11   ------> ETH_TX_EN
+  55:Core/Src/gpio.c ****      PJ13   ------> LTDC_B1
+  56:Core/Src/gpio.c ****      PD0   ------> FMC_D2_DA2
+  57:Core/Src/gpio.c ****      PC11   ------> SDMMC1_D3
+  58:Core/Src/gpio.c ****      PC10   ------> SDMMC1_D2
+  59:Core/Src/gpio.c ****      PA12   ------> USB_OTG_FS_DP
+  60:Core/Src/gpio.c ****      PI4   ------> SAI2_MCLK_A
+  61:Core/Src/gpio.c ****      PK7   ------> LTDC_DE
+  62:Core/Src/gpio.c ****      PK6   ------> LTDC_B7
+  63:Core/Src/gpio.c ****      PK5   ------> LTDC_B6
+  64:Core/Src/gpio.c ****      PG12   ------> LTDC_B4
+  65:Core/Src/gpio.c ****      PG10   ------> SAI2_SD_B
+  66:Core/Src/gpio.c ****      PJ14   ------> LTDC_B2
+  67:Core/Src/gpio.c ****      PD3   ------> DCMI_D5
+  68:Core/Src/gpio.c ****      PD1   ------> FMC_D3_DA3
+  69:Core/Src/gpio.c ****      PA11   ------> USB_OTG_FS_DM
+  70:Core/Src/gpio.c ****      PF0   ------> FMC_A0
+  71:Core/Src/gpio.c ****      PI5   ------> SAI2_SCK_A
+  72:Core/Src/gpio.c ****      PI7   ------> SAI2_FS_A
+  73:Core/Src/gpio.c ****      PI10   ------> LTDC_HSYNC
+  74:Core/Src/gpio.c ****      PI6   ------> SAI2_SD_A
+  75:Core/Src/gpio.c ****      PK4   ------> LTDC_B5
+  76:Core/Src/gpio.c ****      PG9   ------> DCMI_VSYNC
+  77:Core/Src/gpio.c ****      PJ15   ------> LTDC_B3
+  78:Core/Src/gpio.c ****      PD2   ------> SDMMC1_CMD
+  79:Core/Src/gpio.c ****      PA10   ------> USB_OTG_FS_ID
+  80:Core/Src/gpio.c ****      PF1   ------> FMC_A1
+  81:Core/Src/gpio.c ****      PI9   ------> LTDC_VSYNC
+  82:Core/Src/gpio.c ****      PH14   ------> DCMI_D4
+  83:Core/Src/gpio.c ****      PI0   ------> S_TIM5_CH4
+  84:Core/Src/gpio.c ****      PA9   ------> USART1_TX
+  85:Core/Src/gpio.c ****      PK1   ------> LTDC_G6
+  86:Core/Src/gpio.c ****      PK2   ------> LTDC_G7
+  87:Core/Src/gpio.c ****      PC9   ------> SDMMC1_D1
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 3
+
+
+  88:Core/Src/gpio.c ****      PA8   ------> S_TIM1_CH1
+  89:Core/Src/gpio.c ****      PF2   ------> FMC_A2
+  90:Core/Src/gpio.c ****      PI15   ------> LTDC_R0
+  91:Core/Src/gpio.c ****      PJ11   ------> LTDC_G4
+  92:Core/Src/gpio.c ****      PK0   ------> LTDC_G5
+  93:Core/Src/gpio.c ****      PC8   ------> SDMMC1_D0
+  94:Core/Src/gpio.c ****      PC7   ------> USART6_RX
+  95:Core/Src/gpio.c ****      PF3   ------> FMC_A3
+  96:Core/Src/gpio.c ****      PI14   ------> LTDC_CLK
+  97:Core/Src/gpio.c ****      PH4   ------> USB_OTG_HS_ULPI_NXT
+  98:Core/Src/gpio.c ****      PJ8   ------> LTDC_G1
+  99:Core/Src/gpio.c ****      PJ10   ------> LTDC_G3
+ 100:Core/Src/gpio.c ****      PG8   ------> FMC_SDCLK
+ 101:Core/Src/gpio.c ****      PC6   ------> USART6_TX
+ 102:Core/Src/gpio.c ****      PF4   ------> FMC_A4
+ 103:Core/Src/gpio.c ****      PH5   ------> FMC_SDNWE
+ 104:Core/Src/gpio.c ****      PH3   ------> FMC_SDNE0
+ 105:Core/Src/gpio.c ****      PJ7   ------> LTDC_G0
+ 106:Core/Src/gpio.c ****      PJ9   ------> LTDC_G2
+ 107:Core/Src/gpio.c ****      PF7   ------> ADC3_IN5
+ 108:Core/Src/gpio.c ****      PF6   ------> ADC3_IN4
+ 109:Core/Src/gpio.c ****      PF5   ------> FMC_A5
+ 110:Core/Src/gpio.c ****      PJ6   ------> LTDC_R7
+ 111:Core/Src/gpio.c ****      PD15   ------> FMC_D1_DA1
+ 112:Core/Src/gpio.c ****      PB13   ------> USB_OTG_HS_ULPI_D6
+ 113:Core/Src/gpio.c ****      PD10   ------> FMC_D15_DA15
+ 114:Core/Src/gpio.c ****      PF10   ------> ADC3_IN8
+ 115:Core/Src/gpio.c ****      PF9   ------> ADC3_IN7
+ 116:Core/Src/gpio.c ****      PF8   ------> ADC3_IN6
+ 117:Core/Src/gpio.c ****      PC3   ------> FMC_SDCKE0
+ 118:Core/Src/gpio.c ****      PD14   ------> FMC_D0_DA0
+ 119:Core/Src/gpio.c ****      PB12   ------> USB_OTG_HS_ULPI_D5
+ 120:Core/Src/gpio.c ****      PD9   ------> FMC_D14_DA14
+ 121:Core/Src/gpio.c ****      PD8   ------> FMC_D13_DA13
+ 122:Core/Src/gpio.c ****      PC0   ------> USB_OTG_HS_ULPI_STP
+ 123:Core/Src/gpio.c ****      PC1   ------> ETH_MDC
+ 124:Core/Src/gpio.c ****      PC2   ------> USB_OTG_HS_ULPI_DIR
+ 125:Core/Src/gpio.c ****      PB2   ------> QUADSPI_CLK
+ 126:Core/Src/gpio.c ****      PF12   ------> FMC_A6
+ 127:Core/Src/gpio.c ****      PG1   ------> FMC_A11
+ 128:Core/Src/gpio.c ****      PF15   ------> FMC_A9
+ 129:Core/Src/gpio.c ****      PJ4   ------> LTDC_R5
+ 130:Core/Src/gpio.c ****      PD12   ------> QUADSPI_BK1_IO1
+ 131:Core/Src/gpio.c ****      PD13   ------> QUADSPI_BK1_IO3
+ 132:Core/Src/gpio.c ****      PJ5   ------> LTDC_R6
+ 133:Core/Src/gpio.c ****      PH12   ------> DCMI_D3
+ 134:Core/Src/gpio.c ****      PA1   ------> ETH_REF_CLK
+ 135:Core/Src/gpio.c ****      PA0/WKUP   ------> ADCx_IN0
+ 136:Core/Src/gpio.c ****      PA4   ------> DCMI_HSYNC
+ 137:Core/Src/gpio.c ****      PC4   ------> ETH_RXD0
+ 138:Core/Src/gpio.c ****      PF13   ------> FMC_A7
+ 139:Core/Src/gpio.c ****      PG0   ------> FMC_A10
+ 140:Core/Src/gpio.c ****      PJ3   ------> LTDC_R4
+ 141:Core/Src/gpio.c ****      PE8   ------> FMC_D5_DA5
+ 142:Core/Src/gpio.c ****      PD11   ------> QUADSPI_BK1_IO0
+ 143:Core/Src/gpio.c ****      PG5   ------> FMC_A15_BA1
+ 144:Core/Src/gpio.c ****      PG4   ------> FMC_A14_BA0
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 4
+
+
+ 145:Core/Src/gpio.c ****      PH7   ------> I2C3_SCL
+ 146:Core/Src/gpio.c ****      PH9   ------> DCMI_D0
+ 147:Core/Src/gpio.c ****      PH11   ------> DCMI_D2
+ 148:Core/Src/gpio.c ****      PA2   ------> ETH_MDIO
+ 149:Core/Src/gpio.c ****      PA6   ------> DCMI_PIXCLK
+ 150:Core/Src/gpio.c ****      PA5   ------> USB_OTG_HS_ULPI_CK
+ 151:Core/Src/gpio.c ****      PC5   ------> ETH_RXD1
+ 152:Core/Src/gpio.c ****      PF14   ------> FMC_A8
+ 153:Core/Src/gpio.c ****      PJ2   ------> LTDC_R3
+ 154:Core/Src/gpio.c ****      PF11   ------> FMC_SDNRAS
+ 155:Core/Src/gpio.c ****      PE9   ------> FMC_D6_DA6
+ 156:Core/Src/gpio.c ****      PE11   ------> FMC_D8_DA8
+ 157:Core/Src/gpio.c ****      PE14   ------> FMC_D11_DA11
+ 158:Core/Src/gpio.c ****      PB10   ------> USB_OTG_HS_ULPI_D3
+ 159:Core/Src/gpio.c ****      PH6   ------> S_TIM12_CH1
+ 160:Core/Src/gpio.c ****      PH8   ------> I2C3_SDA
+ 161:Core/Src/gpio.c ****      PH10   ------> DCMI_D1
+ 162:Core/Src/gpio.c ****      PA3   ------> USB_OTG_HS_ULPI_D0
+ 163:Core/Src/gpio.c ****      PA7   ------> ETH_CRS_DV
+ 164:Core/Src/gpio.c ****      PB1   ------> USB_OTG_HS_ULPI_D2
+ 165:Core/Src/gpio.c ****      PB0   ------> USB_OTG_HS_ULPI_D1
+ 166:Core/Src/gpio.c ****      PJ0   ------> LTDC_R1
+ 167:Core/Src/gpio.c ****      PJ1   ------> LTDC_R2
+ 168:Core/Src/gpio.c ****      PE7   ------> FMC_D4_DA4
+ 169:Core/Src/gpio.c ****      PE10   ------> FMC_D7_DA7
+ 170:Core/Src/gpio.c ****      PE12   ------> FMC_D9_DA9
+ 171:Core/Src/gpio.c ****      PE15   ------> FMC_D12_DA12
+ 172:Core/Src/gpio.c ****      PE13   ------> FMC_D10_DA10
+ 173:Core/Src/gpio.c ****      PB11   ------> USB_OTG_HS_ULPI_D4
+ 174:Core/Src/gpio.c ****      PB14   ------> SPI2_MISO
+ 175:Core/Src/gpio.c ****      PB15   ------> SPI2_MOSI
+ 176:Core/Src/gpio.c **** */
+ 177:Core/Src/gpio.c **** void MX_GPIO_Init(void)
+ 178:Core/Src/gpio.c **** {
+  29              		.loc 1 178 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 64
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 2DE9F04F 		push	{r4, r5, r6, r7, r8, r9, r10, fp, lr}
+  34              		.cfi_def_cfa_offset 36
+  35              		.cfi_offset 4, -36
+  36              		.cfi_offset 5, -32
+  37              		.cfi_offset 6, -28
+  38              		.cfi_offset 7, -24
+  39              		.cfi_offset 8, -20
+  40              		.cfi_offset 9, -16
+  41              		.cfi_offset 10, -12
+  42              		.cfi_offset 11, -8
+  43              		.cfi_offset 14, -4
+  44 0004 91B0     		sub	sp, sp, #68
+  45              		.cfi_def_cfa_offset 104
+ 179:Core/Src/gpio.c **** 
+ 180:Core/Src/gpio.c ****   GPIO_InitTypeDef GPIO_InitStruct = {0};
+  46              		.loc 1 180 3 view .LVU1
+  47              		.loc 1 180 20 is_stmt 0 view .LVU2
+  48 0006 0024     		movs	r4, #0
+  49 0008 0B94     		str	r4, [sp, #44]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 5
+
+
+  50 000a 0C94     		str	r4, [sp, #48]
+  51 000c 0D94     		str	r4, [sp, #52]
+  52 000e 0E94     		str	r4, [sp, #56]
+  53 0010 0F94     		str	r4, [sp, #60]
+ 181:Core/Src/gpio.c **** 
+ 182:Core/Src/gpio.c ****   /* GPIO Ports Clock Enable */
+ 183:Core/Src/gpio.c ****   __HAL_RCC_GPIOE_CLK_ENABLE();
+  54              		.loc 1 183 3 is_stmt 1 view .LVU3
+  55              	.LBB2:
+  56              		.loc 1 183 3 view .LVU4
+  57              		.loc 1 183 3 view .LVU5
+  58 0012 AA4B     		ldr	r3, .L3
+  59 0014 1A6B     		ldr	r2, [r3, #48]
+  60 0016 42F01002 		orr	r2, r2, #16
+  61 001a 1A63     		str	r2, [r3, #48]
+  62              		.loc 1 183 3 view .LVU6
+  63 001c 1A6B     		ldr	r2, [r3, #48]
+  64 001e 02F01002 		and	r2, r2, #16
+  65 0022 0092     		str	r2, [sp]
+  66              		.loc 1 183 3 view .LVU7
+  67 0024 009A     		ldr	r2, [sp]
+  68              	.LBE2:
+  69              		.loc 1 183 3 view .LVU8
+ 184:Core/Src/gpio.c ****   __HAL_RCC_GPIOG_CLK_ENABLE();
+  70              		.loc 1 184 3 view .LVU9
+  71              	.LBB3:
+  72              		.loc 1 184 3 view .LVU10
+  73              		.loc 1 184 3 view .LVU11
+  74 0026 1A6B     		ldr	r2, [r3, #48]
+  75 0028 42F04002 		orr	r2, r2, #64
+  76 002c 1A63     		str	r2, [r3, #48]
+  77              		.loc 1 184 3 view .LVU12
+  78 002e 1A6B     		ldr	r2, [r3, #48]
+  79 0030 02F04002 		and	r2, r2, #64
+  80 0034 0192     		str	r2, [sp, #4]
+  81              		.loc 1 184 3 view .LVU13
+  82 0036 019A     		ldr	r2, [sp, #4]
+  83              	.LBE3:
+  84              		.loc 1 184 3 view .LVU14
+ 185:Core/Src/gpio.c ****   __HAL_RCC_GPIOB_CLK_ENABLE();
+  85              		.loc 1 185 3 view .LVU15
+  86              	.LBB4:
+  87              		.loc 1 185 3 view .LVU16
+  88              		.loc 1 185 3 view .LVU17
+  89 0038 1A6B     		ldr	r2, [r3, #48]
+  90 003a 42F00202 		orr	r2, r2, #2
+  91 003e 1A63     		str	r2, [r3, #48]
+  92              		.loc 1 185 3 view .LVU18
+  93 0040 1A6B     		ldr	r2, [r3, #48]
+  94 0042 02F00202 		and	r2, r2, #2
+  95 0046 0292     		str	r2, [sp, #8]
+  96              		.loc 1 185 3 view .LVU19
+  97 0048 029A     		ldr	r2, [sp, #8]
+  98              	.LBE4:
+  99              		.loc 1 185 3 view .LVU20
+ 186:Core/Src/gpio.c ****   __HAL_RCC_GPIOD_CLK_ENABLE();
+ 100              		.loc 1 186 3 view .LVU21
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 6
+
+
+ 101              	.LBB5:
+ 102              		.loc 1 186 3 view .LVU22
+ 103              		.loc 1 186 3 view .LVU23
+ 104 004a 1A6B     		ldr	r2, [r3, #48]
+ 105 004c 42F00802 		orr	r2, r2, #8
+ 106 0050 1A63     		str	r2, [r3, #48]
+ 107              		.loc 1 186 3 view .LVU24
+ 108 0052 1A6B     		ldr	r2, [r3, #48]
+ 109 0054 02F00802 		and	r2, r2, #8
+ 110 0058 0392     		str	r2, [sp, #12]
+ 111              		.loc 1 186 3 view .LVU25
+ 112 005a 039A     		ldr	r2, [sp, #12]
+ 113              	.LBE5:
+ 114              		.loc 1 186 3 view .LVU26
+ 187:Core/Src/gpio.c ****   __HAL_RCC_GPIOC_CLK_ENABLE();
+ 115              		.loc 1 187 3 view .LVU27
+ 116              	.LBB6:
+ 117              		.loc 1 187 3 view .LVU28
+ 118              		.loc 1 187 3 view .LVU29
+ 119 005c 1A6B     		ldr	r2, [r3, #48]
+ 120 005e 42F00402 		orr	r2, r2, #4
+ 121 0062 1A63     		str	r2, [r3, #48]
+ 122              		.loc 1 187 3 view .LVU30
+ 123 0064 1A6B     		ldr	r2, [r3, #48]
+ 124 0066 02F00402 		and	r2, r2, #4
+ 125 006a 0492     		str	r2, [sp, #16]
+ 126              		.loc 1 187 3 view .LVU31
+ 127 006c 049A     		ldr	r2, [sp, #16]
+ 128              	.LBE6:
+ 129              		.loc 1 187 3 view .LVU32
+ 188:Core/Src/gpio.c ****   __HAL_RCC_GPIOA_CLK_ENABLE();
+ 130              		.loc 1 188 3 view .LVU33
+ 131              	.LBB7:
+ 132              		.loc 1 188 3 view .LVU34
+ 133              		.loc 1 188 3 view .LVU35
+ 134 006e 1A6B     		ldr	r2, [r3, #48]
+ 135 0070 42F00102 		orr	r2, r2, #1
+ 136 0074 1A63     		str	r2, [r3, #48]
+ 137              		.loc 1 188 3 view .LVU36
+ 138 0076 1A6B     		ldr	r2, [r3, #48]
+ 139 0078 02F00102 		and	r2, r2, #1
+ 140 007c 0592     		str	r2, [sp, #20]
+ 141              		.loc 1 188 3 view .LVU37
+ 142 007e 059A     		ldr	r2, [sp, #20]
+ 143              	.LBE7:
+ 144              		.loc 1 188 3 view .LVU38
+ 189:Core/Src/gpio.c ****   __HAL_RCC_GPIOJ_CLK_ENABLE();
+ 145              		.loc 1 189 3 view .LVU39
+ 146              	.LBB8:
+ 147              		.loc 1 189 3 view .LVU40
+ 148              		.loc 1 189 3 view .LVU41
+ 149 0080 1A6B     		ldr	r2, [r3, #48]
+ 150 0082 42F40072 		orr	r2, r2, #512
+ 151 0086 1A63     		str	r2, [r3, #48]
+ 152              		.loc 1 189 3 view .LVU42
+ 153 0088 1A6B     		ldr	r2, [r3, #48]
+ 154 008a 02F40072 		and	r2, r2, #512
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 7
+
+
+ 155 008e 0692     		str	r2, [sp, #24]
+ 156              		.loc 1 189 3 view .LVU43
+ 157 0090 069A     		ldr	r2, [sp, #24]
+ 158              	.LBE8:
+ 159              		.loc 1 189 3 view .LVU44
+ 190:Core/Src/gpio.c ****   __HAL_RCC_GPIOI_CLK_ENABLE();
+ 160              		.loc 1 190 3 view .LVU45
+ 161              	.LBB9:
+ 162              		.loc 1 190 3 view .LVU46
+ 163              		.loc 1 190 3 view .LVU47
+ 164 0092 1A6B     		ldr	r2, [r3, #48]
+ 165 0094 42F48072 		orr	r2, r2, #256
+ 166 0098 1A63     		str	r2, [r3, #48]
+ 167              		.loc 1 190 3 view .LVU48
+ 168 009a 1A6B     		ldr	r2, [r3, #48]
+ 169 009c 02F48072 		and	r2, r2, #256
+ 170 00a0 0792     		str	r2, [sp, #28]
+ 171              		.loc 1 190 3 view .LVU49
+ 172 00a2 079A     		ldr	r2, [sp, #28]
+ 173              	.LBE9:
+ 174              		.loc 1 190 3 view .LVU50
+ 191:Core/Src/gpio.c ****   __HAL_RCC_GPIOK_CLK_ENABLE();
+ 175              		.loc 1 191 3 view .LVU51
+ 176              	.LBB10:
+ 177              		.loc 1 191 3 view .LVU52
+ 178              		.loc 1 191 3 view .LVU53
+ 179 00a4 1A6B     		ldr	r2, [r3, #48]
+ 180 00a6 42F48062 		orr	r2, r2, #1024
+ 181 00aa 1A63     		str	r2, [r3, #48]
+ 182              		.loc 1 191 3 view .LVU54
+ 183 00ac 1A6B     		ldr	r2, [r3, #48]
+ 184 00ae 02F48062 		and	r2, r2, #1024
+ 185 00b2 0892     		str	r2, [sp, #32]
+ 186              		.loc 1 191 3 view .LVU55
+ 187 00b4 089A     		ldr	r2, [sp, #32]
+ 188              	.LBE10:
+ 189              		.loc 1 191 3 view .LVU56
+ 192:Core/Src/gpio.c ****   __HAL_RCC_GPIOF_CLK_ENABLE();
+ 190              		.loc 1 192 3 view .LVU57
+ 191              	.LBB11:
+ 192              		.loc 1 192 3 view .LVU58
+ 193              		.loc 1 192 3 view .LVU59
+ 194 00b6 1A6B     		ldr	r2, [r3, #48]
+ 195 00b8 42F02002 		orr	r2, r2, #32
+ 196 00bc 1A63     		str	r2, [r3, #48]
+ 197              		.loc 1 192 3 view .LVU60
+ 198 00be 1A6B     		ldr	r2, [r3, #48]
+ 199 00c0 02F02002 		and	r2, r2, #32
+ 200 00c4 0992     		str	r2, [sp, #36]
+ 201              		.loc 1 192 3 view .LVU61
+ 202 00c6 099A     		ldr	r2, [sp, #36]
+ 203              	.LBE11:
+ 204              		.loc 1 192 3 view .LVU62
+ 193:Core/Src/gpio.c ****   __HAL_RCC_GPIOH_CLK_ENABLE();
+ 205              		.loc 1 193 3 view .LVU63
+ 206              	.LBB12:
+ 207              		.loc 1 193 3 view .LVU64
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 8
+
+
+ 208              		.loc 1 193 3 view .LVU65
+ 209 00c8 1A6B     		ldr	r2, [r3, #48]
+ 210 00ca 42F08002 		orr	r2, r2, #128
+ 211 00ce 1A63     		str	r2, [r3, #48]
+ 212              		.loc 1 193 3 view .LVU66
+ 213 00d0 1B6B     		ldr	r3, [r3, #48]
+ 214 00d2 03F08003 		and	r3, r3, #128
+ 215 00d6 0A93     		str	r3, [sp, #40]
+ 216              		.loc 1 193 3 view .LVU67
+ 217 00d8 0A9B     		ldr	r3, [sp, #40]
+ 218              	.LBE12:
+ 219              		.loc 1 193 3 view .LVU68
+ 194:Core/Src/gpio.c **** 
+ 195:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+ 196:Core/Src/gpio.c ****   HAL_GPIO_WritePin(OTG_FS_PowerSwitchOn_GPIO_Port, OTG_FS_PowerSwitchOn_Pin, GPIO_PIN_SET);
+ 220              		.loc 1 196 3 view .LVU69
+ 221 00da DFF80482 		ldr	r8, .L3+36
+ 222 00de 0122     		movs	r2, #1
+ 223 00e0 2021     		movs	r1, #32
+ 224 00e2 4046     		mov	r0, r8
+ 225 00e4 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 226              	.LVL0:
+ 197:Core/Src/gpio.c **** 
+ 198:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+ 199:Core/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOI, ARDUINO_D7_Pin|ARDUINO_D8_Pin|LED_Pin|LCD_DISP_Pin, GPIO_PIN_RESET);
+ 227              		.loc 1 199 3 view .LVU70
+ 228 00e8 2246     		mov	r2, r4
+ 229 00ea 41F20E01 		movw	r1, #4110
+ 230 00ee 7448     		ldr	r0, .L3+4
+ 231 00f0 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 232              	.LVL1:
+ 200:Core/Src/gpio.c **** 
+ 201:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+ 202:Core/Src/gpio.c ****   HAL_GPIO_WritePin(LCD_BL_CTRL_GPIO_Port, LCD_BL_CTRL_Pin, GPIO_PIN_RESET);
+ 233              		.loc 1 202 3 view .LVU71
+ 234 00f4 2246     		mov	r2, r4
+ 235 00f6 0821     		movs	r1, #8
+ 236 00f8 7248     		ldr	r0, .L3+8
+ 237 00fa FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 238              	.LVL2:
+ 203:Core/Src/gpio.c **** 
+ 204:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+ 205:Core/Src/gpio.c ****   HAL_GPIO_WritePin(DCMI_PWR_EN_GPIO_Port, DCMI_PWR_EN_Pin, GPIO_PIN_RESET);
+ 239              		.loc 1 205 3 view .LVU72
+ 240 00fe 2246     		mov	r2, r4
+ 241 0100 4FF40051 		mov	r1, #8192
+ 242 0104 7048     		ldr	r0, .L3+12
+ 243 0106 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ 244              	.LVL3:
+ 206:Core/Src/gpio.c **** 
+ 207:Core/Src/gpio.c ****   /*Configure GPIO pin Output Level */
+ 208:Core/Src/gpio.c ****   HAL_GPIO_WritePin(GPIOG, ARDUINO_D4_Pin|ARDUINO_D2_Pin|EXT_RST_Pin, GPIO_PIN_RESET);
+ 245              		.loc 1 208 3 view .LVU73
+ 246 010a 2246     		mov	r2, r4
+ 247 010c C821     		movs	r1, #200
+ 248 010e 6F48     		ldr	r0, .L3+16
+ 249 0110 FFF7FEFF 		bl	HAL_GPIO_WritePin
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 9
+
+
+ 250              	.LVL4:
+ 209:Core/Src/gpio.c **** 
+ 210:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 211:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_B0_Pin;
+ 251              		.loc 1 211 3 view .LVU74
+ 252              		.loc 1 211 23 is_stmt 0 view .LVU75
+ 253 0114 1023     		movs	r3, #16
+ 254 0116 0B93     		str	r3, [sp, #44]
+ 212:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 255              		.loc 1 212 3 is_stmt 1 view .LVU76
+ 256              		.loc 1 212 24 is_stmt 0 view .LVU77
+ 257 0118 0225     		movs	r5, #2
+ 258 011a 0C95     		str	r5, [sp, #48]
+ 213:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 259              		.loc 1 213 3 is_stmt 1 view .LVU78
+ 260              		.loc 1 213 24 is_stmt 0 view .LVU79
+ 261 011c 0D94     		str	r4, [sp, #52]
+ 214:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 262              		.loc 1 214 3 is_stmt 1 view .LVU80
+ 263              		.loc 1 214 25 is_stmt 0 view .LVU81
+ 264 011e 0E94     		str	r4, [sp, #56]
+ 215:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
+ 265              		.loc 1 215 3 is_stmt 1 view .LVU82
+ 266              		.loc 1 215 29 is_stmt 0 view .LVU83
+ 267 0120 0E23     		movs	r3, #14
+ 268 0122 0F93     		str	r3, [sp, #60]
+ 216:Core/Src/gpio.c ****   HAL_GPIO_Init(LCD_B0_GPIO_Port, &GPIO_InitStruct);
+ 269              		.loc 1 216 3 is_stmt 1 view .LVU84
+ 270 0124 DFF8BCA1 		ldr	r10, .L3+40
+ 271 0128 0BA9     		add	r1, sp, #44
+ 272 012a 5046     		mov	r0, r10
+ 273 012c FFF7FEFF 		bl	HAL_GPIO_Init
+ 274              	.LVL5:
+ 217:Core/Src/gpio.c **** 
+ 218:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 219:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = OTG_HS_OverCurrent_Pin;
+ 275              		.loc 1 219 3 view .LVU85
+ 276              		.loc 1 219 23 is_stmt 0 view .LVU86
+ 277 0130 0823     		movs	r3, #8
+ 278 0132 0B93     		str	r3, [sp, #44]
+ 220:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 279              		.loc 1 220 3 is_stmt 1 view .LVU87
+ 280              		.loc 1 220 24 is_stmt 0 view .LVU88
+ 281 0134 0C94     		str	r4, [sp, #48]
+ 221:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 282              		.loc 1 221 3 is_stmt 1 view .LVU89
+ 283              		.loc 1 221 24 is_stmt 0 view .LVU90
+ 284 0136 0D94     		str	r4, [sp, #52]
+ 222:Core/Src/gpio.c ****   HAL_GPIO_Init(OTG_HS_OverCurrent_GPIO_Port, &GPIO_InitStruct);
+ 285              		.loc 1 222 3 is_stmt 1 view .LVU91
+ 286 0138 0BA9     		add	r1, sp, #44
+ 287 013a 5046     		mov	r0, r10
+ 288 013c FFF7FEFF 		bl	HAL_GPIO_Init
+ 289              	.LVL6:
+ 223:Core/Src/gpio.c **** 
+ 224:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 225:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = QSPI_D2_Pin;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 10
+
+
+ 290              		.loc 1 225 3 view .LVU92
+ 291              		.loc 1 225 23 is_stmt 0 view .LVU93
+ 292 0140 0423     		movs	r3, #4
+ 293 0142 0B93     		str	r3, [sp, #44]
+ 226:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 294              		.loc 1 226 3 is_stmt 1 view .LVU94
+ 295              		.loc 1 226 24 is_stmt 0 view .LVU95
+ 296 0144 0C95     		str	r5, [sp, #48]
+ 227:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 297              		.loc 1 227 3 is_stmt 1 view .LVU96
+ 298              		.loc 1 227 24 is_stmt 0 view .LVU97
+ 299 0146 0D94     		str	r4, [sp, #52]
+ 228:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 300              		.loc 1 228 3 is_stmt 1 view .LVU98
+ 301              		.loc 1 228 25 is_stmt 0 view .LVU99
+ 302 0148 0326     		movs	r6, #3
+ 303 014a 0E96     		str	r6, [sp, #56]
+ 229:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
+ 304              		.loc 1 229 3 is_stmt 1 view .LVU100
+ 305              		.loc 1 229 29 is_stmt 0 view .LVU101
+ 306 014c 0923     		movs	r3, #9
+ 307 014e 0F93     		str	r3, [sp, #60]
+ 230:Core/Src/gpio.c ****   HAL_GPIO_Init(QSPI_D2_GPIO_Port, &GPIO_InitStruct);
+ 308              		.loc 1 230 3 is_stmt 1 view .LVU102
+ 309 0150 0BA9     		add	r1, sp, #44
+ 310 0152 5046     		mov	r0, r10
+ 311 0154 FFF7FEFF 		bl	HAL_GPIO_Init
+ 312              	.LVL7:
+ 231:Core/Src/gpio.c **** 
+ 232:Core/Src/gpio.c ****   /*Configure GPIO pins : PGPin PGPin PGPin */
+ 233:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = RMII_TXD1_Pin|RMII_TXD0_Pin|RMII_TX_EN_Pin;
+ 313              		.loc 1 233 3 view .LVU103
+ 314              		.loc 1 233 23 is_stmt 0 view .LVU104
+ 315 0158 4FF4D043 		mov	r3, #26624
+ 316 015c 0B93     		str	r3, [sp, #44]
+ 234:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 317              		.loc 1 234 3 is_stmt 1 view .LVU105
+ 318              		.loc 1 234 24 is_stmt 0 view .LVU106
+ 319 015e 0C95     		str	r5, [sp, #48]
+ 235:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 320              		.loc 1 235 3 is_stmt 1 view .LVU107
+ 321              		.loc 1 235 24 is_stmt 0 view .LVU108
+ 322 0160 0D94     		str	r4, [sp, #52]
+ 236:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 323              		.loc 1 236 3 is_stmt 1 view .LVU109
+ 324              		.loc 1 236 25 is_stmt 0 view .LVU110
+ 325 0162 0E96     		str	r6, [sp, #56]
+ 237:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
+ 326              		.loc 1 237 3 is_stmt 1 view .LVU111
+ 327              		.loc 1 237 29 is_stmt 0 view .LVU112
+ 328 0164 0B23     		movs	r3, #11
+ 329 0166 0F93     		str	r3, [sp, #60]
+ 238:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+ 330              		.loc 1 238 3 is_stmt 1 view .LVU113
+ 331 0168 0BA9     		add	r1, sp, #44
+ 332 016a 5848     		ldr	r0, .L3+16
+ 333 016c FFF7FEFF 		bl	HAL_GPIO_Init
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 11
+
+
+ 334              	.LVL8:
+ 239:Core/Src/gpio.c **** 
+ 240:Core/Src/gpio.c ****   /*Configure GPIO pins : PEPin PEPin PEPin PEPin
+ 241:Core/Src/gpio.c ****                            PEPin PEPin PEPin PEPin
+ 242:Core/Src/gpio.c ****                            PEPin PEPin PEPin */
+ 243:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = FMC_NBL1_Pin|FMC_NBL0_Pin|FMC_D5_Pin|FMC_D6_Pin
+ 335              		.loc 1 243 3 view .LVU114
+ 336              		.loc 1 243 23 is_stmt 0 view .LVU115
+ 337 0170 4FF68373 		movw	r3, #65411
+ 338 0174 0B93     		str	r3, [sp, #44]
+ 244:Core/Src/gpio.c ****                           |FMC_D8_Pin|FMC_D11_Pin|FMC_D4_Pin|FMC_D7_Pin
+ 245:Core/Src/gpio.c ****                           |FMC_D9_Pin|FMC_D12_Pin|FMC_D10_Pin;
+ 246:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 339              		.loc 1 246 3 is_stmt 1 view .LVU116
+ 340              		.loc 1 246 24 is_stmt 0 view .LVU117
+ 341 0176 0C95     		str	r5, [sp, #48]
+ 247:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 342              		.loc 1 247 3 is_stmt 1 view .LVU118
+ 343              		.loc 1 247 24 is_stmt 0 view .LVU119
+ 344 0178 0D94     		str	r4, [sp, #52]
+ 248:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 345              		.loc 1 248 3 is_stmt 1 view .LVU120
+ 346              		.loc 1 248 25 is_stmt 0 view .LVU121
+ 347 017a 0E96     		str	r6, [sp, #56]
+ 249:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_FMC;
+ 348              		.loc 1 249 3 is_stmt 1 view .LVU122
+ 349              		.loc 1 249 29 is_stmt 0 view .LVU123
+ 350 017c 4FF00C0B 		mov	fp, #12
+ 351 0180 CDF83CB0 		str	fp, [sp, #60]
+ 250:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+ 352              		.loc 1 250 3 is_stmt 1 view .LVU124
+ 353 0184 0BA9     		add	r1, sp, #44
+ 354 0186 5046     		mov	r0, r10
+ 355 0188 FFF7FEFF 		bl	HAL_GPIO_Init
+ 356              	.LVL9:
+ 251:Core/Src/gpio.c **** 
+ 252:Core/Src/gpio.c ****   /*Configure GPIO pins : PBPin PBPin */
+ 253:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_SCL_D15_Pin|ARDUINO_SDA_D14_Pin;
+ 357              		.loc 1 253 3 view .LVU125
+ 358              		.loc 1 253 23 is_stmt 0 view .LVU126
+ 359 018c 4FF44073 		mov	r3, #768
+ 360 0190 0B93     		str	r3, [sp, #44]
+ 254:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+ 361              		.loc 1 254 3 is_stmt 1 view .LVU127
+ 362              		.loc 1 254 24 is_stmt 0 view .LVU128
+ 363 0192 1223     		movs	r3, #18
+ 364 0194 0C93     		str	r3, [sp, #48]
+ 255:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 365              		.loc 1 255 3 is_stmt 1 view .LVU129
+ 366              		.loc 1 255 24 is_stmt 0 view .LVU130
+ 367 0196 0D94     		str	r4, [sp, #52]
+ 256:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 368              		.loc 1 256 3 is_stmt 1 view .LVU131
+ 369              		.loc 1 256 25 is_stmt 0 view .LVU132
+ 370 0198 0E94     		str	r4, [sp, #56]
+ 257:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF4_I2C1;
+ 371              		.loc 1 257 3 is_stmt 1 view .LVU133
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 12
+
+
+ 372              		.loc 1 257 29 is_stmt 0 view .LVU134
+ 373 019a 0423     		movs	r3, #4
+ 374 019c 0F93     		str	r3, [sp, #60]
+ 258:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 375              		.loc 1 258 3 is_stmt 1 view .LVU135
+ 376 019e 0BA9     		add	r1, sp, #44
+ 377 01a0 4B48     		ldr	r0, .L3+20
+ 378 01a2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 379              	.LVL10:
+ 259:Core/Src/gpio.c **** 
+ 260:Core/Src/gpio.c ****   /*Configure GPIO pins : PBPin PBPin PBPin PBPin
+ 261:Core/Src/gpio.c ****                            PBPin PBPin PBPin */
+ 262:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ULPI_D7_Pin|ULPI_D6_Pin|ULPI_D5_Pin|ULPI_D3_Pin
+ 380              		.loc 1 262 3 view .LVU136
+ 381              		.loc 1 262 23 is_stmt 0 view .LVU137
+ 382 01a6 43F62343 		movw	r3, #15395
+ 383 01aa 0B93     		str	r3, [sp, #44]
+ 263:Core/Src/gpio.c ****                           |ULPI_D2_Pin|ULPI_D1_Pin|ULPI_D4_Pin;
+ 264:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 384              		.loc 1 264 3 is_stmt 1 view .LVU138
+ 385              		.loc 1 264 24 is_stmt 0 view .LVU139
+ 386 01ac 0C95     		str	r5, [sp, #48]
+ 265:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 387              		.loc 1 265 3 is_stmt 1 view .LVU140
+ 388              		.loc 1 265 24 is_stmt 0 view .LVU141
+ 389 01ae 0D94     		str	r4, [sp, #52]
+ 266:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 390              		.loc 1 266 3 is_stmt 1 view .LVU142
+ 391              		.loc 1 266 25 is_stmt 0 view .LVU143
+ 392 01b0 0E96     		str	r6, [sp, #56]
+ 267:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
+ 393              		.loc 1 267 3 is_stmt 1 view .LVU144
+ 394              		.loc 1 267 29 is_stmt 0 view .LVU145
+ 395 01b2 4FF00A09 		mov	r9, #10
+ 396 01b6 CDF83C90 		str	r9, [sp, #60]
+ 268:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 397              		.loc 1 268 3 is_stmt 1 view .LVU146
+ 398 01ba 0BA9     		add	r1, sp, #44
+ 399 01bc 4448     		ldr	r0, .L3+20
+ 400 01be FFF7FEFF 		bl	HAL_GPIO_Init
+ 401              	.LVL11:
+ 269:Core/Src/gpio.c **** 
+ 270:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 271:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_PWM_D3_Pin;
+ 402              		.loc 1 271 3 view .LVU147
+ 403              		.loc 1 271 23 is_stmt 0 view .LVU148
+ 404 01c2 1023     		movs	r3, #16
+ 405 01c4 0B93     		str	r3, [sp, #44]
+ 272:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 406              		.loc 1 272 3 is_stmt 1 view .LVU149
+ 407              		.loc 1 272 24 is_stmt 0 view .LVU150
+ 408 01c6 0C95     		str	r5, [sp, #48]
+ 273:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 409              		.loc 1 273 3 is_stmt 1 view .LVU151
+ 410              		.loc 1 273 24 is_stmt 0 view .LVU152
+ 411 01c8 0D94     		str	r4, [sp, #52]
+ 274:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 13
+
+
+ 412              		.loc 1 274 3 is_stmt 1 view .LVU153
+ 413              		.loc 1 274 25 is_stmt 0 view .LVU154
+ 414 01ca 0E94     		str	r4, [sp, #56]
+ 275:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF2_TIM3;
+ 415              		.loc 1 275 3 is_stmt 1 view .LVU155
+ 416              		.loc 1 275 29 is_stmt 0 view .LVU156
+ 417 01cc 0F95     		str	r5, [sp, #60]
+ 276:Core/Src/gpio.c ****   HAL_GPIO_Init(ARDUINO_PWM_D3_GPIO_Port, &GPIO_InitStruct);
+ 418              		.loc 1 276 3 is_stmt 1 view .LVU157
+ 419 01ce 0BA9     		add	r1, sp, #44
+ 420 01d0 3F48     		ldr	r0, .L3+20
+ 421 01d2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 422              	.LVL12:
+ 277:Core/Src/gpio.c **** 
+ 278:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 279:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = SPDIF_RX0_Pin;
+ 423              		.loc 1 279 3 view .LVU158
+ 424              		.loc 1 279 23 is_stmt 0 view .LVU159
+ 425 01d6 8023     		movs	r3, #128
+ 426 01d8 0B93     		str	r3, [sp, #44]
+ 280:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 427              		.loc 1 280 3 is_stmt 1 view .LVU160
+ 428              		.loc 1 280 24 is_stmt 0 view .LVU161
+ 429 01da 0C95     		str	r5, [sp, #48]
+ 281:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 430              		.loc 1 281 3 is_stmt 1 view .LVU162
+ 431              		.loc 1 281 24 is_stmt 0 view .LVU163
+ 432 01dc 0D94     		str	r4, [sp, #52]
+ 282:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 433              		.loc 1 282 3 is_stmt 1 view .LVU164
+ 434              		.loc 1 282 25 is_stmt 0 view .LVU165
+ 435 01de 0E94     		str	r4, [sp, #56]
+ 283:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF8_SPDIFRX;
+ 436              		.loc 1 283 3 is_stmt 1 view .LVU166
+ 437              		.loc 1 283 29 is_stmt 0 view .LVU167
+ 438 01e0 0823     		movs	r3, #8
+ 439 01e2 0F93     		str	r3, [sp, #60]
+ 284:Core/Src/gpio.c ****   HAL_GPIO_Init(SPDIF_RX0_GPIO_Port, &GPIO_InitStruct);
+ 440              		.loc 1 284 3 is_stmt 1 view .LVU168
+ 441 01e4 0BA9     		add	r1, sp, #44
+ 442 01e6 4046     		mov	r0, r8
+ 443 01e8 FFF7FEFF 		bl	HAL_GPIO_Init
+ 444              	.LVL13:
+ 285:Core/Src/gpio.c **** 
+ 286:Core/Src/gpio.c ****   /*Configure GPIO pins : PCPin PCPin PCPin PC9
+ 287:Core/Src/gpio.c ****                            PC8 */
+ 288:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = SDMMC_CK_Pin|SDMMC_D3_Pin|SDMMC_D2_Pin|GPIO_PIN_9
+ 445              		.loc 1 288 3 view .LVU169
+ 446              		.loc 1 288 23 is_stmt 0 view .LVU170
+ 447 01ec 4FF4F853 		mov	r3, #7936
+ 448 01f0 0B93     		str	r3, [sp, #44]
+ 289:Core/Src/gpio.c ****                           |GPIO_PIN_8;
+ 290:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 449              		.loc 1 290 3 is_stmt 1 view .LVU171
+ 450              		.loc 1 290 24 is_stmt 0 view .LVU172
+ 451 01f2 0C95     		str	r5, [sp, #48]
+ 291:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 14
+
+
+ 452              		.loc 1 291 3 is_stmt 1 view .LVU173
+ 453              		.loc 1 291 24 is_stmt 0 view .LVU174
+ 454 01f4 0D94     		str	r4, [sp, #52]
+ 292:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 455              		.loc 1 292 3 is_stmt 1 view .LVU175
+ 456              		.loc 1 292 25 is_stmt 0 view .LVU176
+ 457 01f6 0E96     		str	r6, [sp, #56]
+ 293:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_SDMMC1;
+ 458              		.loc 1 293 3 is_stmt 1 view .LVU177
+ 459              		.loc 1 293 29 is_stmt 0 view .LVU178
+ 460 01f8 CDF83CB0 		str	fp, [sp, #60]
+ 294:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 461              		.loc 1 294 3 is_stmt 1 view .LVU179
+ 462 01fc 0BA9     		add	r1, sp, #44
+ 463 01fe 3548     		ldr	r0, .L3+24
+ 464 0200 FFF7FEFF 		bl	HAL_GPIO_Init
+ 465              	.LVL14:
+ 295:Core/Src/gpio.c **** 
+ 296:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 297:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_PWM_D9_Pin;
+ 466              		.loc 1 297 3 view .LVU180
+ 467              		.loc 1 297 23 is_stmt 0 view .LVU181
+ 468 0204 4FF40043 		mov	r3, #32768
+ 469 0208 0B93     		str	r3, [sp, #44]
+ 298:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 470              		.loc 1 298 3 is_stmt 1 view .LVU182
+ 471              		.loc 1 298 24 is_stmt 0 view .LVU183
+ 472 020a 0C95     		str	r5, [sp, #48]
+ 299:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 473              		.loc 1 299 3 is_stmt 1 view .LVU184
+ 474              		.loc 1 299 24 is_stmt 0 view .LVU185
+ 475 020c 0D94     		str	r4, [sp, #52]
+ 300:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 476              		.loc 1 300 3 is_stmt 1 view .LVU186
+ 477              		.loc 1 300 25 is_stmt 0 view .LVU187
+ 478 020e 0E94     		str	r4, [sp, #56]
+ 301:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF1_TIM2;
+ 479              		.loc 1 301 3 is_stmt 1 view .LVU188
+ 480              		.loc 1 301 29 is_stmt 0 view .LVU189
+ 481 0210 0127     		movs	r7, #1
+ 482 0212 0F97     		str	r7, [sp, #60]
+ 302:Core/Src/gpio.c ****   HAL_GPIO_Init(ARDUINO_PWM_D9_GPIO_Port, &GPIO_InitStruct);
+ 483              		.loc 1 302 3 is_stmt 1 view .LVU190
+ 484 0214 0BA9     		add	r1, sp, #44
+ 485 0216 3048     		ldr	r0, .L3+28
+ 486 0218 FFF7FEFF 		bl	HAL_GPIO_Init
+ 487              	.LVL15:
+ 303:Core/Src/gpio.c **** 
+ 304:Core/Src/gpio.c ****   /*Configure GPIO pins : PEPin PEPin */
+ 305:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = DCMI_D6_Pin|DCMI_D7_Pin;
+ 488              		.loc 1 305 3 view .LVU191
+ 489              		.loc 1 305 23 is_stmt 0 view .LVU192
+ 490 021c 6023     		movs	r3, #96
+ 491 021e 0B93     		str	r3, [sp, #44]
+ 306:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 492              		.loc 1 306 3 is_stmt 1 view .LVU193
+ 493              		.loc 1 306 24 is_stmt 0 view .LVU194
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 15
+
+
+ 494 0220 0C95     		str	r5, [sp, #48]
+ 307:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 495              		.loc 1 307 3 is_stmt 1 view .LVU195
+ 496              		.loc 1 307 24 is_stmt 0 view .LVU196
+ 497 0222 0D94     		str	r4, [sp, #52]
+ 308:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 498              		.loc 1 308 3 is_stmt 1 view .LVU197
+ 499              		.loc 1 308 25 is_stmt 0 view .LVU198
+ 500 0224 0E94     		str	r4, [sp, #56]
+ 309:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
+ 501              		.loc 1 309 3 is_stmt 1 view .LVU199
+ 502              		.loc 1 309 29 is_stmt 0 view .LVU200
+ 503 0226 0D23     		movs	r3, #13
+ 504 0228 0F93     		str	r3, [sp, #60]
+ 310:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+ 505              		.loc 1 310 3 is_stmt 1 view .LVU201
+ 506 022a 0BA9     		add	r1, sp, #44
+ 507 022c 5046     		mov	r0, r10
+ 508 022e FFF7FEFF 		bl	HAL_GPIO_Init
+ 509              	.LVL16:
+ 311:Core/Src/gpio.c **** 
+ 312:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 313:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = VCP_RX_Pin;
+ 510              		.loc 1 313 3 view .LVU202
+ 511              		.loc 1 313 23 is_stmt 0 view .LVU203
+ 512 0232 8023     		movs	r3, #128
+ 513 0234 0B93     		str	r3, [sp, #44]
+ 314:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 514              		.loc 1 314 3 is_stmt 1 view .LVU204
+ 515              		.loc 1 314 24 is_stmt 0 view .LVU205
+ 516 0236 0C95     		str	r5, [sp, #48]
+ 315:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 517              		.loc 1 315 3 is_stmt 1 view .LVU206
+ 518              		.loc 1 315 24 is_stmt 0 view .LVU207
+ 519 0238 0D94     		str	r4, [sp, #52]
+ 316:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 520              		.loc 1 316 3 is_stmt 1 view .LVU208
+ 521              		.loc 1 316 25 is_stmt 0 view .LVU209
+ 522 023a 0E94     		str	r4, [sp, #56]
+ 317:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+ 523              		.loc 1 317 3 is_stmt 1 view .LVU210
+ 524              		.loc 1 317 29 is_stmt 0 view .LVU211
+ 525 023c 0723     		movs	r3, #7
+ 526 023e 0F93     		str	r3, [sp, #60]
+ 318:Core/Src/gpio.c ****   HAL_GPIO_Init(VCP_RX_GPIO_Port, &GPIO_InitStruct);
+ 527              		.loc 1 318 3 is_stmt 1 view .LVU212
+ 528 0240 0BA9     		add	r1, sp, #44
+ 529 0242 2348     		ldr	r0, .L3+20
+ 530 0244 FFF7FEFF 		bl	HAL_GPIO_Init
+ 531              	.LVL17:
+ 319:Core/Src/gpio.c **** 
+ 320:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 321:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = QSPI_NCS_Pin;
+ 532              		.loc 1 321 3 view .LVU213
+ 533              		.loc 1 321 23 is_stmt 0 view .LVU214
+ 534 0248 4023     		movs	r3, #64
+ 535 024a 0B93     		str	r3, [sp, #44]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 16
+
+
+ 322:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 536              		.loc 1 322 3 is_stmt 1 view .LVU215
+ 537              		.loc 1 322 24 is_stmt 0 view .LVU216
+ 538 024c 0C95     		str	r5, [sp, #48]
+ 323:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 539              		.loc 1 323 3 is_stmt 1 view .LVU217
+ 540              		.loc 1 323 24 is_stmt 0 view .LVU218
+ 541 024e 0D94     		str	r4, [sp, #52]
+ 324:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 542              		.loc 1 324 3 is_stmt 1 view .LVU219
+ 543              		.loc 1 324 25 is_stmt 0 view .LVU220
+ 544 0250 0E96     		str	r6, [sp, #56]
+ 325:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_QUADSPI;
+ 545              		.loc 1 325 3 is_stmt 1 view .LVU221
+ 546              		.loc 1 325 29 is_stmt 0 view .LVU222
+ 547 0252 CDF83C90 		str	r9, [sp, #60]
+ 326:Core/Src/gpio.c ****   HAL_GPIO_Init(QSPI_NCS_GPIO_Port, &GPIO_InitStruct);
+ 548              		.loc 1 326 3 is_stmt 1 view .LVU223
+ 549 0256 0BA9     		add	r1, sp, #44
+ 550 0258 1D48     		ldr	r0, .L3+20
+ 551 025a FFF7FEFF 		bl	HAL_GPIO_Init
+ 552              	.LVL18:
+ 327:Core/Src/gpio.c **** 
+ 328:Core/Src/gpio.c ****   /*Configure GPIO pins : PGPin PGPin PGPin PGPin
+ 329:Core/Src/gpio.c ****                            PGPin PGPin */
+ 330:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = FMC_SDNCAS_Pin|FMC_SDCLK_Pin|FMC_A11_Pin|FMC_A10_Pin
+ 553              		.loc 1 330 3 view .LVU224
+ 554              		.loc 1 330 23 is_stmt 0 view .LVU225
+ 555 025e 48F23313 		movw	r3, #33075
+ 556 0262 0B93     		str	r3, [sp, #44]
+ 331:Core/Src/gpio.c ****                           |FMC_BA1_Pin|FMC_BA0_Pin;
+ 332:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 557              		.loc 1 332 3 is_stmt 1 view .LVU226
+ 558              		.loc 1 332 24 is_stmt 0 view .LVU227
+ 559 0264 0C95     		str	r5, [sp, #48]
+ 333:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 560              		.loc 1 333 3 is_stmt 1 view .LVU228
+ 561              		.loc 1 333 24 is_stmt 0 view .LVU229
+ 562 0266 0D94     		str	r4, [sp, #52]
+ 334:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 563              		.loc 1 334 3 is_stmt 1 view .LVU230
+ 564              		.loc 1 334 25 is_stmt 0 view .LVU231
+ 565 0268 0E96     		str	r6, [sp, #56]
+ 335:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_FMC;
+ 566              		.loc 1 335 3 is_stmt 1 view .LVU232
+ 567              		.loc 1 335 29 is_stmt 0 view .LVU233
+ 568 026a CDF83CB0 		str	fp, [sp, #60]
+ 336:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+ 569              		.loc 1 336 3 is_stmt 1 view .LVU234
+ 570 026e 0BA9     		add	r1, sp, #44
+ 571 0270 1648     		ldr	r0, .L3+16
+ 572 0272 FFF7FEFF 		bl	HAL_GPIO_Init
+ 573              	.LVL19:
+ 337:Core/Src/gpio.c **** 
+ 338:Core/Src/gpio.c ****   /*Configure GPIO pins : PJPin PJPin PJPin PJPin
+ 339:Core/Src/gpio.c ****                            PJPin PJPin PJPin PJPin
+ 340:Core/Src/gpio.c ****                            PJPin PJPin PJPin PJPin
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 17
+
+
+ 341:Core/Src/gpio.c ****                            PJPin PJPin PJPin */
+ 342:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_B1_Pin|LCD_B2_Pin|LCD_B3_Pin|LCD_G4_Pin
+ 574              		.loc 1 342 3 view .LVU235
+ 575              		.loc 1 342 23 is_stmt 0 view .LVU236
+ 576 0276 4EF6FF73 		movw	r3, #61439
+ 577 027a 0B93     		str	r3, [sp, #44]
+ 343:Core/Src/gpio.c ****                           |LCD_G1_Pin|LCD_G3_Pin|LCD_G0_Pin|LCD_G2_Pin
+ 344:Core/Src/gpio.c ****                           |LCD_R7_Pin|LCD_R5_Pin|LCD_R6_Pin|LCD_R4_Pin
+ 345:Core/Src/gpio.c ****                           |LCD_R3_Pin|LCD_R1_Pin|LCD_R2_Pin;
+ 346:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 578              		.loc 1 346 3 is_stmt 1 view .LVU237
+ 579              		.loc 1 346 24 is_stmt 0 view .LVU238
+ 580 027c 0C95     		str	r5, [sp, #48]
+ 347:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 581              		.loc 1 347 3 is_stmt 1 view .LVU239
+ 582              		.loc 1 347 24 is_stmt 0 view .LVU240
+ 583 027e 0D94     		str	r4, [sp, #52]
+ 348:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 584              		.loc 1 348 3 is_stmt 1 view .LVU241
+ 585              		.loc 1 348 25 is_stmt 0 view .LVU242
+ 586 0280 0E94     		str	r4, [sp, #56]
+ 349:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
+ 587              		.loc 1 349 3 is_stmt 1 view .LVU243
+ 588              		.loc 1 349 29 is_stmt 0 view .LVU244
+ 589 0282 0E23     		movs	r3, #14
+ 590 0284 0F93     		str	r3, [sp, #60]
+ 350:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOJ, &GPIO_InitStruct);
+ 591              		.loc 1 350 3 is_stmt 1 view .LVU245
+ 592 0286 0BA9     		add	r1, sp, #44
+ 593 0288 1448     		ldr	r0, .L3+32
+ 594 028a FFF7FEFF 		bl	HAL_GPIO_Init
+ 595              	.LVL20:
+ 351:Core/Src/gpio.c **** 
+ 352:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 353:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = OTG_FS_VBUS_Pin;
+ 596              		.loc 1 353 3 view .LVU246
+ 597              		.loc 1 353 23 is_stmt 0 view .LVU247
+ 598 028e 4FF4805A 		mov	r10, #4096
+ 599 0292 CDF82CA0 		str	r10, [sp, #44]
+ 354:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 600              		.loc 1 354 3 is_stmt 1 view .LVU248
+ 601              		.loc 1 354 24 is_stmt 0 view .LVU249
+ 602 0296 0C94     		str	r4, [sp, #48]
+ 355:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 603              		.loc 1 355 3 is_stmt 1 view .LVU250
+ 604              		.loc 1 355 24 is_stmt 0 view .LVU251
+ 605 0298 0D94     		str	r4, [sp, #52]
+ 356:Core/Src/gpio.c ****   HAL_GPIO_Init(OTG_FS_VBUS_GPIO_Port, &GPIO_InitStruct);
+ 606              		.loc 1 356 3 is_stmt 1 view .LVU252
+ 607 029a 0BA9     		add	r1, sp, #44
+ 608 029c 0F48     		ldr	r0, .L3+32
+ 609 029e FFF7FEFF 		bl	HAL_GPIO_Init
+ 610              	.LVL21:
+ 357:Core/Src/gpio.c **** 
+ 358:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 359:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = Audio_INT_Pin;
+ 611              		.loc 1 359 3 view .LVU253
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 18
+
+
+ 612              		.loc 1 359 23 is_stmt 0 view .LVU254
+ 613 02a2 4023     		movs	r3, #64
+ 614 02a4 0B93     		str	r3, [sp, #44]
+ 360:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
+ 615              		.loc 1 360 3 is_stmt 1 view .LVU255
+ 616              		.loc 1 360 24 is_stmt 0 view .LVU256
+ 617 02a6 4FF49013 		mov	r3, #1179648
+ 618 02aa 0C93     		str	r3, [sp, #48]
+ 361:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 619              		.loc 1 361 3 is_stmt 1 view .LVU257
+ 620              		.loc 1 361 24 is_stmt 0 view .LVU258
+ 621 02ac 0D94     		str	r4, [sp, #52]
+ 362:Core/Src/gpio.c ****   HAL_GPIO_Init(Audio_INT_GPIO_Port, &GPIO_InitStruct);
+ 622              		.loc 1 362 3 is_stmt 1 view .LVU259
+ 623 02ae 0BA9     		add	r1, sp, #44
+ 624 02b0 4046     		mov	r0, r8
+ 625 02b2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 626              	.LVL22:
+ 363:Core/Src/gpio.c **** 
+ 364:Core/Src/gpio.c ****   /*Configure GPIO pins : PDPin PDPin PDPin PDPin
+ 365:Core/Src/gpio.c ****                            PDPin PDPin PDPin */
+ 366:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = FMC_D2_Pin|FMC_D3_Pin|FMC_D1_Pin|FMC_D15_Pin
+ 627              		.loc 1 366 3 view .LVU260
+ 628              		.loc 1 366 23 is_stmt 0 view .LVU261
+ 629 02b6 4CF20373 		movw	r3, #50947
+ 630 02ba 15E0     		b	.L4
+ 631              	.L5:
+ 632              		.align	2
+ 633              	.L3:
+ 634 02bc 00380240 		.word	1073887232
+ 635 02c0 00200240 		.word	1073881088
+ 636 02c4 00280240 		.word	1073883136
+ 637 02c8 001C0240 		.word	1073880064
+ 638 02cc 00180240 		.word	1073879040
+ 639 02d0 00040240 		.word	1073873920
+ 640 02d4 00080240 		.word	1073874944
+ 641 02d8 00000240 		.word	1073872896
+ 642 02dc 00240240 		.word	1073882112
+ 643 02e0 000C0240 		.word	1073875968
+ 644 02e4 00100240 		.word	1073876992
+ 645              	.L4:
+ 646 02e8 0B93     		str	r3, [sp, #44]
+ 367:Core/Src/gpio.c ****                           |FMC_D0_Pin|FMC_D14_Pin|FMC_D13_Pin;
+ 368:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 647              		.loc 1 368 3 is_stmt 1 view .LVU262
+ 648              		.loc 1 368 24 is_stmt 0 view .LVU263
+ 649 02ea 0C95     		str	r5, [sp, #48]
+ 369:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 650              		.loc 1 369 3 is_stmt 1 view .LVU264
+ 651              		.loc 1 369 24 is_stmt 0 view .LVU265
+ 652 02ec 0D94     		str	r4, [sp, #52]
+ 370:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 653              		.loc 1 370 3 is_stmt 1 view .LVU266
+ 654              		.loc 1 370 25 is_stmt 0 view .LVU267
+ 655 02ee 0E96     		str	r6, [sp, #56]
+ 371:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_FMC;
+ 656              		.loc 1 371 3 is_stmt 1 view .LVU268
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 19
+
+
+ 657              		.loc 1 371 29 is_stmt 0 view .LVU269
+ 658 02f0 CDF83CB0 		str	fp, [sp, #60]
+ 372:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 659              		.loc 1 372 3 is_stmt 1 view .LVU270
+ 660 02f4 0BA9     		add	r1, sp, #44
+ 661 02f6 4046     		mov	r0, r8
+ 662 02f8 FFF7FEFF 		bl	HAL_GPIO_Init
+ 663              	.LVL23:
+ 373:Core/Src/gpio.c **** 
+ 374:Core/Src/gpio.c ****   /*Configure GPIO pins : PAPin PAPin PAPin */
+ 375:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = OTG_FS_P_Pin|OTG_FS_N_Pin|OTG_FS_ID_Pin;
+ 664              		.loc 1 375 3 view .LVU271
+ 665              		.loc 1 375 23 is_stmt 0 view .LVU272
+ 666 02fc 4FF4E053 		mov	r3, #7168
+ 667 0300 0B93     		str	r3, [sp, #44]
+ 376:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 668              		.loc 1 376 3 is_stmt 1 view .LVU273
+ 669              		.loc 1 376 24 is_stmt 0 view .LVU274
+ 670 0302 0C95     		str	r5, [sp, #48]
+ 377:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 671              		.loc 1 377 3 is_stmt 1 view .LVU275
+ 672              		.loc 1 377 24 is_stmt 0 view .LVU276
+ 673 0304 0D94     		str	r4, [sp, #52]
+ 378:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 674              		.loc 1 378 3 is_stmt 1 view .LVU277
+ 675              		.loc 1 378 25 is_stmt 0 view .LVU278
+ 676 0306 0E96     		str	r6, [sp, #56]
+ 379:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_FS;
+ 677              		.loc 1 379 3 is_stmt 1 view .LVU279
+ 678              		.loc 1 379 29 is_stmt 0 view .LVU280
+ 679 0308 CDF83C90 		str	r9, [sp, #60]
+ 380:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 680              		.loc 1 380 3 is_stmt 1 view .LVU281
+ 681 030c 0BA9     		add	r1, sp, #44
+ 682 030e A448     		ldr	r0, .L6
+ 683 0310 FFF7FEFF 		bl	HAL_GPIO_Init
+ 684              	.LVL24:
+ 381:Core/Src/gpio.c **** 
+ 382:Core/Src/gpio.c ****   /*Configure GPIO pins : PIPin PIPin PIPin PIPin */
+ 383:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = SAI2_MCLKA_Pin|SAI2_SCKA_Pin|SAI2_FSA_Pin|SAI2_SDA_Pin;
+ 685              		.loc 1 383 3 view .LVU282
+ 686              		.loc 1 383 23 is_stmt 0 view .LVU283
+ 687 0314 F023     		movs	r3, #240
+ 688 0316 0B93     		str	r3, [sp, #44]
+ 384:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 689              		.loc 1 384 3 is_stmt 1 view .LVU284
+ 690              		.loc 1 384 24 is_stmt 0 view .LVU285
+ 691 0318 0C95     		str	r5, [sp, #48]
+ 385:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 692              		.loc 1 385 3 is_stmt 1 view .LVU286
+ 693              		.loc 1 385 24 is_stmt 0 view .LVU287
+ 694 031a 0D94     		str	r4, [sp, #52]
+ 386:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 695              		.loc 1 386 3 is_stmt 1 view .LVU288
+ 696              		.loc 1 386 25 is_stmt 0 view .LVU289
+ 697 031c 0E94     		str	r4, [sp, #56]
+ 387:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_SAI2;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 20
+
+
+ 698              		.loc 1 387 3 is_stmt 1 view .LVU290
+ 699              		.loc 1 387 29 is_stmt 0 view .LVU291
+ 700 031e CDF83C90 		str	r9, [sp, #60]
+ 388:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+ 701              		.loc 1 388 3 is_stmt 1 view .LVU292
+ 702 0322 0BA9     		add	r1, sp, #44
+ 703 0324 9F48     		ldr	r0, .L6+4
+ 704 0326 FFF7FEFF 		bl	HAL_GPIO_Init
+ 705              	.LVL25:
+ 389:Core/Src/gpio.c **** 
+ 390:Core/Src/gpio.c ****   /*Configure GPIO pins : PKPin PKPin PKPin PKPin
+ 391:Core/Src/gpio.c ****                            PKPin PKPin PKPin */
+ 392:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_DE_Pin|LCD_B7_Pin|LCD_B6_Pin|LCD_B5_Pin
+ 706              		.loc 1 392 3 view .LVU293
+ 707              		.loc 1 392 23 is_stmt 0 view .LVU294
+ 708 032a F723     		movs	r3, #247
+ 709 032c 0B93     		str	r3, [sp, #44]
+ 393:Core/Src/gpio.c ****                           |LCD_G6_Pin|LCD_G7_Pin|LCD_G5_Pin;
+ 394:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 710              		.loc 1 394 3 is_stmt 1 view .LVU295
+ 711              		.loc 1 394 24 is_stmt 0 view .LVU296
+ 712 032e 0C95     		str	r5, [sp, #48]
+ 395:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 713              		.loc 1 395 3 is_stmt 1 view .LVU297
+ 714              		.loc 1 395 24 is_stmt 0 view .LVU298
+ 715 0330 0D94     		str	r4, [sp, #52]
+ 396:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 716              		.loc 1 396 3 is_stmt 1 view .LVU299
+ 717              		.loc 1 396 25 is_stmt 0 view .LVU300
+ 718 0332 0E94     		str	r4, [sp, #56]
+ 397:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
+ 719              		.loc 1 397 3 is_stmt 1 view .LVU301
+ 720              		.loc 1 397 29 is_stmt 0 view .LVU302
+ 721 0334 0E23     		movs	r3, #14
+ 722 0336 0F93     		str	r3, [sp, #60]
+ 398:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOK, &GPIO_InitStruct);
+ 723              		.loc 1 398 3 is_stmt 1 view .LVU303
+ 724 0338 0BA9     		add	r1, sp, #44
+ 725 033a 9B48     		ldr	r0, .L6+8
+ 726 033c FFF7FEFF 		bl	HAL_GPIO_Init
+ 727              	.LVL26:
+ 399:Core/Src/gpio.c **** 
+ 400:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 401:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_B4_Pin;
+ 728              		.loc 1 401 3 view .LVU304
+ 729              		.loc 1 401 23 is_stmt 0 view .LVU305
+ 730 0340 CDF82CA0 		str	r10, [sp, #44]
+ 402:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 731              		.loc 1 402 3 is_stmt 1 view .LVU306
+ 732              		.loc 1 402 24 is_stmt 0 view .LVU307
+ 733 0344 0C95     		str	r5, [sp, #48]
+ 403:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 734              		.loc 1 403 3 is_stmt 1 view .LVU308
+ 735              		.loc 1 403 24 is_stmt 0 view .LVU309
+ 736 0346 0D94     		str	r4, [sp, #52]
+ 404:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 737              		.loc 1 404 3 is_stmt 1 view .LVU310
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 21
+
+
+ 738              		.loc 1 404 25 is_stmt 0 view .LVU311
+ 739 0348 0E94     		str	r4, [sp, #56]
+ 405:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF9_LTDC;
+ 740              		.loc 1 405 3 is_stmt 1 view .LVU312
+ 741              		.loc 1 405 29 is_stmt 0 view .LVU313
+ 742 034a 0923     		movs	r3, #9
+ 743 034c 0F93     		str	r3, [sp, #60]
+ 406:Core/Src/gpio.c ****   HAL_GPIO_Init(LCD_B4_GPIO_Port, &GPIO_InitStruct);
+ 744              		.loc 1 406 3 is_stmt 1 view .LVU314
+ 745 034e 0BA9     		add	r1, sp, #44
+ 746 0350 9648     		ldr	r0, .L6+12
+ 747 0352 FFF7FEFF 		bl	HAL_GPIO_Init
+ 748              	.LVL27:
+ 407:Core/Src/gpio.c **** 
+ 408:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 409:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = SAI2_SDB_Pin;
+ 749              		.loc 1 409 3 view .LVU315
+ 750              		.loc 1 409 23 is_stmt 0 view .LVU316
+ 751 0356 4FF48063 		mov	r3, #1024
+ 752 035a 0B93     		str	r3, [sp, #44]
+ 410:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 753              		.loc 1 410 3 is_stmt 1 view .LVU317
+ 754              		.loc 1 410 24 is_stmt 0 view .LVU318
+ 755 035c 0C95     		str	r5, [sp, #48]
+ 411:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 756              		.loc 1 411 3 is_stmt 1 view .LVU319
+ 757              		.loc 1 411 24 is_stmt 0 view .LVU320
+ 758 035e 0D94     		str	r4, [sp, #52]
+ 412:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 759              		.loc 1 412 3 is_stmt 1 view .LVU321
+ 760              		.loc 1 412 25 is_stmt 0 view .LVU322
+ 761 0360 0E94     		str	r4, [sp, #56]
+ 413:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_SAI2;
+ 762              		.loc 1 413 3 is_stmt 1 view .LVU323
+ 763              		.loc 1 413 29 is_stmt 0 view .LVU324
+ 764 0362 CDF83C90 		str	r9, [sp, #60]
+ 414:Core/Src/gpio.c ****   HAL_GPIO_Init(SAI2_SDB_GPIO_Port, &GPIO_InitStruct);
+ 765              		.loc 1 414 3 is_stmt 1 view .LVU325
+ 766 0366 0BA9     		add	r1, sp, #44
+ 767 0368 9048     		ldr	r0, .L6+12
+ 768 036a FFF7FEFF 		bl	HAL_GPIO_Init
+ 769              	.LVL28:
+ 415:Core/Src/gpio.c **** 
+ 416:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 417:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = OTG_FS_PowerSwitchOn_Pin;
+ 770              		.loc 1 417 3 view .LVU326
+ 771              		.loc 1 417 23 is_stmt 0 view .LVU327
+ 772 036e 2023     		movs	r3, #32
+ 773 0370 0B93     		str	r3, [sp, #44]
+ 418:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 774              		.loc 1 418 3 is_stmt 1 view .LVU328
+ 775              		.loc 1 418 24 is_stmt 0 view .LVU329
+ 776 0372 0C97     		str	r7, [sp, #48]
+ 419:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 777              		.loc 1 419 3 is_stmt 1 view .LVU330
+ 778              		.loc 1 419 24 is_stmt 0 view .LVU331
+ 779 0374 0D94     		str	r4, [sp, #52]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 22
+
+
+ 420:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 780              		.loc 1 420 3 is_stmt 1 view .LVU332
+ 781              		.loc 1 420 25 is_stmt 0 view .LVU333
+ 782 0376 0E94     		str	r4, [sp, #56]
+ 421:Core/Src/gpio.c ****   HAL_GPIO_Init(OTG_FS_PowerSwitchOn_GPIO_Port, &GPIO_InitStruct);
+ 783              		.loc 1 421 3 is_stmt 1 view .LVU334
+ 784 0378 0BA9     		add	r1, sp, #44
+ 785 037a 4046     		mov	r0, r8
+ 786 037c FFF7FEFF 		bl	HAL_GPIO_Init
+ 787              	.LVL29:
+ 422:Core/Src/gpio.c **** 
+ 423:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 424:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = DCMI_D5_Pin;
+ 788              		.loc 1 424 3 view .LVU335
+ 789              		.loc 1 424 23 is_stmt 0 view .LVU336
+ 790 0380 0823     		movs	r3, #8
+ 791 0382 0B93     		str	r3, [sp, #44]
+ 425:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 792              		.loc 1 425 3 is_stmt 1 view .LVU337
+ 793              		.loc 1 425 24 is_stmt 0 view .LVU338
+ 794 0384 0C95     		str	r5, [sp, #48]
+ 426:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 795              		.loc 1 426 3 is_stmt 1 view .LVU339
+ 796              		.loc 1 426 24 is_stmt 0 view .LVU340
+ 797 0386 0D94     		str	r4, [sp, #52]
+ 427:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 798              		.loc 1 427 3 is_stmt 1 view .LVU341
+ 799              		.loc 1 427 25 is_stmt 0 view .LVU342
+ 800 0388 0E94     		str	r4, [sp, #56]
+ 428:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
+ 801              		.loc 1 428 3 is_stmt 1 view .LVU343
+ 802              		.loc 1 428 29 is_stmt 0 view .LVU344
+ 803 038a 0D23     		movs	r3, #13
+ 804 038c 0F93     		str	r3, [sp, #60]
+ 429:Core/Src/gpio.c ****   HAL_GPIO_Init(DCMI_D5_GPIO_Port, &GPIO_InitStruct);
+ 805              		.loc 1 429 3 is_stmt 1 view .LVU345
+ 806 038e 0BA9     		add	r1, sp, #44
+ 807 0390 4046     		mov	r0, r8
+ 808 0392 FFF7FEFF 		bl	HAL_GPIO_Init
+ 809              	.LVL30:
+ 430:Core/Src/gpio.c **** 
+ 431:Core/Src/gpio.c ****   /*Configure GPIO pins : PIPin PIPin PIPin PIPin */
+ 432:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_D7_Pin|ARDUINO_D8_Pin|LED_Pin|LCD_DISP_Pin;
+ 810              		.loc 1 432 3 view .LVU346
+ 811              		.loc 1 432 23 is_stmt 0 view .LVU347
+ 812 0396 41F20E03 		movw	r3, #4110
+ 813 039a 0B93     		str	r3, [sp, #44]
+ 433:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 814              		.loc 1 433 3 is_stmt 1 view .LVU348
+ 815              		.loc 1 433 24 is_stmt 0 view .LVU349
+ 816 039c 0C97     		str	r7, [sp, #48]
+ 434:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 817              		.loc 1 434 3 is_stmt 1 view .LVU350
+ 818              		.loc 1 434 24 is_stmt 0 view .LVU351
+ 819 039e 0D94     		str	r4, [sp, #52]
+ 435:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 820              		.loc 1 435 3 is_stmt 1 view .LVU352
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 23
+
+
+ 821              		.loc 1 435 25 is_stmt 0 view .LVU353
+ 822 03a0 0E94     		str	r4, [sp, #56]
+ 436:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+ 823              		.loc 1 436 3 is_stmt 1 view .LVU354
+ 824 03a2 0BA9     		add	r1, sp, #44
+ 825 03a4 7F48     		ldr	r0, .L6+4
+ 826 03a6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 827              	.LVL31:
+ 437:Core/Src/gpio.c **** 
+ 438:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 439:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = uSD_Detect_Pin;
+ 828              		.loc 1 439 3 view .LVU355
+ 829              		.loc 1 439 23 is_stmt 0 view .LVU356
+ 830 03aa 4FF4005A 		mov	r10, #8192
+ 831 03ae CDF82CA0 		str	r10, [sp, #44]
+ 440:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 832              		.loc 1 440 3 is_stmt 1 view .LVU357
+ 833              		.loc 1 440 24 is_stmt 0 view .LVU358
+ 834 03b2 0C94     		str	r4, [sp, #48]
+ 441:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 835              		.loc 1 441 3 is_stmt 1 view .LVU359
+ 836              		.loc 1 441 24 is_stmt 0 view .LVU360
+ 837 03b4 0D94     		str	r4, [sp, #52]
+ 442:Core/Src/gpio.c ****   HAL_GPIO_Init(uSD_Detect_GPIO_Port, &GPIO_InitStruct);
+ 838              		.loc 1 442 3 is_stmt 1 view .LVU361
+ 839 03b6 0BA9     		add	r1, sp, #44
+ 840 03b8 7D48     		ldr	r0, .L6+16
+ 841 03ba FFF7FEFF 		bl	HAL_GPIO_Init
+ 842              	.LVL32:
+ 443:Core/Src/gpio.c **** 
+ 444:Core/Src/gpio.c ****   /*Configure GPIO pins : PFPin PFPin PFPin PFPin
+ 445:Core/Src/gpio.c ****                            PFPin PFPin PFPin PFPin
+ 446:Core/Src/gpio.c ****                            PFPin PFPin PFPin */
+ 447:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = FMC_A0_Pin|FMC_A1_Pin|FMC_A2_Pin|FMC_A3_Pin
+ 843              		.loc 1 447 3 view .LVU362
+ 844              		.loc 1 447 23 is_stmt 0 view .LVU363
+ 845 03be 4FF63F03 		movw	r3, #63551
+ 846 03c2 0B93     		str	r3, [sp, #44]
+ 448:Core/Src/gpio.c ****                           |FMC_A4_Pin|FMC_A5_Pin|FMC_A6_Pin|FMC_A9_Pin
+ 449:Core/Src/gpio.c ****                           |FMC_A7_Pin|FMC_A8_Pin|FMC_SDNRAS_Pin;
+ 450:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 847              		.loc 1 450 3 is_stmt 1 view .LVU364
+ 848              		.loc 1 450 24 is_stmt 0 view .LVU365
+ 849 03c4 0C95     		str	r5, [sp, #48]
+ 451:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 850              		.loc 1 451 3 is_stmt 1 view .LVU366
+ 851              		.loc 1 451 24 is_stmt 0 view .LVU367
+ 852 03c6 0D94     		str	r4, [sp, #52]
+ 452:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 853              		.loc 1 452 3 is_stmt 1 view .LVU368
+ 854              		.loc 1 452 25 is_stmt 0 view .LVU369
+ 855 03c8 0E96     		str	r6, [sp, #56]
+ 453:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_FMC;
+ 856              		.loc 1 453 3 is_stmt 1 view .LVU370
+ 857              		.loc 1 453 29 is_stmt 0 view .LVU371
+ 858 03ca CDF83CB0 		str	fp, [sp, #60]
+ 454:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 24
+
+
+ 859              		.loc 1 454 3 is_stmt 1 view .LVU372
+ 860 03ce 0BA9     		add	r1, sp, #44
+ 861 03d0 7848     		ldr	r0, .L6+20
+ 862 03d2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 863              	.LVL33:
+ 455:Core/Src/gpio.c **** 
+ 456:Core/Src/gpio.c ****   /*Configure GPIO pins : PIPin PIPin PIPin PIPin */
+ 457:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_HSYNC_Pin|LCD_VSYNC_Pin|LCD_R0_Pin|LCD_CLK_Pin;
+ 864              		.loc 1 457 3 view .LVU373
+ 865              		.loc 1 457 23 is_stmt 0 view .LVU374
+ 866 03d6 4FF44643 		mov	r3, #50688
+ 867 03da 0B93     		str	r3, [sp, #44]
+ 458:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 868              		.loc 1 458 3 is_stmt 1 view .LVU375
+ 869              		.loc 1 458 24 is_stmt 0 view .LVU376
+ 870 03dc 0C95     		str	r5, [sp, #48]
+ 459:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 871              		.loc 1 459 3 is_stmt 1 view .LVU377
+ 872              		.loc 1 459 24 is_stmt 0 view .LVU378
+ 873 03de 0D94     		str	r4, [sp, #52]
+ 460:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 874              		.loc 1 460 3 is_stmt 1 view .LVU379
+ 875              		.loc 1 460 25 is_stmt 0 view .LVU380
+ 876 03e0 0E94     		str	r4, [sp, #56]
+ 461:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF14_LTDC;
+ 877              		.loc 1 461 3 is_stmt 1 view .LVU381
+ 878              		.loc 1 461 29 is_stmt 0 view .LVU382
+ 879 03e2 0E23     		movs	r3, #14
+ 880 03e4 0F93     		str	r3, [sp, #60]
+ 462:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOI, &GPIO_InitStruct);
+ 881              		.loc 1 462 3 is_stmt 1 view .LVU383
+ 882 03e6 0BA9     		add	r1, sp, #44
+ 883 03e8 6E48     		ldr	r0, .L6+4
+ 884 03ea FFF7FEFF 		bl	HAL_GPIO_Init
+ 885              	.LVL34:
+ 463:Core/Src/gpio.c **** 
+ 464:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 465:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_BL_CTRL_Pin;
+ 886              		.loc 1 465 3 view .LVU384
+ 887              		.loc 1 465 23 is_stmt 0 view .LVU385
+ 888 03ee 0823     		movs	r3, #8
+ 889 03f0 0B93     		str	r3, [sp, #44]
+ 466:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 890              		.loc 1 466 3 is_stmt 1 view .LVU386
+ 891              		.loc 1 466 24 is_stmt 0 view .LVU387
+ 892 03f2 0C97     		str	r7, [sp, #48]
+ 467:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 893              		.loc 1 467 3 is_stmt 1 view .LVU388
+ 894              		.loc 1 467 24 is_stmt 0 view .LVU389
+ 895 03f4 0D94     		str	r4, [sp, #52]
+ 468:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 896              		.loc 1 468 3 is_stmt 1 view .LVU390
+ 897              		.loc 1 468 25 is_stmt 0 view .LVU391
+ 898 03f6 0E94     		str	r4, [sp, #56]
+ 469:Core/Src/gpio.c ****   HAL_GPIO_Init(LCD_BL_CTRL_GPIO_Port, &GPIO_InitStruct);
+ 899              		.loc 1 469 3 is_stmt 1 view .LVU392
+ 900 03f8 0BA9     		add	r1, sp, #44
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 25
+
+
+ 901 03fa 6B48     		ldr	r0, .L6+8
+ 902 03fc FFF7FEFF 		bl	HAL_GPIO_Init
+ 903              	.LVL35:
+ 470:Core/Src/gpio.c **** 
+ 471:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 472:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = DCMI_VSYNC_Pin;
+ 904              		.loc 1 472 3 view .LVU393
+ 905              		.loc 1 472 23 is_stmt 0 view .LVU394
+ 906 0400 4FF40073 		mov	r3, #512
+ 907 0404 0B93     		str	r3, [sp, #44]
+ 473:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 908              		.loc 1 473 3 is_stmt 1 view .LVU395
+ 909              		.loc 1 473 24 is_stmt 0 view .LVU396
+ 910 0406 0C95     		str	r5, [sp, #48]
+ 474:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 911              		.loc 1 474 3 is_stmt 1 view .LVU397
+ 912              		.loc 1 474 24 is_stmt 0 view .LVU398
+ 913 0408 0D94     		str	r4, [sp, #52]
+ 475:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 914              		.loc 1 475 3 is_stmt 1 view .LVU399
+ 915              		.loc 1 475 25 is_stmt 0 view .LVU400
+ 916 040a 0E94     		str	r4, [sp, #56]
+ 476:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
+ 917              		.loc 1 476 3 is_stmt 1 view .LVU401
+ 918              		.loc 1 476 29 is_stmt 0 view .LVU402
+ 919 040c 0D23     		movs	r3, #13
+ 920 040e 0F93     		str	r3, [sp, #60]
+ 477:Core/Src/gpio.c ****   HAL_GPIO_Init(DCMI_VSYNC_GPIO_Port, &GPIO_InitStruct);
+ 921              		.loc 1 477 3 is_stmt 1 view .LVU403
+ 922 0410 0BA9     		add	r1, sp, #44
+ 923 0412 6648     		ldr	r0, .L6+12
+ 924 0414 FFF7FEFF 		bl	HAL_GPIO_Init
+ 925              	.LVL36:
+ 478:Core/Src/gpio.c **** 
+ 479:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 480:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = OTG_FS_OverCurrent_Pin;
+ 926              		.loc 1 480 3 view .LVU404
+ 927              		.loc 1 480 23 is_stmt 0 view .LVU405
+ 928 0418 1023     		movs	r3, #16
+ 929 041a 0B93     		str	r3, [sp, #44]
+ 481:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 930              		.loc 1 481 3 is_stmt 1 view .LVU406
+ 931              		.loc 1 481 24 is_stmt 0 view .LVU407
+ 932 041c 0C94     		str	r4, [sp, #48]
+ 482:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 933              		.loc 1 482 3 is_stmt 1 view .LVU408
+ 934              		.loc 1 482 24 is_stmt 0 view .LVU409
+ 935 041e 0D94     		str	r4, [sp, #52]
+ 483:Core/Src/gpio.c ****   HAL_GPIO_Init(OTG_FS_OverCurrent_GPIO_Port, &GPIO_InitStruct);
+ 936              		.loc 1 483 3 is_stmt 1 view .LVU410
+ 937 0420 0BA9     		add	r1, sp, #44
+ 938 0422 4046     		mov	r0, r8
+ 939 0424 FFF7FEFF 		bl	HAL_GPIO_Init
+ 940              	.LVL37:
+ 484:Core/Src/gpio.c **** 
+ 485:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 486:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = SDMMC_D0_Pin;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 26
+
+
+ 941              		.loc 1 486 3 view .LVU411
+ 942              		.loc 1 486 23 is_stmt 0 view .LVU412
+ 943 0428 0423     		movs	r3, #4
+ 944 042a 0B93     		str	r3, [sp, #44]
+ 487:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 945              		.loc 1 487 3 is_stmt 1 view .LVU413
+ 946              		.loc 1 487 24 is_stmt 0 view .LVU414
+ 947 042c 0C95     		str	r5, [sp, #48]
+ 488:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 948              		.loc 1 488 3 is_stmt 1 view .LVU415
+ 949              		.loc 1 488 24 is_stmt 0 view .LVU416
+ 950 042e 0D94     		str	r4, [sp, #52]
+ 489:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 951              		.loc 1 489 3 is_stmt 1 view .LVU417
+ 952              		.loc 1 489 25 is_stmt 0 view .LVU418
+ 953 0430 0E96     		str	r6, [sp, #56]
+ 490:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_SDMMC1;
+ 954              		.loc 1 490 3 is_stmt 1 view .LVU419
+ 955              		.loc 1 490 29 is_stmt 0 view .LVU420
+ 956 0432 CDF83CB0 		str	fp, [sp, #60]
+ 491:Core/Src/gpio.c ****   HAL_GPIO_Init(SDMMC_D0_GPIO_Port, &GPIO_InitStruct);
+ 957              		.loc 1 491 3 is_stmt 1 view .LVU421
+ 958 0436 0BA9     		add	r1, sp, #44
+ 959 0438 4046     		mov	r0, r8
+ 960 043a FFF7FEFF 		bl	HAL_GPIO_Init
+ 961              	.LVL38:
+ 492:Core/Src/gpio.c **** 
+ 493:Core/Src/gpio.c ****   /*Configure GPIO pins : PHPin PHPin */
+ 494:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = TP3_Pin|NC2_Pin;
+ 962              		.loc 1 494 3 view .LVU422
+ 963              		.loc 1 494 23 is_stmt 0 view .LVU423
+ 964 043e 48F20403 		movw	r3, #32772
+ 965 0442 0B93     		str	r3, [sp, #44]
+ 495:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 966              		.loc 1 495 3 is_stmt 1 view .LVU424
+ 967              		.loc 1 495 24 is_stmt 0 view .LVU425
+ 968 0444 0C94     		str	r4, [sp, #48]
+ 496:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 969              		.loc 1 496 3 is_stmt 1 view .LVU426
+ 970              		.loc 1 496 24 is_stmt 0 view .LVU427
+ 971 0446 0D94     		str	r4, [sp, #52]
+ 497:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+ 972              		.loc 1 497 3 is_stmt 1 view .LVU428
+ 973 0448 0BA9     		add	r1, sp, #44
+ 974 044a 5B48     		ldr	r0, .L6+24
+ 975 044c FFF7FEFF 		bl	HAL_GPIO_Init
+ 976              	.LVL39:
+ 498:Core/Src/gpio.c **** 
+ 499:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 500:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = DCMI_PWR_EN_Pin;
+ 977              		.loc 1 500 3 view .LVU429
+ 978              		.loc 1 500 23 is_stmt 0 view .LVU430
+ 979 0450 CDF82CA0 		str	r10, [sp, #44]
+ 501:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 980              		.loc 1 501 3 is_stmt 1 view .LVU431
+ 981              		.loc 1 501 24 is_stmt 0 view .LVU432
+ 982 0454 0C97     		str	r7, [sp, #48]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 27
+
+
+ 502:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 983              		.loc 1 502 3 is_stmt 1 view .LVU433
+ 984              		.loc 1 502 24 is_stmt 0 view .LVU434
+ 985 0456 0D94     		str	r4, [sp, #52]
+ 503:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 986              		.loc 1 503 3 is_stmt 1 view .LVU435
+ 987              		.loc 1 503 25 is_stmt 0 view .LVU436
+ 988 0458 0E94     		str	r4, [sp, #56]
+ 504:Core/Src/gpio.c ****   HAL_GPIO_Init(DCMI_PWR_EN_GPIO_Port, &GPIO_InitStruct);
+ 989              		.loc 1 504 3 is_stmt 1 view .LVU437
+ 990 045a 0BA9     		add	r1, sp, #44
+ 991 045c 5648     		ldr	r0, .L6+24
+ 992 045e FFF7FEFF 		bl	HAL_GPIO_Init
+ 993              	.LVL40:
+ 505:Core/Src/gpio.c **** 
+ 506:Core/Src/gpio.c ****   /*Configure GPIO pins : PHPin PHPin PHPin PHPin
+ 507:Core/Src/gpio.c ****                            PHPin */
+ 508:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = DCMI_D4_Pin|DCMI_D3_Pin|DCMI_D0_Pin|DCMI_D2_Pin
+ 994              		.loc 1 508 3 view .LVU438
+ 995              		.loc 1 508 23 is_stmt 0 view .LVU439
+ 996 0462 4FF4BC43 		mov	r3, #24064
+ 997 0466 0B93     		str	r3, [sp, #44]
+ 509:Core/Src/gpio.c ****                           |DCMI_D1_Pin;
+ 510:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 998              		.loc 1 510 3 is_stmt 1 view .LVU440
+ 999              		.loc 1 510 24 is_stmt 0 view .LVU441
+ 1000 0468 0C95     		str	r5, [sp, #48]
+ 511:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1001              		.loc 1 511 3 is_stmt 1 view .LVU442
+ 1002              		.loc 1 511 24 is_stmt 0 view .LVU443
+ 1003 046a 0D94     		str	r4, [sp, #52]
+ 512:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1004              		.loc 1 512 3 is_stmt 1 view .LVU444
+ 1005              		.loc 1 512 25 is_stmt 0 view .LVU445
+ 1006 046c 0E94     		str	r4, [sp, #56]
+ 513:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
+ 1007              		.loc 1 513 3 is_stmt 1 view .LVU446
+ 1008              		.loc 1 513 29 is_stmt 0 view .LVU447
+ 1009 046e 0D23     		movs	r3, #13
+ 1010 0470 0F93     		str	r3, [sp, #60]
+ 514:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+ 1011              		.loc 1 514 3 is_stmt 1 view .LVU448
+ 1012 0472 0BA9     		add	r1, sp, #44
+ 1013 0474 5048     		ldr	r0, .L6+24
+ 1014 0476 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1015              	.LVL41:
+ 515:Core/Src/gpio.c **** 
+ 516:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 517:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_PWM_CS_D5_Pin;
+ 1016              		.loc 1 517 3 view .LVU449
+ 1017              		.loc 1 517 23 is_stmt 0 view .LVU450
+ 1018 047a 0B97     		str	r7, [sp, #44]
+ 518:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1019              		.loc 1 518 3 is_stmt 1 view .LVU451
+ 1020              		.loc 1 518 24 is_stmt 0 view .LVU452
+ 1021 047c 0C95     		str	r5, [sp, #48]
+ 519:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 28
+
+
+ 1022              		.loc 1 519 3 is_stmt 1 view .LVU453
+ 1023              		.loc 1 519 24 is_stmt 0 view .LVU454
+ 1024 047e 0D94     		str	r4, [sp, #52]
+ 520:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1025              		.loc 1 520 3 is_stmt 1 view .LVU455
+ 1026              		.loc 1 520 25 is_stmt 0 view .LVU456
+ 1027 0480 0E94     		str	r4, [sp, #56]
+ 521:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF2_TIM5;
+ 1028              		.loc 1 521 3 is_stmt 1 view .LVU457
+ 1029              		.loc 1 521 29 is_stmt 0 view .LVU458
+ 1030 0482 0F95     		str	r5, [sp, #60]
+ 522:Core/Src/gpio.c ****   HAL_GPIO_Init(ARDUINO_PWM_CS_D5_GPIO_Port, &GPIO_InitStruct);
+ 1031              		.loc 1 522 3 is_stmt 1 view .LVU459
+ 1032 0484 0BA9     		add	r1, sp, #44
+ 1033 0486 4748     		ldr	r0, .L6+4
+ 1034 0488 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1035              	.LVL42:
+ 523:Core/Src/gpio.c **** 
+ 524:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 525:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = VCP_TX_Pin;
+ 1036              		.loc 1 525 3 view .LVU460
+ 1037              		.loc 1 525 23 is_stmt 0 view .LVU461
+ 1038 048c 4FF40073 		mov	r3, #512
+ 1039 0490 0B93     		str	r3, [sp, #44]
+ 526:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1040              		.loc 1 526 3 is_stmt 1 view .LVU462
+ 1041              		.loc 1 526 24 is_stmt 0 view .LVU463
+ 1042 0492 0C95     		str	r5, [sp, #48]
+ 527:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1043              		.loc 1 527 3 is_stmt 1 view .LVU464
+ 1044              		.loc 1 527 24 is_stmt 0 view .LVU465
+ 1045 0494 0D94     		str	r4, [sp, #52]
+ 528:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1046              		.loc 1 528 3 is_stmt 1 view .LVU466
+ 1047              		.loc 1 528 25 is_stmt 0 view .LVU467
+ 1048 0496 0E94     		str	r4, [sp, #56]
+ 529:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+ 1049              		.loc 1 529 3 is_stmt 1 view .LVU468
+ 1050              		.loc 1 529 29 is_stmt 0 view .LVU469
+ 1051 0498 0723     		movs	r3, #7
+ 1052 049a 0F93     		str	r3, [sp, #60]
+ 530:Core/Src/gpio.c ****   HAL_GPIO_Init(VCP_TX_GPIO_Port, &GPIO_InitStruct);
+ 1053              		.loc 1 530 3 is_stmt 1 view .LVU470
+ 1054 049c 0BA9     		add	r1, sp, #44
+ 1055 049e 4048     		ldr	r0, .L6
+ 1056 04a0 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1057              	.LVL43:
+ 531:Core/Src/gpio.c **** 
+ 532:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 533:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_PWM_D10_Pin;
+ 1058              		.loc 1 533 3 view .LVU471
+ 1059              		.loc 1 533 23 is_stmt 0 view .LVU472
+ 1060 04a4 4FF48073 		mov	r3, #256
+ 1061 04a8 0B93     		str	r3, [sp, #44]
+ 534:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1062              		.loc 1 534 3 is_stmt 1 view .LVU473
+ 1063              		.loc 1 534 24 is_stmt 0 view .LVU474
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 29
+
+
+ 1064 04aa 0C95     		str	r5, [sp, #48]
+ 535:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1065              		.loc 1 535 3 is_stmt 1 view .LVU475
+ 1066              		.loc 1 535 24 is_stmt 0 view .LVU476
+ 1067 04ac 0D94     		str	r4, [sp, #52]
+ 536:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1068              		.loc 1 536 3 is_stmt 1 view .LVU477
+ 1069              		.loc 1 536 25 is_stmt 0 view .LVU478
+ 1070 04ae 0E94     		str	r4, [sp, #56]
+ 537:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF1_TIM1;
+ 1071              		.loc 1 537 3 is_stmt 1 view .LVU479
+ 1072              		.loc 1 537 29 is_stmt 0 view .LVU480
+ 1073 04b0 0F97     		str	r7, [sp, #60]
+ 538:Core/Src/gpio.c ****   HAL_GPIO_Init(ARDUINO_PWM_D10_GPIO_Port, &GPIO_InitStruct);
+ 1074              		.loc 1 538 3 is_stmt 1 view .LVU481
+ 1075 04b2 0BA9     		add	r1, sp, #44
+ 1076 04b4 3A48     		ldr	r0, .L6
+ 1077 04b6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1078              	.LVL44:
+ 539:Core/Src/gpio.c **** 
+ 540:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 541:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_INT_Pin;
+ 1079              		.loc 1 541 3 view .LVU482
+ 1080              		.loc 1 541 23 is_stmt 0 view .LVU483
+ 1081 04ba CDF82CA0 		str	r10, [sp, #44]
+ 542:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_EVT_RISING;
+ 1082              		.loc 1 542 3 is_stmt 1 view .LVU484
+ 1083              		.loc 1 542 24 is_stmt 0 view .LVU485
+ 1084 04be 4FF49013 		mov	r3, #1179648
+ 1085 04c2 0C93     		str	r3, [sp, #48]
+ 543:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1086              		.loc 1 543 3 is_stmt 1 view .LVU486
+ 1087              		.loc 1 543 24 is_stmt 0 view .LVU487
+ 1088 04c4 0D94     		str	r4, [sp, #52]
+ 544:Core/Src/gpio.c ****   HAL_GPIO_Init(LCD_INT_GPIO_Port, &GPIO_InitStruct);
+ 1089              		.loc 1 544 3 is_stmt 1 view .LVU488
+ 1090 04c6 0BA9     		add	r1, sp, #44
+ 1091 04c8 3648     		ldr	r0, .L6+4
+ 1092 04ca FFF7FEFF 		bl	HAL_GPIO_Init
+ 1093              	.LVL45:
+ 545:Core/Src/gpio.c **** 
+ 546:Core/Src/gpio.c ****   /*Configure GPIO pins : PCPin PCPin */
+ 547:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_RX_D0_Pin|ARDUINO_TX_D1_Pin;
+ 1094              		.loc 1 547 3 view .LVU489
+ 1095              		.loc 1 547 23 is_stmt 0 view .LVU490
+ 1096 04ce C023     		movs	r3, #192
+ 1097 04d0 0B93     		str	r3, [sp, #44]
+ 548:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1098              		.loc 1 548 3 is_stmt 1 view .LVU491
+ 1099              		.loc 1 548 24 is_stmt 0 view .LVU492
+ 1100 04d2 0C95     		str	r5, [sp, #48]
+ 549:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1101              		.loc 1 549 3 is_stmt 1 view .LVU493
+ 1102              		.loc 1 549 24 is_stmt 0 view .LVU494
+ 1103 04d4 0D94     		str	r4, [sp, #52]
+ 550:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1104              		.loc 1 550 3 is_stmt 1 view .LVU495
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 30
+
+
+ 1105              		.loc 1 550 25 is_stmt 0 view .LVU496
+ 1106 04d6 0E96     		str	r6, [sp, #56]
+ 551:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF8_USART6;
+ 1107              		.loc 1 551 3 is_stmt 1 view .LVU497
+ 1108              		.loc 1 551 29 is_stmt 0 view .LVU498
+ 1109 04d8 0823     		movs	r3, #8
+ 1110 04da 0F93     		str	r3, [sp, #60]
+ 552:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 1111              		.loc 1 552 3 is_stmt 1 view .LVU499
+ 1112 04dc 0BA9     		add	r1, sp, #44
+ 1113 04de 3448     		ldr	r0, .L6+16
+ 1114 04e0 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1115              	.LVL46:
+ 553:Core/Src/gpio.c **** 
+ 554:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 555:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ULPI_NXT_Pin;
+ 1116              		.loc 1 555 3 view .LVU500
+ 1117              		.loc 1 555 23 is_stmt 0 view .LVU501
+ 1118 04e4 1023     		movs	r3, #16
+ 1119 04e6 0B93     		str	r3, [sp, #44]
+ 556:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1120              		.loc 1 556 3 is_stmt 1 view .LVU502
+ 1121              		.loc 1 556 24 is_stmt 0 view .LVU503
+ 1122 04e8 0C95     		str	r5, [sp, #48]
+ 557:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1123              		.loc 1 557 3 is_stmt 1 view .LVU504
+ 1124              		.loc 1 557 24 is_stmt 0 view .LVU505
+ 1125 04ea 0D94     		str	r4, [sp, #52]
+ 558:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1126              		.loc 1 558 3 is_stmt 1 view .LVU506
+ 1127              		.loc 1 558 25 is_stmt 0 view .LVU507
+ 1128 04ec 0E96     		str	r6, [sp, #56]
+ 559:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
+ 1129              		.loc 1 559 3 is_stmt 1 view .LVU508
+ 1130              		.loc 1 559 29 is_stmt 0 view .LVU509
+ 1131 04ee CDF83C90 		str	r9, [sp, #60]
+ 560:Core/Src/gpio.c ****   HAL_GPIO_Init(ULPI_NXT_GPIO_Port, &GPIO_InitStruct);
+ 1132              		.loc 1 560 3 is_stmt 1 view .LVU510
+ 1133 04f2 0BA9     		add	r1, sp, #44
+ 1134 04f4 3048     		ldr	r0, .L6+24
+ 1135 04f6 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1136              	.LVL47:
+ 561:Core/Src/gpio.c **** 
+ 562:Core/Src/gpio.c ****   /*Configure GPIO pins : PHPin PHPin */
+ 563:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = FMC_SDNME_Pin|FMC_SDNE0_Pin;
+ 1137              		.loc 1 563 3 view .LVU511
+ 1138              		.loc 1 563 23 is_stmt 0 view .LVU512
+ 1139 04fa 4FF0280A 		mov	r10, #40
+ 1140 04fe CDF82CA0 		str	r10, [sp, #44]
+ 564:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1141              		.loc 1 564 3 is_stmt 1 view .LVU513
+ 1142              		.loc 1 564 24 is_stmt 0 view .LVU514
+ 1143 0502 0C95     		str	r5, [sp, #48]
+ 565:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1144              		.loc 1 565 3 is_stmt 1 view .LVU515
+ 1145              		.loc 1 565 24 is_stmt 0 view .LVU516
+ 1146 0504 0D94     		str	r4, [sp, #52]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 31
+
+
+ 566:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1147              		.loc 1 566 3 is_stmt 1 view .LVU517
+ 1148              		.loc 1 566 25 is_stmt 0 view .LVU518
+ 1149 0506 0E96     		str	r6, [sp, #56]
+ 567:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_FMC;
+ 1150              		.loc 1 567 3 is_stmt 1 view .LVU519
+ 1151              		.loc 1 567 29 is_stmt 0 view .LVU520
+ 1152 0508 CDF83CB0 		str	fp, [sp, #60]
+ 568:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+ 1153              		.loc 1 568 3 is_stmt 1 view .LVU521
+ 1154 050c 0BA9     		add	r1, sp, #44
+ 1155 050e 2A48     		ldr	r0, .L6+24
+ 1156 0510 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1157              	.LVL48:
+ 569:Core/Src/gpio.c **** 
+ 570:Core/Src/gpio.c ****   /*Configure GPIO pins : PGPin PGPin PGPin */
+ 571:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_D4_Pin|ARDUINO_D2_Pin|EXT_RST_Pin;
+ 1158              		.loc 1 571 3 view .LVU522
+ 1159              		.loc 1 571 23 is_stmt 0 view .LVU523
+ 1160 0514 C823     		movs	r3, #200
+ 1161 0516 0B93     		str	r3, [sp, #44]
+ 572:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+ 1162              		.loc 1 572 3 is_stmt 1 view .LVU524
+ 1163              		.loc 1 572 24 is_stmt 0 view .LVU525
+ 1164 0518 0C97     		str	r7, [sp, #48]
+ 573:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1165              		.loc 1 573 3 is_stmt 1 view .LVU526
+ 1166              		.loc 1 573 24 is_stmt 0 view .LVU527
+ 1167 051a 0D94     		str	r4, [sp, #52]
+ 574:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1168              		.loc 1 574 3 is_stmt 1 view .LVU528
+ 1169              		.loc 1 574 25 is_stmt 0 view .LVU529
+ 1170 051c 0E94     		str	r4, [sp, #56]
+ 575:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOG, &GPIO_InitStruct);
+ 1171              		.loc 1 575 3 is_stmt 1 view .LVU530
+ 1172 051e 0BA9     		add	r1, sp, #44
+ 1173 0520 2248     		ldr	r0, .L6+12
+ 1174 0522 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1175              	.LVL49:
+ 576:Core/Src/gpio.c **** 
+ 577:Core/Src/gpio.c ****   /*Configure GPIO pins : PFPin PFPin PFPin PFPin
+ 578:Core/Src/gpio.c ****                            PFPin */
+ 579:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_A4_Pin|ARDUINO_A5_Pin|ARDUINO_A1_Pin|ARDUINO_A2_Pin
+ 1176              		.loc 1 579 3 view .LVU531
+ 1177              		.loc 1 579 23 is_stmt 0 view .LVU532
+ 1178 0526 4FF4F863 		mov	r3, #1984
+ 1179 052a 0B93     		str	r3, [sp, #44]
+ 580:Core/Src/gpio.c ****                           |ARDUINO_A3_Pin;
+ 581:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 1180              		.loc 1 581 3 is_stmt 1 view .LVU533
+ 1181              		.loc 1 581 24 is_stmt 0 view .LVU534
+ 1182 052c 0C96     		str	r6, [sp, #48]
+ 582:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1183              		.loc 1 582 3 is_stmt 1 view .LVU535
+ 1184              		.loc 1 582 24 is_stmt 0 view .LVU536
+ 1185 052e 0D94     		str	r4, [sp, #52]
+ 583:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOF, &GPIO_InitStruct);
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 32
+
+
+ 1186              		.loc 1 583 3 is_stmt 1 view .LVU537
+ 1187 0530 0BA9     		add	r1, sp, #44
+ 1188 0532 2048     		ldr	r0, .L6+20
+ 1189 0534 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1190              	.LVL50:
+ 584:Core/Src/gpio.c **** 
+ 585:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 586:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = FMC_SDCKE0_Pin;
+ 1191              		.loc 1 586 3 view .LVU538
+ 1192              		.loc 1 586 23 is_stmt 0 view .LVU539
+ 1193 0538 0823     		movs	r3, #8
+ 1194 053a 0B93     		str	r3, [sp, #44]
+ 587:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1195              		.loc 1 587 3 is_stmt 1 view .LVU540
+ 1196              		.loc 1 587 24 is_stmt 0 view .LVU541
+ 1197 053c 0C95     		str	r5, [sp, #48]
+ 588:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1198              		.loc 1 588 3 is_stmt 1 view .LVU542
+ 1199              		.loc 1 588 24 is_stmt 0 view .LVU543
+ 1200 053e 0D94     		str	r4, [sp, #52]
+ 589:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1201              		.loc 1 589 3 is_stmt 1 view .LVU544
+ 1202              		.loc 1 589 25 is_stmt 0 view .LVU545
+ 1203 0540 0E96     		str	r6, [sp, #56]
+ 590:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF12_FMC;
+ 1204              		.loc 1 590 3 is_stmt 1 view .LVU546
+ 1205              		.loc 1 590 29 is_stmt 0 view .LVU547
+ 1206 0542 CDF83CB0 		str	fp, [sp, #60]
+ 591:Core/Src/gpio.c ****   HAL_GPIO_Init(FMC_SDCKE0_GPIO_Port, &GPIO_InitStruct);
+ 1207              		.loc 1 591 3 is_stmt 1 view .LVU548
+ 1208 0546 0BA9     		add	r1, sp, #44
+ 1209 0548 1948     		ldr	r0, .L6+16
+ 1210 054a FFF7FEFF 		bl	HAL_GPIO_Init
+ 1211              	.LVL51:
+ 592:Core/Src/gpio.c **** 
+ 593:Core/Src/gpio.c ****   /*Configure GPIO pins : PCPin PCPin */
+ 594:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ULPI_STP_Pin|ULPI_DIR_Pin;
+ 1212              		.loc 1 594 3 view .LVU549
+ 1213              		.loc 1 594 23 is_stmt 0 view .LVU550
+ 1214 054e 4FF0050B 		mov	fp, #5
+ 1215 0552 CDF82CB0 		str	fp, [sp, #44]
+ 595:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1216              		.loc 1 595 3 is_stmt 1 view .LVU551
+ 1217              		.loc 1 595 24 is_stmt 0 view .LVU552
+ 1218 0556 0C95     		str	r5, [sp, #48]
+ 596:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1219              		.loc 1 596 3 is_stmt 1 view .LVU553
+ 1220              		.loc 1 596 24 is_stmt 0 view .LVU554
+ 1221 0558 0D94     		str	r4, [sp, #52]
+ 597:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1222              		.loc 1 597 3 is_stmt 1 view .LVU555
+ 1223              		.loc 1 597 25 is_stmt 0 view .LVU556
+ 1224 055a 0E96     		str	r6, [sp, #56]
+ 598:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
+ 1225              		.loc 1 598 3 is_stmt 1 view .LVU557
+ 1226              		.loc 1 598 29 is_stmt 0 view .LVU558
+ 1227 055c CDF83C90 		str	r9, [sp, #60]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 33
+
+
+ 599:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 1228              		.loc 1 599 3 is_stmt 1 view .LVU559
+ 1229 0560 0BA9     		add	r1, sp, #44
+ 1230 0562 1348     		ldr	r0, .L6+16
+ 1231 0564 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1232              	.LVL52:
+ 600:Core/Src/gpio.c **** 
+ 601:Core/Src/gpio.c ****   /*Configure GPIO pins : PCPin PCPin PCPin */
+ 602:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = RMII_MDC_Pin|RMII_RXD0_Pin|RMII_RXD1_Pin;
+ 1233              		.loc 1 602 3 view .LVU560
+ 1234              		.loc 1 602 23 is_stmt 0 view .LVU561
+ 1235 0568 3223     		movs	r3, #50
+ 1236 056a 0B93     		str	r3, [sp, #44]
+ 603:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1237              		.loc 1 603 3 is_stmt 1 view .LVU562
+ 1238              		.loc 1 603 24 is_stmt 0 view .LVU563
+ 1239 056c 0C95     		str	r5, [sp, #48]
+ 604:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1240              		.loc 1 604 3 is_stmt 1 view .LVU564
+ 1241              		.loc 1 604 24 is_stmt 0 view .LVU565
+ 1242 056e 0D94     		str	r4, [sp, #52]
+ 605:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1243              		.loc 1 605 3 is_stmt 1 view .LVU566
+ 1244              		.loc 1 605 25 is_stmt 0 view .LVU567
+ 1245 0570 0E96     		str	r6, [sp, #56]
+ 606:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
+ 1246              		.loc 1 606 3 is_stmt 1 view .LVU568
+ 1247              		.loc 1 606 29 is_stmt 0 view .LVU569
+ 1248 0572 0B23     		movs	r3, #11
+ 1249 0574 0F93     		str	r3, [sp, #60]
+ 607:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+ 1250              		.loc 1 607 3 is_stmt 1 view .LVU570
+ 1251 0576 0BA9     		add	r1, sp, #44
+ 1252 0578 0D48     		ldr	r0, .L6+16
+ 1253 057a FFF7FEFF 		bl	HAL_GPIO_Init
+ 1254              	.LVL53:
+ 608:Core/Src/gpio.c **** 
+ 609:Core/Src/gpio.c ****   /*Configure GPIO pin : PB2 */
+ 610:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = GPIO_PIN_2;
+ 1255              		.loc 1 610 3 view .LVU571
+ 1256              		.loc 1 610 23 is_stmt 0 view .LVU572
+ 1257 057e 0423     		movs	r3, #4
+ 1258 0580 0B93     		str	r3, [sp, #44]
+ 611:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1259              		.loc 1 611 3 is_stmt 1 view .LVU573
+ 1260              		.loc 1 611 24 is_stmt 0 view .LVU574
+ 1261 0582 0C95     		str	r5, [sp, #48]
+ 612:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1262              		.loc 1 612 3 is_stmt 1 view .LVU575
+ 1263              		.loc 1 612 24 is_stmt 0 view .LVU576
+ 1264 0584 0D94     		str	r4, [sp, #52]
+ 613:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1265              		.loc 1 613 3 is_stmt 1 view .LVU577
+ 1266              		.loc 1 613 25 is_stmt 0 view .LVU578
+ 1267 0586 0E96     		str	r6, [sp, #56]
+ 614:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
+ 1268              		.loc 1 614 3 is_stmt 1 view .LVU579
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 34
+
+
+ 1269              		.loc 1 614 29 is_stmt 0 view .LVU580
+ 1270 0588 0923     		movs	r3, #9
+ 1271 058a 0F93     		str	r3, [sp, #60]
+ 615:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 1272              		.loc 1 615 3 is_stmt 1 view .LVU581
+ 1273 058c 0BA9     		add	r1, sp, #44
+ 1274 058e 0B48     		ldr	r0, .L6+28
+ 1275 0590 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1276              	.LVL54:
+ 616:Core/Src/gpio.c **** 
+ 617:Core/Src/gpio.c ****   /*Configure GPIO pins : PDPin PDPin PDPin */
+ 618:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = QSPI_D1_Pin|QSPI_D3_Pin|QSPI_D0_Pin;
+ 1277              		.loc 1 618 3 view .LVU582
+ 1278              		.loc 1 618 23 is_stmt 0 view .LVU583
+ 1279 0594 4FF46053 		mov	r3, #14336
+ 1280 0598 0B93     		str	r3, [sp, #44]
+ 619:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1281              		.loc 1 619 3 is_stmt 1 view .LVU584
+ 1282              		.loc 1 619 24 is_stmt 0 view .LVU585
+ 1283 059a 0C95     		str	r5, [sp, #48]
+ 1284 059c 10E0     		b	.L7
+ 1285              	.L8:
+ 1286 059e 00BF     		.align	2
+ 1287              	.L6:
+ 1288 05a0 00000240 		.word	1073872896
+ 1289 05a4 00200240 		.word	1073881088
+ 1290 05a8 00280240 		.word	1073883136
+ 1291 05ac 00180240 		.word	1073879040
+ 1292 05b0 00080240 		.word	1073874944
+ 1293 05b4 00140240 		.word	1073878016
+ 1294 05b8 001C0240 		.word	1073880064
+ 1295 05bc 00040240 		.word	1073873920
+ 1296              	.L7:
+ 620:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1297              		.loc 1 620 3 is_stmt 1 view .LVU586
+ 1298              		.loc 1 620 24 is_stmt 0 view .LVU587
+ 1299 05c0 0D94     		str	r4, [sp, #52]
+ 621:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1300              		.loc 1 621 3 is_stmt 1 view .LVU588
+ 1301              		.loc 1 621 25 is_stmt 0 view .LVU589
+ 1302 05c2 0E96     		str	r6, [sp, #56]
+ 622:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF9_QUADSPI;
+ 1303              		.loc 1 622 3 is_stmt 1 view .LVU590
+ 1304              		.loc 1 622 29 is_stmt 0 view .LVU591
+ 1305 05c4 0923     		movs	r3, #9
+ 1306 05c6 0F93     		str	r3, [sp, #60]
+ 623:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
+ 1307              		.loc 1 623 3 is_stmt 1 view .LVU592
+ 1308 05c8 0BA9     		add	r1, sp, #44
+ 1309 05ca 4046     		mov	r0, r8
+ 1310 05cc FFF7FEFF 		bl	HAL_GPIO_Init
+ 1311              	.LVL55:
+ 624:Core/Src/gpio.c **** 
+ 625:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 626:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = RMII_RXER_Pin;
+ 1312              		.loc 1 626 3 view .LVU593
+ 1313              		.loc 1 626 23 is_stmt 0 view .LVU594
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 35
+
+
+ 1314 05d0 0423     		movs	r3, #4
+ 1315 05d2 0B93     		str	r3, [sp, #44]
+ 627:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+ 1316              		.loc 1 627 3 is_stmt 1 view .LVU595
+ 1317              		.loc 1 627 24 is_stmt 0 view .LVU596
+ 1318 05d4 0C94     		str	r4, [sp, #48]
+ 628:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1319              		.loc 1 628 3 is_stmt 1 view .LVU597
+ 1320              		.loc 1 628 24 is_stmt 0 view .LVU598
+ 1321 05d6 0D94     		str	r4, [sp, #52]
+ 629:Core/Src/gpio.c ****   HAL_GPIO_Init(RMII_RXER_GPIO_Port, &GPIO_InitStruct);
+ 1322              		.loc 1 629 3 is_stmt 1 view .LVU599
+ 1323 05d8 0BA9     		add	r1, sp, #44
+ 1324 05da 2948     		ldr	r0, .L9
+ 1325 05dc FFF7FEFF 		bl	HAL_GPIO_Init
+ 1326              	.LVL56:
+ 630:Core/Src/gpio.c **** 
+ 631:Core/Src/gpio.c ****   /*Configure GPIO pins : PAPin PAPin PAPin */
+ 632:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = RMII_REF_CLK_Pin|RMII_MDIO_Pin|RMII_CRS_DV_Pin;
+ 1327              		.loc 1 632 3 view .LVU600
+ 1328              		.loc 1 632 23 is_stmt 0 view .LVU601
+ 1329 05e0 8623     		movs	r3, #134
+ 1330 05e2 0B93     		str	r3, [sp, #44]
+ 633:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1331              		.loc 1 633 3 is_stmt 1 view .LVU602
+ 1332              		.loc 1 633 24 is_stmt 0 view .LVU603
+ 1333 05e4 0C95     		str	r5, [sp, #48]
+ 634:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1334              		.loc 1 634 3 is_stmt 1 view .LVU604
+ 1335              		.loc 1 634 24 is_stmt 0 view .LVU605
+ 1336 05e6 0D94     		str	r4, [sp, #52]
+ 635:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1337              		.loc 1 635 3 is_stmt 1 view .LVU606
+ 1338              		.loc 1 635 25 is_stmt 0 view .LVU607
+ 1339 05e8 0E96     		str	r6, [sp, #56]
+ 636:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF11_ETH;
+ 1340              		.loc 1 636 3 is_stmt 1 view .LVU608
+ 1341              		.loc 1 636 29 is_stmt 0 view .LVU609
+ 1342 05ea 0B23     		movs	r3, #11
+ 1343 05ec 0F93     		str	r3, [sp, #60]
+ 637:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 1344              		.loc 1 637 3 is_stmt 1 view .LVU610
+ 1345 05ee 0BA9     		add	r1, sp, #44
+ 1346 05f0 2448     		ldr	r0, .L9+4
+ 1347 05f2 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1348              	.LVL57:
+ 638:Core/Src/gpio.c **** 
+ 639:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 640:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_A0_Pin;
+ 1349              		.loc 1 640 3 view .LVU611
+ 1350              		.loc 1 640 23 is_stmt 0 view .LVU612
+ 1351 05f6 0B97     		str	r7, [sp, #44]
+ 641:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+ 1352              		.loc 1 641 3 is_stmt 1 view .LVU613
+ 1353              		.loc 1 641 24 is_stmt 0 view .LVU614
+ 1354 05f8 0C96     		str	r6, [sp, #48]
+ 642:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 36
+
+
+ 1355              		.loc 1 642 3 is_stmt 1 view .LVU615
+ 1356              		.loc 1 642 24 is_stmt 0 view .LVU616
+ 1357 05fa 0D94     		str	r4, [sp, #52]
+ 643:Core/Src/gpio.c ****   HAL_GPIO_Init(ARDUINO_A0_GPIO_Port, &GPIO_InitStruct);
+ 1358              		.loc 1 643 3 is_stmt 1 view .LVU617
+ 1359 05fc 0BA9     		add	r1, sp, #44
+ 1360 05fe 2148     		ldr	r0, .L9+4
+ 1361 0600 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1362              	.LVL58:
+ 644:Core/Src/gpio.c **** 
+ 645:Core/Src/gpio.c ****   /*Configure GPIO pins : PAPin PA6 */
+ 646:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = DCMI_HSYNC_Pin|GPIO_PIN_6;
+ 1363              		.loc 1 646 3 view .LVU618
+ 1364              		.loc 1 646 23 is_stmt 0 view .LVU619
+ 1365 0604 5023     		movs	r3, #80
+ 1366 0606 0B93     		str	r3, [sp, #44]
+ 647:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1367              		.loc 1 647 3 is_stmt 1 view .LVU620
+ 1368              		.loc 1 647 24 is_stmt 0 view .LVU621
+ 1369 0608 0C95     		str	r5, [sp, #48]
+ 648:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1370              		.loc 1 648 3 is_stmt 1 view .LVU622
+ 1371              		.loc 1 648 24 is_stmt 0 view .LVU623
+ 1372 060a 0D94     		str	r4, [sp, #52]
+ 649:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1373              		.loc 1 649 3 is_stmt 1 view .LVU624
+ 1374              		.loc 1 649 25 is_stmt 0 view .LVU625
+ 1375 060c 0E94     		str	r4, [sp, #56]
+ 650:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF13_DCMI;
+ 1376              		.loc 1 650 3 is_stmt 1 view .LVU626
+ 1377              		.loc 1 650 29 is_stmt 0 view .LVU627
+ 1378 060e 0D23     		movs	r3, #13
+ 1379 0610 0F93     		str	r3, [sp, #60]
+ 651:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 1380              		.loc 1 651 3 is_stmt 1 view .LVU628
+ 1381 0612 0BA9     		add	r1, sp, #44
+ 1382 0614 1B48     		ldr	r0, .L9+4
+ 1383 0616 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1384              	.LVL59:
+ 652:Core/Src/gpio.c **** 
+ 653:Core/Src/gpio.c ****   /*Configure GPIO pins : PHPin PHPin */
+ 654:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = LCD_SCL_Pin|LCD_SDA_Pin;
+ 1385              		.loc 1 654 3 view .LVU629
+ 1386              		.loc 1 654 23 is_stmt 0 view .LVU630
+ 1387 061a 4FF4C073 		mov	r3, #384
+ 1388 061e 0B93     		str	r3, [sp, #44]
+ 655:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_OD;
+ 1389              		.loc 1 655 3 is_stmt 1 view .LVU631
+ 1390              		.loc 1 655 24 is_stmt 0 view .LVU632
+ 1391 0620 1223     		movs	r3, #18
+ 1392 0622 0C93     		str	r3, [sp, #48]
+ 656:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1393              		.loc 1 656 3 is_stmt 1 view .LVU633
+ 1394              		.loc 1 656 24 is_stmt 0 view .LVU634
+ 1395 0624 0D94     		str	r4, [sp, #52]
+ 657:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1396              		.loc 1 657 3 is_stmt 1 view .LVU635
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 37
+
+
+ 1397              		.loc 1 657 25 is_stmt 0 view .LVU636
+ 1398 0626 0E96     		str	r6, [sp, #56]
+ 658:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF4_I2C3;
+ 1399              		.loc 1 658 3 is_stmt 1 view .LVU637
+ 1400              		.loc 1 658 29 is_stmt 0 view .LVU638
+ 1401 0628 0423     		movs	r3, #4
+ 1402 062a 0F93     		str	r3, [sp, #60]
+ 659:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+ 1403              		.loc 1 659 3 is_stmt 1 view .LVU639
+ 1404 062c 0BA9     		add	r1, sp, #44
+ 1405 062e 1648     		ldr	r0, .L9+8
+ 1406 0630 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1407              	.LVL60:
+ 660:Core/Src/gpio.c **** 
+ 661:Core/Src/gpio.c ****   /*Configure GPIO pins : PAPin PAPin */
+ 662:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ULPI_CLK_Pin|ULPI_D0_Pin;
+ 1408              		.loc 1 662 3 view .LVU640
+ 1409              		.loc 1 662 23 is_stmt 0 view .LVU641
+ 1410 0634 CDF82CA0 		str	r10, [sp, #44]
+ 663:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1411              		.loc 1 663 3 is_stmt 1 view .LVU642
+ 1412              		.loc 1 663 24 is_stmt 0 view .LVU643
+ 1413 0638 0C95     		str	r5, [sp, #48]
+ 664:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1414              		.loc 1 664 3 is_stmt 1 view .LVU644
+ 1415              		.loc 1 664 24 is_stmt 0 view .LVU645
+ 1416 063a 0D94     		str	r4, [sp, #52]
+ 665:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+ 1417              		.loc 1 665 3 is_stmt 1 view .LVU646
+ 1418              		.loc 1 665 25 is_stmt 0 view .LVU647
+ 1419 063c 0E96     		str	r6, [sp, #56]
+ 666:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF10_OTG_HS;
+ 1420              		.loc 1 666 3 is_stmt 1 view .LVU648
+ 1421              		.loc 1 666 29 is_stmt 0 view .LVU649
+ 1422 063e CDF83C90 		str	r9, [sp, #60]
+ 667:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+ 1423              		.loc 1 667 3 is_stmt 1 view .LVU650
+ 1424 0642 0BA9     		add	r1, sp, #44
+ 1425 0644 0F48     		ldr	r0, .L9+4
+ 1426 0646 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1427              	.LVL61:
+ 668:Core/Src/gpio.c **** 
+ 669:Core/Src/gpio.c ****   /*Configure GPIO pin : PtPin */
+ 670:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_PWM_D6_Pin;
+ 1428              		.loc 1 670 3 view .LVU651
+ 1429              		.loc 1 670 23 is_stmt 0 view .LVU652
+ 1430 064a 4023     		movs	r3, #64
+ 1431 064c 0B93     		str	r3, [sp, #44]
+ 671:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1432              		.loc 1 671 3 is_stmt 1 view .LVU653
+ 1433              		.loc 1 671 24 is_stmt 0 view .LVU654
+ 1434 064e 0C95     		str	r5, [sp, #48]
+ 672:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1435              		.loc 1 672 3 is_stmt 1 view .LVU655
+ 1436              		.loc 1 672 24 is_stmt 0 view .LVU656
+ 1437 0650 0D94     		str	r4, [sp, #52]
+ 673:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 38
+
+
+ 1438              		.loc 1 673 3 is_stmt 1 view .LVU657
+ 1439              		.loc 1 673 25 is_stmt 0 view .LVU658
+ 1440 0652 0E94     		str	r4, [sp, #56]
+ 674:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF9_TIM12;
+ 1441              		.loc 1 674 3 is_stmt 1 view .LVU659
+ 1442              		.loc 1 674 29 is_stmt 0 view .LVU660
+ 1443 0654 0923     		movs	r3, #9
+ 1444 0656 0F93     		str	r3, [sp, #60]
+ 675:Core/Src/gpio.c ****   HAL_GPIO_Init(ARDUINO_PWM_D6_GPIO_Port, &GPIO_InitStruct);
+ 1445              		.loc 1 675 3 is_stmt 1 view .LVU661
+ 1446 0658 0BA9     		add	r1, sp, #44
+ 1447 065a 0B48     		ldr	r0, .L9+8
+ 1448 065c FFF7FEFF 		bl	HAL_GPIO_Init
+ 1449              	.LVL62:
+ 676:Core/Src/gpio.c **** 
+ 677:Core/Src/gpio.c ****   /*Configure GPIO pins : PBPin PBPin */
+ 678:Core/Src/gpio.c ****   GPIO_InitStruct.Pin = ARDUINO_MISO_D12_Pin|ARDUINO_MOSI_PWM_D11_Pin;
+ 1450              		.loc 1 678 3 view .LVU662
+ 1451              		.loc 1 678 23 is_stmt 0 view .LVU663
+ 1452 0660 4FF44043 		mov	r3, #49152
+ 1453 0664 0B93     		str	r3, [sp, #44]
+ 679:Core/Src/gpio.c ****   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+ 1454              		.loc 1 679 3 is_stmt 1 view .LVU664
+ 1455              		.loc 1 679 24 is_stmt 0 view .LVU665
+ 1456 0666 0C95     		str	r5, [sp, #48]
+ 680:Core/Src/gpio.c ****   GPIO_InitStruct.Pull = GPIO_NOPULL;
+ 1457              		.loc 1 680 3 is_stmt 1 view .LVU666
+ 1458              		.loc 1 680 24 is_stmt 0 view .LVU667
+ 1459 0668 0D94     		str	r4, [sp, #52]
+ 681:Core/Src/gpio.c ****   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+ 1460              		.loc 1 681 3 is_stmt 1 view .LVU668
+ 1461              		.loc 1 681 25 is_stmt 0 view .LVU669
+ 1462 066a 0E94     		str	r4, [sp, #56]
+ 682:Core/Src/gpio.c ****   GPIO_InitStruct.Alternate = GPIO_AF5_SPI2;
+ 1463              		.loc 1 682 3 is_stmt 1 view .LVU670
+ 1464              		.loc 1 682 29 is_stmt 0 view .LVU671
+ 1465 066c CDF83CB0 		str	fp, [sp, #60]
+ 683:Core/Src/gpio.c ****   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+ 1466              		.loc 1 683 3 is_stmt 1 view .LVU672
+ 1467 0670 0BA9     		add	r1, sp, #44
+ 1468 0672 0648     		ldr	r0, .L9+12
+ 1469 0674 FFF7FEFF 		bl	HAL_GPIO_Init
+ 1470              	.LVL63:
+ 684:Core/Src/gpio.c **** 
+ 685:Core/Src/gpio.c **** }
+ 1471              		.loc 1 685 1 is_stmt 0 view .LVU673
+ 1472 0678 11B0     		add	sp, sp, #68
+ 1473              		.cfi_def_cfa_offset 36
+ 1474              		@ sp needed
+ 1475 067a BDE8F08F 		pop	{r4, r5, r6, r7, r8, r9, r10, fp, pc}
+ 1476              	.L10:
+ 1477 067e 00BF     		.align	2
+ 1478              	.L9:
+ 1479 0680 00180240 		.word	1073879040
+ 1480 0684 00000240 		.word	1073872896
+ 1481 0688 001C0240 		.word	1073880064
+ 1482 068c 00040240 		.word	1073873920
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 39
+
+
+ 1483              		.cfi_endproc
+ 1484              	.LFE141:
+ 1486              		.text
+ 1487              	.Letext0:
+ 1488              		.file 2 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 1489              		.file 3 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 1490              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 1491              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_gpio.h"
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s 			page 40
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 gpio.c
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:21     .text.MX_GPIO_Init:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:27     .text.MX_GPIO_Init:0000000000000000 MX_GPIO_Init
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:634    .text.MX_GPIO_Init:00000000000002bc $d
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:646    .text.MX_GPIO_Init:00000000000002e8 $t
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:1288   .text.MX_GPIO_Init:00000000000005a0 $d
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:1299   .text.MX_GPIO_Init:00000000000005c0 $t
+C:\Users\billa\AppData\Local\Temp\cc2mPm8x.s:1479   .text.MX_GPIO_Init:0000000000000680 $d
+
+UNDEFINED SYMBOLS
+HAL_GPIO_WritePin
+HAL_GPIO_Init
