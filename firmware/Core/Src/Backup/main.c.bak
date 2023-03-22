@@ -94,7 +94,8 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
- if(HAL_GPIO_ReadPin(GPIOI,GPIO_PIN_11) == GPIO_PIN_SET)
+    //Active LED with button
+    if(HAL_GPIO_ReadPin(GPIOI,GPIO_PIN_11) == GPIO_PIN_SET)
     {
        HAL_GPIO_WritePin(GPIOI,GPIO_PIN_1,GPIO_PIN_SET);
     }

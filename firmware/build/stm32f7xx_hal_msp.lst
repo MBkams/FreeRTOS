@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s 			page 1
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cccqQhIA.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s 			page 1
   28:Core/Src/stm32f7xx_hal_msp.c **** /* USER CODE BEGIN TD */
   29:Core/Src/stm32f7xx_hal_msp.c **** 
   30:Core/Src/stm32f7xx_hal_msp.c **** /* USER CODE END TD */
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s 			page 2
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cccqQhIA.s 			page 2
 
 
   31:Core/Src/stm32f7xx_hal_msp.c **** 
@@ -99,79 +99,91 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s 			page 1
   30              		.cfi_startproc
   31              		@ args = 0, pretend = 0, frame = 8
   32              		@ frame_needed = 0, uses_anonymous_args = 0
-  33              		@ link register save eliminated.
-  34 0000 82B0     		sub	sp, sp, #8
-  35              		.cfi_def_cfa_offset 8
+  33 0000 00B5     		push	{lr}
+  34              		.cfi_def_cfa_offset 4
+  35              		.cfi_offset 14, -4
+  36 0002 83B0     		sub	sp, sp, #12
+  37              		.cfi_def_cfa_offset 16
   65:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 0 */
   66:Core/Src/stm32f7xx_hal_msp.c **** 
   67:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 0 */
   68:Core/Src/stm32f7xx_hal_msp.c **** 
   69:Core/Src/stm32f7xx_hal_msp.c ****   __HAL_RCC_PWR_CLK_ENABLE();
-  36              		.loc 1 69 3 view .LVU1
-  37              	.LBB2:
-  38              		.loc 1 69 3 view .LVU2
-  39              		.loc 1 69 3 view .LVU3
-  40 0002 0A4B     		ldr	r3, .L3
-  41 0004 1A6C     		ldr	r2, [r3, #64]
-  42 0006 42F08052 		orr	r2, r2, #268435456
-  43 000a 1A64     		str	r2, [r3, #64]
-  44              		.loc 1 69 3 view .LVU4
-  45 000c 1A6C     		ldr	r2, [r3, #64]
-  46 000e 02F08052 		and	r2, r2, #268435456
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s 			page 3
+  38              		.loc 1 69 3 view .LVU1
+  39              	.LBB2:
+  40              		.loc 1 69 3 view .LVU2
+  41              		.loc 1 69 3 view .LVU3
+  42 0004 0D4B     		ldr	r3, .L3
+  43 0006 1A6C     		ldr	r2, [r3, #64]
+  44 0008 42F08052 		orr	r2, r2, #268435456
+  45 000c 1A64     		str	r2, [r3, #64]
+  46              		.loc 1 69 3 view .LVU4
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cccqQhIA.s 			page 3
 
 
-  47 0012 0092     		str	r2, [sp]
-  48              		.loc 1 69 3 view .LVU5
-  49 0014 009A     		ldr	r2, [sp]
-  50              	.LBE2:
-  51              		.loc 1 69 3 view .LVU6
+  47 000e 1A6C     		ldr	r2, [r3, #64]
+  48 0010 02F08052 		and	r2, r2, #268435456
+  49 0014 0092     		str	r2, [sp]
+  50              		.loc 1 69 3 view .LVU5
+  51 0016 009A     		ldr	r2, [sp]
+  52              	.LBE2:
+  53              		.loc 1 69 3 view .LVU6
   70:Core/Src/stm32f7xx_hal_msp.c ****   __HAL_RCC_SYSCFG_CLK_ENABLE();
-  52              		.loc 1 70 3 view .LVU7
-  53              	.LBB3:
-  54              		.loc 1 70 3 view .LVU8
-  55              		.loc 1 70 3 view .LVU9
-  56 0016 5A6C     		ldr	r2, [r3, #68]
-  57 0018 42F48042 		orr	r2, r2, #16384
-  58 001c 5A64     		str	r2, [r3, #68]
-  59              		.loc 1 70 3 view .LVU10
-  60 001e 5B6C     		ldr	r3, [r3, #68]
-  61 0020 03F48043 		and	r3, r3, #16384
-  62 0024 0193     		str	r3, [sp, #4]
-  63              		.loc 1 70 3 view .LVU11
-  64 0026 019B     		ldr	r3, [sp, #4]
-  65              	.LBE3:
-  66              		.loc 1 70 3 view .LVU12
+  54              		.loc 1 70 3 view .LVU7
+  55              	.LBB3:
+  56              		.loc 1 70 3 view .LVU8
+  57              		.loc 1 70 3 view .LVU9
+  58 0018 5A6C     		ldr	r2, [r3, #68]
+  59 001a 42F48042 		orr	r2, r2, #16384
+  60 001e 5A64     		str	r2, [r3, #68]
+  61              		.loc 1 70 3 view .LVU10
+  62 0020 5B6C     		ldr	r3, [r3, #68]
+  63 0022 03F48043 		and	r3, r3, #16384
+  64 0026 0193     		str	r3, [sp, #4]
+  65              		.loc 1 70 3 view .LVU11
+  66 0028 019B     		ldr	r3, [sp, #4]
+  67              	.LBE3:
+  68              		.loc 1 70 3 view .LVU12
   71:Core/Src/stm32f7xx_hal_msp.c **** 
   72:Core/Src/stm32f7xx_hal_msp.c ****   /* System interrupt init*/
-  73:Core/Src/stm32f7xx_hal_msp.c **** 
-  74:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 1 */
+  73:Core/Src/stm32f7xx_hal_msp.c ****   /* PendSV_IRQn interrupt configuration */
+  74:Core/Src/stm32f7xx_hal_msp.c ****   HAL_NVIC_SetPriority(PendSV_IRQn, 15, 0);
+  69              		.loc 1 74 3 view .LVU13
+  70 002a 0022     		movs	r2, #0
+  71 002c 0F21     		movs	r1, #15
+  72 002e 6FF00100 		mvn	r0, #1
+  73 0032 FFF7FEFF 		bl	HAL_NVIC_SetPriority
+  74              	.LVL0:
   75:Core/Src/stm32f7xx_hal_msp.c **** 
-  76:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 1 */
-  77:Core/Src/stm32f7xx_hal_msp.c **** }
-  67              		.loc 1 77 1 is_stmt 0 view .LVU13
-  68 0028 02B0     		add	sp, sp, #8
-  69              		.cfi_def_cfa_offset 0
-  70              		@ sp needed
-  71 002a 7047     		bx	lr
-  72              	.L4:
-  73              		.align	2
-  74              	.L3:
-  75 002c 00380240 		.word	1073887232
-  76              		.cfi_endproc
-  77              	.LFE141:
-  79              		.text
-  80              	.Letext0:
-  81              		.file 2 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
-  82              		.file 3 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
-  83              		.file 4 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s 			page 4
+  76:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE BEGIN MspInit 1 */
+  77:Core/Src/stm32f7xx_hal_msp.c **** 
+  78:Core/Src/stm32f7xx_hal_msp.c ****   /* USER CODE END MspInit 1 */
+  79:Core/Src/stm32f7xx_hal_msp.c **** }
+  75              		.loc 1 79 1 is_stmt 0 view .LVU14
+  76 0036 03B0     		add	sp, sp, #12
+  77              		.cfi_def_cfa_offset 4
+  78              		@ sp needed
+  79 0038 5DF804FB 		ldr	pc, [sp], #4
+  80              	.L4:
+  81              		.align	2
+  82              	.L3:
+  83 003c 00380240 		.word	1073887232
+  84              		.cfi_endproc
+  85              	.LFE141:
+  87              		.text
+  88              	.Letext0:
+  89              		.file 2 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+  90              		.file 3 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+  91              		.file 4 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+  92              		.file 5 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_cortex.h"
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cccqQhIA.s 			page 4
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 stm32f7xx_hal_msp.c
-C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s:21     .text.HAL_MspInit:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s:27     .text.HAL_MspInit:0000000000000000 HAL_MspInit
-C:\Users\billa\AppData\Local\Temp\cc4j6mJr.s:75     .text.HAL_MspInit:000000000000002c $d
+C:\Users\billa\AppData\Local\Temp\cccqQhIA.s:21     .text.HAL_MspInit:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cccqQhIA.s:27     .text.HAL_MspInit:0000000000000000 HAL_MspInit
+C:\Users\billa\AppData\Local\Temp\cccqQhIA.s:83     .text.HAL_MspInit:000000000000003c $d
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+HAL_NVIC_SetPriority
