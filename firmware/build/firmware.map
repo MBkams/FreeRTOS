@@ -116,6 +116,8 @@ Discarded input sections
                 0x0000000000000000       0x2c build/stm32f7xx_hal.o
  .text.HAL_GetTickFreq
                 0x0000000000000000        0xc build/stm32f7xx_hal.o
+ .text.HAL_Delay
+                0x0000000000000000       0x28 build/stm32f7xx_hal.o
  .text.HAL_SuspendTick
                 0x0000000000000000        0xe build/stm32f7xx_hal.o
  .text.HAL_ResumeTick
@@ -410,8 +412,6 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 build/stm32f7xx_hal_gpio.o
  .text.HAL_GPIO_DeInit
                 0x0000000000000000      0x14c build/stm32f7xx_hal_gpio.o
- .text.HAL_GPIO_ReadPin
-                0x0000000000000000        0xe build/stm32f7xx_hal_gpio.o
  .text.HAL_GPIO_TogglePin
                 0x0000000000000000       0x12 build/stm32f7xx_hal_gpio.o
  .text.HAL_GPIO_LockPin
@@ -1176,85 +1176,86 @@ LOAD c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode
  .text.frame_dummy
                 0x0000000008000220       0x1c c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard/crtbegin.o
  .text.MX_GPIO_Init
-                0x000000000800023c      0x690 build/gpio.o
+                0x000000000800023c      0x69c build/gpio.o
                 0x000000000800023c                MX_GPIO_Init
  .text.Error_Handler
-                0x00000000080008cc        0x4 build/main.o
-                0x00000000080008cc                Error_Handler
+                0x00000000080008d8        0x4 build/main.o
+                0x00000000080008d8                Error_Handler
  .text.SystemClock_Config
-                0x00000000080008d0       0xa8 build/main.o
-                0x00000000080008d0                SystemClock_Config
- .text.main     0x0000000008000978       0x3c build/main.o
-                0x0000000008000978                main
+                0x00000000080008dc       0xa8 build/main.o
+                0x00000000080008dc                SystemClock_Config
+ .text.main     0x0000000008000984       0x48 build/main.o
+                0x0000000008000984                main
  .text.HAL_MspInit
-                0x00000000080009b4       0x30 build/stm32f7xx_hal_msp.o
-                0x00000000080009b4                HAL_MspInit
+                0x00000000080009cc       0x30 build/stm32f7xx_hal_msp.o
+                0x00000000080009cc                HAL_MspInit
  .text.NMI_Handler
-                0x00000000080009e4        0x2 build/stm32f7xx_it.o
-                0x00000000080009e4                NMI_Handler
+                0x00000000080009fc        0x2 build/stm32f7xx_it.o
+                0x00000000080009fc                NMI_Handler
  .text.HardFault_Handler
-                0x00000000080009e6        0x2 build/stm32f7xx_it.o
-                0x00000000080009e6                HardFault_Handler
+                0x00000000080009fe        0x2 build/stm32f7xx_it.o
+                0x00000000080009fe                HardFault_Handler
  .text.MemManage_Handler
-                0x00000000080009e8        0x2 build/stm32f7xx_it.o
-                0x00000000080009e8                MemManage_Handler
+                0x0000000008000a00        0x2 build/stm32f7xx_it.o
+                0x0000000008000a00                MemManage_Handler
  .text.BusFault_Handler
-                0x00000000080009ea        0x2 build/stm32f7xx_it.o
-                0x00000000080009ea                BusFault_Handler
+                0x0000000008000a02        0x2 build/stm32f7xx_it.o
+                0x0000000008000a02                BusFault_Handler
  .text.UsageFault_Handler
-                0x00000000080009ec        0x2 build/stm32f7xx_it.o
-                0x00000000080009ec                UsageFault_Handler
+                0x0000000008000a04        0x2 build/stm32f7xx_it.o
+                0x0000000008000a04                UsageFault_Handler
  .text.SVC_Handler
-                0x00000000080009ee        0x2 build/stm32f7xx_it.o
-                0x00000000080009ee                SVC_Handler
+                0x0000000008000a06        0x2 build/stm32f7xx_it.o
+                0x0000000008000a06                SVC_Handler
  .text.DebugMon_Handler
-                0x00000000080009f0        0x2 build/stm32f7xx_it.o
-                0x00000000080009f0                DebugMon_Handler
+                0x0000000008000a08        0x2 build/stm32f7xx_it.o
+                0x0000000008000a08                DebugMon_Handler
  .text.PendSV_Handler
-                0x00000000080009f2        0x2 build/stm32f7xx_it.o
-                0x00000000080009f2                PendSV_Handler
+                0x0000000008000a0a        0x2 build/stm32f7xx_it.o
+                0x0000000008000a0a                PendSV_Handler
  .text.SysTick_Handler
-                0x00000000080009f4        0x8 build/stm32f7xx_it.o
-                0x00000000080009f4                SysTick_Handler
+                0x0000000008000a0c        0x8 build/stm32f7xx_it.o
+                0x0000000008000a0c                SysTick_Handler
  .text.SystemInit
-                0x00000000080009fc       0x14 build/system_stm32f7xx.o
-                0x00000000080009fc                SystemInit
+                0x0000000008000a14       0x14 build/system_stm32f7xx.o
+                0x0000000008000a14                SystemInit
  .text.HAL_InitTick
-                0x0000000008000a10       0x4c build/stm32f7xx_hal.o
-                0x0000000008000a10                HAL_InitTick
+                0x0000000008000a28       0x4c build/stm32f7xx_hal.o
+                0x0000000008000a28                HAL_InitTick
  .text.HAL_Init
-                0x0000000008000a5c       0x16 build/stm32f7xx_hal.o
-                0x0000000008000a5c                HAL_Init
- *fill*         0x0000000008000a72        0x2 
+                0x0000000008000a74       0x16 build/stm32f7xx_hal.o
+                0x0000000008000a74                HAL_Init
+ *fill*         0x0000000008000a8a        0x2 
  .text.HAL_IncTick
-                0x0000000008000a74       0x18 build/stm32f7xx_hal.o
-                0x0000000008000a74                HAL_IncTick
+                0x0000000008000a8c       0x18 build/stm32f7xx_hal.o
+                0x0000000008000a8c                HAL_IncTick
  .text.HAL_GetTick
-                0x0000000008000a8c        0xc build/stm32f7xx_hal.o
-                0x0000000008000a8c                HAL_GetTick
- .text.HAL_Delay
-                0x0000000008000a98       0x28 build/stm32f7xx_hal.o
-                0x0000000008000a98                HAL_Delay
+                0x0000000008000aa4        0xc build/stm32f7xx_hal.o
+                0x0000000008000aa4                HAL_GetTick
  .text.__NVIC_SetPriority
-                0x0000000008000ac0       0x24 build/stm32f7xx_hal_cortex.o
+                0x0000000008000ab0       0x24 build/stm32f7xx_hal_cortex.o
  .text.NVIC_EncodePriority
-                0x0000000008000ae4       0x3e build/stm32f7xx_hal_cortex.o
- *fill*         0x0000000008000b22        0x2 
+                0x0000000008000ad4       0x3e build/stm32f7xx_hal_cortex.o
+ *fill*         0x0000000008000b12        0x2 
  .text.HAL_NVIC_SetPriorityGrouping
-                0x0000000008000b24       0x24 build/stm32f7xx_hal_cortex.o
-                0x0000000008000b24                HAL_NVIC_SetPriorityGrouping
+                0x0000000008000b14       0x24 build/stm32f7xx_hal_cortex.o
+                0x0000000008000b14                HAL_NVIC_SetPriorityGrouping
  .text.HAL_NVIC_SetPriority
-                0x0000000008000b48       0x20 build/stm32f7xx_hal_cortex.o
-                0x0000000008000b48                HAL_NVIC_SetPriority
+                0x0000000008000b38       0x20 build/stm32f7xx_hal_cortex.o
+                0x0000000008000b38                HAL_NVIC_SetPriority
  .text.HAL_SYSTICK_Config
-                0x0000000008000b68       0x28 build/stm32f7xx_hal_cortex.o
-                0x0000000008000b68                HAL_SYSTICK_Config
+                0x0000000008000b58       0x28 build/stm32f7xx_hal_cortex.o
+                0x0000000008000b58                HAL_SYSTICK_Config
  .text.HAL_GPIO_Init
-                0x0000000008000b90      0x204 build/stm32f7xx_hal_gpio.o
-                0x0000000008000b90                HAL_GPIO_Init
+                0x0000000008000b80      0x204 build/stm32f7xx_hal_gpio.o
+                0x0000000008000b80                HAL_GPIO_Init
+ .text.HAL_GPIO_ReadPin
+                0x0000000008000d84        0xe build/stm32f7xx_hal_gpio.o
+                0x0000000008000d84                HAL_GPIO_ReadPin
  .text.HAL_GPIO_WritePin
-                0x0000000008000d94        0xc build/stm32f7xx_hal_gpio.o
-                0x0000000008000d94                HAL_GPIO_WritePin
+                0x0000000008000d92        0xc build/stm32f7xx_hal_gpio.o
+                0x0000000008000d92                HAL_GPIO_WritePin
+ *fill*         0x0000000008000d9e        0x2 
  .text.HAL_PWREx_EnableOverDrive
                 0x0000000008000da0       0x7c build/stm32f7xx_hal_pwr_ex.o
                 0x0000000008000da0                HAL_PWREx_EnableOverDrive
@@ -1566,37 +1567,37 @@ LOAD c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode
  .comment       0x0000000000000039       0x3a c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/../../../../arm-none-eabi/lib/thumb/v7e-m+fp/hard\libc_nano.a(libc_a-init.o)
  .comment       0x0000000000000039       0x3a c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
 
-.debug_info     0x0000000000000000     0x5d36
- .debug_info    0x0000000000000000      0xc43 build/gpio.o
- .debug_info    0x0000000000000c43      0x6d6 build/main.o
- .debug_info    0x0000000000001319      0x289 build/stm32f7xx_hal_msp.o
- .debug_info    0x00000000000015a2      0x11c build/stm32f7xx_it.o
- .debug_info    0x00000000000016be      0x702 build/system_stm32f7xx.o
- .debug_info    0x0000000000001dc0      0xa76 build/stm32f7xx_hal.o
- .debug_info    0x0000000000002836     0x1180 build/stm32f7xx_hal_cortex.o
- .debug_info    0x00000000000039b6      0x728 build/stm32f7xx_hal_gpio.o
- .debug_info    0x00000000000040de      0x9ba build/stm32f7xx_hal_pwr_ex.o
- .debug_info    0x0000000000004a98      0xb16 build/stm32f7xx_hal_rcc.o
- .debug_info    0x00000000000055ae       0x2e build/startup_stm32f746xx.o
- .debug_info    0x00000000000055dc       0x24 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_info    0x0000000000005600      0x6fd c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
- .debug_info    0x0000000000005cfd       0x39 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+.debug_info     0x0000000000000000     0x5d76
+ .debug_info    0x0000000000000000      0xc60 build/gpio.o
+ .debug_info    0x0000000000000c60      0x6f9 build/main.o
+ .debug_info    0x0000000000001359      0x289 build/stm32f7xx_hal_msp.o
+ .debug_info    0x00000000000015e2      0x11c build/stm32f7xx_it.o
+ .debug_info    0x00000000000016fe      0x702 build/system_stm32f7xx.o
+ .debug_info    0x0000000000001e00      0xa76 build/stm32f7xx_hal.o
+ .debug_info    0x0000000000002876     0x1180 build/stm32f7xx_hal_cortex.o
+ .debug_info    0x00000000000039f6      0x728 build/stm32f7xx_hal_gpio.o
+ .debug_info    0x000000000000411e      0x9ba build/stm32f7xx_hal_pwr_ex.o
+ .debug_info    0x0000000000004ad8      0xb16 build/stm32f7xx_hal_rcc.o
+ .debug_info    0x00000000000055ee       0x2e build/startup_stm32f746xx.o
+ .debug_info    0x000000000000561c       0x24 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_info    0x0000000000005640      0x6fd c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_info    0x0000000000005d3d       0x39 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
 
-.debug_abbrev   0x0000000000000000     0x1415
+.debug_abbrev   0x0000000000000000     0x142b
  .debug_abbrev  0x0000000000000000      0x164 build/gpio.o
- .debug_abbrev  0x0000000000000164      0x20b build/main.o
- .debug_abbrev  0x000000000000036f       0xd6 build/stm32f7xx_hal_msp.o
- .debug_abbrev  0x0000000000000445       0x7c build/stm32f7xx_it.o
- .debug_abbrev  0x00000000000004c1      0x13f build/system_stm32f7xx.o
- .debug_abbrev  0x0000000000000600      0x23f build/stm32f7xx_hal.o
- .debug_abbrev  0x000000000000083f      0x39d build/stm32f7xx_hal_cortex.o
- .debug_abbrev  0x0000000000000bdc      0x202 build/stm32f7xx_hal_gpio.o
- .debug_abbrev  0x0000000000000dde      0x1ef build/stm32f7xx_hal_pwr_ex.o
- .debug_abbrev  0x0000000000000fcd      0x28e build/stm32f7xx_hal_rcc.o
- .debug_abbrev  0x000000000000125b       0x1d build/startup_stm32f746xx.o
- .debug_abbrev  0x0000000000001278       0x14 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_abbrev  0x000000000000128c      0x16a c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
- .debug_abbrev  0x00000000000013f6       0x1f c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x0000000000000164      0x221 build/main.o
+ .debug_abbrev  0x0000000000000385       0xd6 build/stm32f7xx_hal_msp.o
+ .debug_abbrev  0x000000000000045b       0x7c build/stm32f7xx_it.o
+ .debug_abbrev  0x00000000000004d7      0x13f build/system_stm32f7xx.o
+ .debug_abbrev  0x0000000000000616      0x23f build/stm32f7xx_hal.o
+ .debug_abbrev  0x0000000000000855      0x39d build/stm32f7xx_hal_cortex.o
+ .debug_abbrev  0x0000000000000bf2      0x202 build/stm32f7xx_hal_gpio.o
+ .debug_abbrev  0x0000000000000df4      0x1ef build/stm32f7xx_hal_pwr_ex.o
+ .debug_abbrev  0x0000000000000fe3      0x28e build/stm32f7xx_hal_rcc.o
+ .debug_abbrev  0x0000000000001271       0x1d build/startup_stm32f746xx.o
+ .debug_abbrev  0x000000000000128e       0x14 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_abbrev  0x00000000000012a2      0x16a c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_abbrev  0x000000000000140c       0x1f c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
 
 .debug_aranges  0x0000000000000000      0x4b8
  .debug_aranges
@@ -1655,38 +1656,38 @@ LOAD c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode
  .debug_rnglists
                 0x0000000000000318       0x9b c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
 
-.debug_line     0x0000000000000000     0x45f3
- .debug_line    0x0000000000000000      0xb1b build/gpio.o
- .debug_line    0x0000000000000b1b      0x3fc build/main.o
- .debug_line    0x0000000000000f17      0x1fe build/stm32f7xx_hal_msp.o
- .debug_line    0x0000000000001115      0x177 build/stm32f7xx_it.o
- .debug_line    0x000000000000128c      0x2f5 build/system_stm32f7xx.o
- .debug_line    0x0000000000001581      0x643 build/stm32f7xx_hal.o
- .debug_line    0x0000000000001bc4      0x8ba build/stm32f7xx_hal_cortex.o
- .debug_line    0x000000000000247e      0x77b build/stm32f7xx_hal_gpio.o
- .debug_line    0x0000000000002bf9      0x609 build/stm32f7xx_hal_pwr_ex.o
- .debug_line    0x0000000000003202      0xd2e build/stm32f7xx_hal_rcc.o
- .debug_line    0x0000000000003f30       0x76 build/startup_stm32f746xx.o
- .debug_line    0x0000000000003fa6       0x4e c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
- .debug_line    0x0000000000003ff4      0x5b5 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
- .debug_line    0x00000000000045a9       0x4a c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
+.debug_line     0x0000000000000000     0x4609
+ .debug_line    0x0000000000000000      0xb34 build/gpio.o
+ .debug_line    0x0000000000000b34      0x3f9 build/main.o
+ .debug_line    0x0000000000000f2d      0x1fe build/stm32f7xx_hal_msp.o
+ .debug_line    0x000000000000112b      0x177 build/stm32f7xx_it.o
+ .debug_line    0x00000000000012a2      0x2f5 build/system_stm32f7xx.o
+ .debug_line    0x0000000000001597      0x643 build/stm32f7xx_hal.o
+ .debug_line    0x0000000000001bda      0x8ba build/stm32f7xx_hal_cortex.o
+ .debug_line    0x0000000000002494      0x77b build/stm32f7xx_hal_gpio.o
+ .debug_line    0x0000000000002c0f      0x609 build/stm32f7xx_hal_pwr_ex.o
+ .debug_line    0x0000000000003218      0xd2e build/stm32f7xx_hal_rcc.o
+ .debug_line    0x0000000000003f46       0x76 build/startup_stm32f746xx.o
+ .debug_line    0x0000000000003fbc       0x4e c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_aeabi_uldivmod.o)
+ .debug_line    0x000000000000400a      0x5b5 c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_udivmoddi4.o)
+ .debug_line    0x00000000000045bf       0x4a c:/users/billa/appdata/roaming/code/user/globalstorage/bmd.stm32-for-vscode/@xpack-dev-tools/arm-none-eabi-gcc/12.2.1-1.2.1/.content/bin/../lib/gcc/arm-none-eabi/12.2.1/thumb/v7e-m+fp/hard\libgcc.a(_dvmd_tls.o)
 
 .debug_str      0x0000000000000000     0x2173
  .debug_str     0x0000000000000000      0x326 build/gpio.o
                                         0x37e (size before relaxing)
- .debug_str     0x0000000000000326      0x1ff build/main.o
-                                        0x51e (size before relaxing)
- .debug_str     0x0000000000000525       0x29 build/stm32f7xx_hal_msp.o
+ .debug_str     0x0000000000000326      0x206 build/main.o
+                                        0x525 (size before relaxing)
+ .debug_str     0x000000000000052c       0x29 build/stm32f7xx_hal_msp.o
                                         0x2ad (size before relaxing)
- .debug_str     0x000000000000054e       0xb4 build/stm32f7xx_it.o
+ .debug_str     0x0000000000000555       0xb4 build/stm32f7xx_it.o
                                         0x204 (size before relaxing)
- .debug_str     0x0000000000000602      0x1a1 build/system_stm32f7xx.o
+ .debug_str     0x0000000000000609      0x1a1 build/system_stm32f7xx.o
                                         0x430 (size before relaxing)
- .debug_str     0x00000000000007a3      0x937 build/stm32f7xx_hal.o
+ .debug_str     0x00000000000007aa      0x941 build/stm32f7xx_hal.o
                                         0xc39 (size before relaxing)
- .debug_str     0x00000000000010da      0x45d build/stm32f7xx_hal_cortex.o
+ .debug_str     0x00000000000010eb      0x45d build/stm32f7xx_hal_cortex.o
                                         0xd84 (size before relaxing)
- .debug_str     0x0000000000001537       0xfb build/stm32f7xx_hal_gpio.o
+ .debug_str     0x0000000000001548       0xea build/stm32f7xx_hal_gpio.o
                                         0x4d2 (size before relaxing)
  .debug_str     0x0000000000001632      0x1db build/stm32f7xx_hal_pwr_ex.o
                                         0x621 (size before relaxing)
@@ -1824,7 +1825,6 @@ HAL_DMA_Start_IT                                  build/stm32f7xx_hal_dma.o
 HAL_DMA_UnRegisterCallback                        build/stm32f7xx_hal_dma.o
 HAL_DeInit                                        build/stm32f7xx_hal.o
 HAL_Delay                                         build/stm32f7xx_hal.o
-                                                  build/main.o
 HAL_DisableCompensationCell                       build/stm32f7xx_hal.o
 HAL_DisableFMCMemorySwapping                      build/stm32f7xx_hal.o
 HAL_EXTI_ClearConfigLine                          build/stm32f7xx_hal_exti.o
@@ -1861,6 +1861,7 @@ HAL_GPIO_Init                                     build/stm32f7xx_hal_gpio.o
                                                   build/gpio.o
 HAL_GPIO_LockPin                                  build/stm32f7xx_hal_gpio.o
 HAL_GPIO_ReadPin                                  build/stm32f7xx_hal_gpio.o
+                                                  build/main.o
 HAL_GPIO_TogglePin                                build/stm32f7xx_hal_gpio.o
 HAL_GPIO_WritePin                                 build/stm32f7xx_hal_gpio.o
                                                   build/main.o
