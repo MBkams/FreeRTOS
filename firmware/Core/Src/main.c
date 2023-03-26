@@ -22,6 +22,7 @@
 #include "usart.h"
 #include "gpio.h"
 #include "FreeRTOS.h"
+#include "task.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -36,7 +37,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define STACK_SIZE 1000
-#define DELAY_1 1000
+#define Delay 1000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -54,43 +55,35 @@
 void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
-
+void LedBlinker (void * pvParameters);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-/* Pour permettre l'utilisation de printf, copiez ces lignes dans le fichier main.c */
-  void codeTache (void * pvParameters) {
-    int compteur = 0;
+
+/* Fonction LED Blinker*/
+void LedBlinker (void * pvParameters){
+    
     int duree = (int) pvParameters;
-    char* s = pcTaskGetName(xTaskGetCurrentTaskHandle());
-    while (1) {
-      printf("Je suis la tache %s et je m'endors pour %d periodes\n", s, duree);
-      vTaskDelay(duree);
-      compteur++;
+
+    while (1)
+    {
+      vTaskDelay(duree/portTICK_PERIOD_MS);
+      HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
     }
-  }
-
-
+    
+}
 /* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
   * @retval int
   */
-
-int __io_putchar(int ch) {
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-  return ch;
-}
-
 int main(void)
 {
   /* USER CODE BEGIN 1 */
   BaseType_t xReturned;
   TaskHandle_t xHandle1 = NULL;
-  TaskHandle_t xHandle2 = NULL;
-
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -113,18 +106,21 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  /* Create the task, storing the handle. */
-  xReturned = xTaskCreate(
-  codeTache, /* Function that implements the task. */
-  "Task1", /* Text name for the task. */
-  STACK_SIZE, /* Stack size in words, not bytes. */
-  (void *) DELAY_1, /* Parameter passed into the task. */
-  tskIDLE_PRIORITY,/* Priority at which the task is created. */
-  &xHandle1 ); /* Used to pass out the created task's handle. */
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
   MX_FREERTOS_Init();
+
+  /*Create a task*/
+  xReturned = xTaskCreate(
+          LedBlinker,      // Function to be called
+          "LedBlink",     // Name of task
+          STACK_SIZE,     // Stack size
+          (void*) Delay,  // Parameter to pass to function
+          1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+          &xHandle1       // Task handle (allows to find and manipulate the task)
+          );
 
   /* Start scheduler */
   osKernelStart();
@@ -133,6 +129,8 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+    // HAL_Delay(1000);
+    // HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
