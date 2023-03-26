@@ -37,7 +37,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define STACK_SIZE 1000
-#define Delay 1000
+#define Delay 100
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
