@@ -21,12 +21,12 @@
 #include "cmsis_os.h"
 #include "usart.h"
 #include "gpio.h"
-#include "FreeRTOS.h"
-#include "task.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "FreeRTOS.h"
+#include "task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -106,12 +106,6 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-
-  /* USER CODE END 2 */
-
-  /* Call init function for freertos objects (in freertos.c) */
-  MX_FREERTOS_Init();
-
   /*Create a task*/
   xReturned = xTaskCreate(
           LedBlinker,      // Function to be called
@@ -121,6 +115,10 @@ int main(void)
           1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &xHandle1       // Task handle (allows to find and manipulate the task)
           );
+  /* USER CODE END 2 */
+
+  /* Call init function for freertos objects (in freertos.c) */
+  MX_FREERTOS_Init();
 
   /* Start scheduler */
   osKernelStart();

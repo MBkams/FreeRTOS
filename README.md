@@ -14,4 +14,4 @@
 
 2. Le rôle de la macro portTICK_PERIOD_MS, définit à 1, est de définir la fréquence de FreeRTOS à 1 ms.
 La fonction VTaskDelay attend en paramètre le nombre de tick afin d'effectuer une temporisation.
-Donc, on va diviser le délai souhaité par la période du tick de l'OS. 
+Donc, on va diviser le délais souhaité par la période du tick de l'OS. 
