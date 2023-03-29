@@ -27,6 +27,8 @@
 /* USER CODE BEGIN Includes */
 #include "FreeRTOS.h"
 #include "task.h"
+#include <stdio.h>
+#include <string.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -37,7 +39,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define STACK_SIZE 1000
-#define Delay 100
+#define Delay 500
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -65,14 +67,27 @@ void LedBlinker (void * pvParameters);
 void LedBlinker (void * pvParameters){
     
     int duree = (int) pvParameters;
+    uint8_t uartTxBuffer[100];
+    char* s = pcTaskGetName(xTaskGetCurrentTaskHandle());
 
     while (1)
     {
+      sprintf((char*)uartTxBuffer, "Je suis la tache %s et je m'endors pour %d periodes\n", s, duree);
+      HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
       vTaskDelay(duree/portTICK_PERIOD_MS);
       HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
     }
     
 }
+
+  /* Fonction affichage*/
+  // int __io_putchar(int ch) 
+  // {
+  // uint8_t data = ch;
+  // HAL_UART_Transmit(&huart1, (uint8_t *)&data, 1, HAL_MAX_DELAY);
+  // return ch;
+  // }
+
 /* USER CODE END 0 */
 
 /**
@@ -125,6 +140,8 @@ int main(void)
   /* We should never get here as control is now taken by the scheduler */
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+  /* Redirect stdout to UART */
+
   while (1)
   {
     // HAL_Delay(1000);
