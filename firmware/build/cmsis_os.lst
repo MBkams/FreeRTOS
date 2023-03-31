@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
   28:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****  *
   29:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****  * Portions Copyright © 2016 STMicroelectronics International N.V. All rights reserved.
   30:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****  * Portions Copyright (c) 2013 ARM LIMITED
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 2
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 2
 
 
   31:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****  * All rights reserved.
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
   85:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #elif defined ( __ICCARM__ )
   86:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
   87:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   #ifndef   __ASM
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 3
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 3
 
 
   88:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     #define __ASM                     __asm
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
   58              		.syntax unified
   59              		.thumb
   60              		.thumb_func
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 4
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 4
 
 
   62              	makeCmsisPriority:
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  127:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
  128:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
  129:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** /* Determine whether we are in thread mode or handler mode. */
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 5
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 5
 
 
  130:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** static int inHandlerMode (void)
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
   43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
   44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
   45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 6
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 6
 
 
   46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
  101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
  102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 7
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 7
 
 
  103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  157:Drivers/CMSIS/Include/cmsis_gcc.h **** }
  158:Drivers/CMSIS/Include/cmsis_gcc.h **** 
  159:Drivers/CMSIS/Include/cmsis_gcc.h **** 
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 8
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 8
 
 
  160:Drivers/CMSIS/Include/cmsis_gcc.h **** #if (defined (__ARM_FEATURE_CMSE ) && (__ARM_FEATURE_CMSE == 3))
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  116              		.syntax unified
  117              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
  118 0000 EFF30580 		MRS r0, ipsr
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 9
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 9
 
 
  119              	@ 0 "" 2
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  154              	.LVL10:
  153:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
  154:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return osOK;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 10
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 10
 
 
  155              		.loc 1 154 3 view .LVU31
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  190 000c 08BD     		pop	{r3, pc}
  191              	.L14:
  169:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return 0;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 11
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 11
 
 
  192              		.loc 1 169 12 view .LVU39
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  190:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
  230              		.loc 1 190 12 is_stmt 0 view .LVU48
  231 000e FFF7FEFF 		bl	xTaskGetTickCount
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 12
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 12
 
 
  232              	.LVL14:
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  273 000e B5B1     		cbz	r5, .L20
  208:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     handle = xTaskCreateStatic((TaskFunction_t)thread_def->pthread,(const portCHAR *)thread_def->na
  274              		.loc 1 208 5 is_stmt 1 view .LVU57
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 13
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 13
 
 
  275              		.loc 1 208 58 is_stmt 0 view .LVU58
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  301              		.loc 1 232 10 is_stmt 0 view .LVU66
  302 0036 0598     		ldr	r0, [sp, #20]
  303              	.L19:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 14
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 14
 
 
  233:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** }
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  349              		.thumb
  350              		.thumb_func
  352              	osThreadGetId:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 15
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 15
 
 
  353              	.LFB114:
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  386 0000 08B5     		push	{r3, lr}
  387              		.cfi_def_cfa_offset 8
  388              		.cfi_offset 3, -8
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 16
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 16
 
 
  389              		.cfi_offset 14, -4
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  274:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return osOK;
  428              		.loc 1 274 3 view .LVU91
  275:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** }
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 17
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 17
 
 
  429              		.loc 1 275 1 is_stmt 0 view .LVU92
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  292:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** }
  469              		.loc 1 292 1 is_stmt 0 view .LVU99
  470 0012 0020     		movs	r0, #0
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 18
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 18
 
 
  471 0014 10BD     		pop	{r4, pc}
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  310:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
  311:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #else
  312:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return osPriorityError;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 19
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 19
 
 
  313:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #endif
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  549              	.LVL39:
  550              	.L37:
  551              		.loc 1 327 3 is_stmt 0 discriminator 4 view .LVU115
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 20
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 20
 
 
  552 0006 FFF7FEFF 		bl	vTaskDelay
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  360:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
  361:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #if( ( configSUPPORT_STATIC_ALLOCATION == 1 ) && ( configSUPPORT_DYNAMIC_ALLOCATION == 1 ) ) 
  362:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   if(timer_def->controlblock != NULL) {
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 21
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 21
 
 
  363:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return xTimerCreateStatic((const char *)"",
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  400:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param  millisec      time delay value of the timer.
  401:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @retval  status code that indicates the execution status of the function
  402:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @note   MUST REMAIN UNCHANGED: \b osTimerStart shall be consistent in every CMSIS-RTOS.
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 22
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 22
 
 
  403:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** */
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  618              	osTimerStop:
  619              	.LVL45:
  620              	.LFB122:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 23
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 23
 
 
  436:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  466:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** /**
  467:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @brief  Delete a timer.
  468:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param  timer_id      timer ID obtained by \ref osTimerCreate
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 24
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 24
 
 
  469:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @retval  status code that indicates the execution status of the function.
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  499:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @retval previous signal flags of the specified thread or 0x80000000 in case of incorrect paramete
  500:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @note   MUST REMAIN UNCHANGED: \b osSignalSet shall be consistent in every CMSIS-RTOS.
  501:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** */
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 25
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 25
 
 
  502:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** int32_t osSignalSet (osThreadId thread_id, int32_t signal)
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  715 002a 93B1     		cbz	r3, .L47
  716              		.loc 1 513 5 discriminator 1 view .LVU153
  717 002c 4FF0E023 		mov	r3, #-536813568
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 26
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 26
 
 
  718 0030 4FF08052 		mov	r2, #268435456
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  759 0058 4FF00040 		mov	r0, #-2147483648
  760 005c FAE7     		b	.L44
  761              	.L49:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 27
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 27
 
 
  516:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return 0x80000000;
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  548:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 	
  549:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   TickType_t ticks;
  795              		.loc 1 549 3 view .LVU167
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 28
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 28
 
 
  550:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  586:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
  587:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return ret;
  814              		.loc 1 587 3 is_stmt 1 view .LVU177
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 29
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 29
 
 
  815              		.loc 1 587 10 is_stmt 0 view .LVU178
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  857 0046 029B     		ldr	r3, [sp, #8]
  574:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     {
  858              		.loc 1 574 12 view .LVU191
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 30
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 30
 
 
  859 0048 002B     		cmp	r3, #0
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  896 0002 4168     		ldr	r1, [r0, #4]
  897              		.loc 1 603 6 view .LVU200
  898 0004 19B1     		cbz	r1, .L60
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 31
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 31
 
 
  604:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return xSemaphoreCreateMutexStatic( mutex_def->controlblock );
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  624:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @note   MUST REMAIN UNCHANGED: \b osMutexWait shall be consistent in every CMSIS-RTOS.
  625:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** */
  626:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** osStatus osMutexWait (osMutexId mutex_id, uint32_t millisec)
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 32
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 32
 
 
  627:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** {
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  964              		.loc 1 648 9 is_stmt 0 view .LVU221
  965 0014 01AA     		add	r2, sp, #4
  966 0016 0021     		movs	r1, #0
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 33
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 33
 
 
  967 0018 2846     		mov	r0, r5
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1008              		.loc 1 658 1 view .LVU232
  1009 004c 03B0     		add	sp, sp, #12
  1010              		.cfi_remember_state
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 34
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 34
 
 
  1011              		.cfi_def_cfa_offset 12
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1053 0000 10B5     		push	{r4, lr}
  1054              		.cfi_def_cfa_offset 8
  1055              		.cfi_offset 4, -8
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 35
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 35
 
 
  1056              		.cfi_offset 14, -4
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1101 0036 08E0     		b	.L71
  1102              	.L72:
  676:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 36
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 36
 
 
  677:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   else if (xSemaphoreGive(mutex_id) != pdTRUE) 
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1150              	.LFB129:
  683:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
  684:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** /**
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 37
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 37
 
 
  685:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @brief Delete a Mutex
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1190              		.thumb_func
  1192              	osSemaphoreCreate:
  1193              	.LVL85:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 38
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 38
 
 
  1194              	.LFB130:
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  728:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     }
  729:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
  730:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   else {
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 39
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 39
 
 
  731:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     if (count == 1) {
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1232 0014 0323     		movs	r3, #3
  1233 0016 0093     		str	r3, [sp]
  1234 0018 2346     		mov	r3, r4
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 40
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 40
 
 
  1235 001a 0022     		movs	r2, #0
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1277              	.LFE130:
  1279              		.section	.text.osSemaphoreWait,"ax",%progbits
  1280              		.align	1
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 41
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 41
 
 
  1281              		.global	osSemaphoreWait
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  792:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
  793:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   else if (millisec != 0) {
  794:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     ticks = millisec / portTICK_PERIOD_MS;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 42
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 42
 
 
  795:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     if (ticks == 0) {
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1353              	.L92:
  806:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return osErrorOS;
  1354              		.loc 1 806 8 is_stmt 1 view .LVU316
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 43
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 43
 
 
  806:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return osErrorOS;
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  817:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @note   MUST REMAIN UNCHANGED: \b osSemaphoreRelease shall be consistent in every CMSIS-RTOS.
  818:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** */
  819:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** osStatus osSemaphoreRelease (osSemaphoreId semaphore_id)
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 44
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 44
 
 
  820:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** {
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1444              	@ 0 "" 2
  1445              		.loc 1 829 5 discriminator 1 view .LVU337
  1446              	@ 829 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c" 1
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 45
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 45
 
 
  1447 0030 BFF36F8F 		isb
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1488 0056 0020     		movs	r0, #0
  1489 0058 F7E7     		b	.L98
  1490              		.cfi_endproc
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 46
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 46
 
 
  1491              	.LFE132:
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1530              	.L108:
  849:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return osErrorISR;
  1531              		.loc 1 849 12 view .LVU356
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 47
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 47
 
 
  1532 0014 8220     		movs	r0, #130
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1559              		.cfi_offset 14, -4
  1560 0002 0446     		mov	r4, r0
  885:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #if (configSUPPORT_DYNAMIC_ALLOCATION == 1)
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 48
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 48
 
 
  886:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   osPoolId thePool;
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1600 0026 0746     		mov	r7, r0
  1601              		.loc 1 900 22 view .LVU379
  1602 0028 6860     		str	r0, [r5, #4]
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 49
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 49
 
 
  901:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****    
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  911:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****       else {
  912:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****         vPortFree(thePool->markers);
  913:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****         vPortFree(thePool);
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 50
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 50
 
 
  914:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****         thePool = NULL;
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1673              		.cfi_endproc
  1674              	.LFE134:
  1676              		.section	.text.osPoolAlloc,"ax",%progbits
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 51
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 51
 
 
  1677              		.align	1
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
    4:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
    5:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * Permission is hereby granted, free of charge, to any person obtaining a copy of
    6:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * this software and associated documentation files (the "Software"), to deal in
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 52
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 52
 
 
    7:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * the Software without restriction, including without limitation the rights to
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
   61:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portMAX_DELAY ( TickType_t ) 0xffff
   62:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #else
   63:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	typedef uint32_t TickType_t;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 53
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 53
 
 
   64:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portMAX_DELAY ( TickType_t ) 0xffffffffUL
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  118:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdl
  119:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
  120:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 54
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 54
 
 
  121:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  175:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	__asm volatile( "mrs %0, ipsr" : "=r"( ulCurrentInterrupt ) :: "memory" );
  176:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
  177:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	if( ulCurrentInterrupt == 0 )
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 55
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 55
 
 
  178:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	{
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  216:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		"	mov %1, %2												\n"	\
  217:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		"	cpsid i													\n" \
  218:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		"	msr basepri, %1											\n" \
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 56
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 56
 
 
  219:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		"	isb														\n" \
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1766              		.loc 1 951 11 view .LVU433
  1767 003a B3FBF2F0 		udiv	r0, r3, r2
  1768 003e 02FB1033 		mls	r3, r2, r0, r3
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 57
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 57
 
 
  1769              	.LVL140:
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1811              	.LBB12:
  1812              	.LBI12:
  228:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** }
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 58
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 58
 
 
  229:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  973:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param  pool_id       memory pool ID obtain referenced with \ref osPoolCreate.
  974:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @retval  address of the allocated memory block or NULL in case of no memory available.
  975:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @note   MUST REMAIN UNCHANGED: \b osPoolCAlloc shall be consistent in every CMSIS-RTOS.
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 59
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 59
 
 
  976:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** */
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  996:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** osStatus osPoolFree (osPoolId pool_id, void *block)
  997:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** {
  1887              		.loc 1 997 1 is_stmt 1 view -0
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 60
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 60
 
 
  1888              		.cfi_startproc
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1923              	.LVL155:
 1017:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   if (index >= pool_id->pool_sz) {
  1924              		.loc 1 1017 3 is_stmt 1 view .LVU487
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 61
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 61
 
 
  1925              		.loc 1 1017 23 is_stmt 0 view .LVU488
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  1966              	.L140:
 1018:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
  1967              		.loc 1 1018 12 view .LVU502
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 62
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 62
 
 
  1968 003c 8020     		movs	r0, #128
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2001 0008 C368     		ldr	r3, [r0, #12]
  2002              		.loc 1 1046 35 discriminator 1 view .LVU511
  2003 000a 33B1     		cbz	r3, .L142
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 63
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 63
 
 
 1047:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return xQueueCreateStatic(queue_def->queue_sz, queue_def->item_sz, queue_def->buffer, queue_def
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1058:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
 1059:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** /**
 1060:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @brief Put a Message to a Queue.
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 64
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 64
 
 
 1061:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param  queue_id  message queue ID obtained with \ref osMessageCreate.
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2085              		.loc 1 1078 9 is_stmt 0 view .LVU534
  2086 0018 0023     		movs	r3, #0
  2087 001a 03AA     		add	r2, sp, #12
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 65
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 65
 
 
  2088 001c 01A9     		add	r1, sp, #4
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2128              		.loc 1 1089 10 view .LVU544
  2129 0054 0020     		movs	r0, #0
  2130              	.L145:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 66
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 66
 
 
 1090:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** }
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2173              		.cfi_offset 6, -8
  2174              		.cfi_offset 14, -4
  2175 0002 84B0     		sub	sp, sp, #16
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 67
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 67
 
 
  2176              		.cfi_def_cfa_offset 32
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2204              		.loc 1 1126 6 view .LVU566
  2205 001a 00B3     		cbz	r0, .L157
 1127:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     if (xQueueReceiveFromISR(queue_id, &event.value.v, &taskWoken) == pdTRUE) {
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 68
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 68
 
 
  2206              		.loc 1 1127 5 is_stmt 1 view .LVU567
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2249 004e 93E80700 		ldm	r3, {r0, r1, r2}
  2250              	.LVL184:
 1110:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 69
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 69
 
 
  2251              		.loc 1 1110 12 view .LVU580
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2290 007e 04B0     		add	sp, sp, #16
  2291              		.cfi_remember_state
  2292              		.cfi_def_cfa_offset 16
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 70
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 70
 
 
  2293              		@ sp needed
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2325              		.cfi_offset 6, -8
  2326              		.cfi_offset 14, -4
  2327 0002 84B0     		sub	sp, sp, #16
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 71
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 71
 
 
  2328              		.cfi_def_cfa_offset 32
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2366              		.loc 1 1185 4 view .LVU615
  2367 0026 1D68     		ldr	r5, [r3]
  2368              		.loc 1 1185 32 view .LVU616
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 72
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 72
 
 
  2369 0028 0022     		movs	r2, #0
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2403              		.loc 1 1205 1 view .LVU631
  2404 004c 2846     		mov	r0, r5
  2405 004e 04B0     		add	sp, sp, #16
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 73
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 73
 
 
  2406              		.cfi_remember_state
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2446              		@ frame_needed = 0, uses_anonymous_args = 0
  2447              		.loc 1 1215 1 is_stmt 0 view .LVU639
  2448 0000 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 74
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 74
 
 
  2449              		.cfi_def_cfa_offset 8
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2483              		@ args = 0, pretend = 0, frame = 0
  2484              		@ frame_needed = 0, uses_anonymous_args = 0
  2485              		.loc 1 1237 1 is_stmt 0 view .LVU650
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 75
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 75
 
 
  2486 0000 10B5     		push	{r4, lr}
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2524 001e 0846     		mov	r0, r1
  2525              	.LVL208:
  2526              		.loc 1 1248 1 view .LVU665
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 76
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 76
 
 
  2527 0020 10BD     		pop	{r4, pc}
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2563              		.loc 1 1268 3 is_stmt 1 view .LVU674
  2564              		.loc 1 1268 7 is_stmt 0 view .LVU675
  2565 000e FFF7FEFF 		bl	inHandlerMode
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 77
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 77
 
 
  2566              	.LVL210:
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2606 0044 01A9     		add	r1, sp, #4
  2607 0046 6068     		ldr	r0, [r4, #4]
  2608 0048 FFF7FEFF 		bl	xQueueGenericSend
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 78
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 78
 
 
  2609              	.LVL212:
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1283:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** /**
 1284:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @brief Get a mail from a queue
 1285:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param  queue_id   mail queue ID obtained with \ref osMailCreate.
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 79
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 79
 
 
 1286:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param millisec    timeout value or 0 in case of no time-out
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1308:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
 1309:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   else if (millisec != 0) {
 1310:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     ticks = millisec / portTICK_PERIOD_MS;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 80
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 80
 
 
 1311:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     if (ticks == 0) {
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2729              	.LVL221:
  2730              	.L203:
 1299:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     return event;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 81
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 81
 
 
  2731              		.loc 1 1299 5 view .LVU720
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1334:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
 1335:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
 1336:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return event;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 82
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 82
 
 
  2770              		.loc 1 1336 3 is_stmt 1 view .LVU733
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1347:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   if (queue_id == NULL) {
  2812              		.loc 1 1347 1 view .LVU741
  2813 0002 08B5     		push	{r3, lr}
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 83
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 83
 
 
  2814              		.cfi_def_cfa_offset 8
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  2854              		.cfi_offset 3, -8
  2855              		.cfi_offset 14, -4
 1364:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** 
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 84
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 84
 
 
 1365:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #if (INCLUDE_xTaskGetSchedulerState  == 1 )
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1391:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     result = osThreadRunning;
 1392:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     break;
 1393:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   case eReady :
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 85
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 85
 
 
 1394:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     result = osThreadReady;
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1436:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
 1437:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return osOK;
  2897              		.loc 1 1437 3 view .LVU758
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 86
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 86
 
 
 1438:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #else
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1454:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     {
 1455:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****       portYIELD_FROM_ISR(pdTRUE);
  2938              		.loc 1 1455 7 is_stmt 1 discriminator 1 view .LVU768
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 87
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 87
 
 
  2939              		.loc 1 1455 7 discriminator 1 view .LVU769
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1473:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** {
  2978              		.loc 1 1473 1 is_stmt 1 view -0
  2979              		.cfi_startproc
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 88
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 88
 
 
  2980              		@ args = 0, pretend = 0, frame = 0
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3021 000a FF20     		movs	r0, #255
  3022              	.L225:
 1489:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 89
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 89
 
 
 1490:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** }
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3054 0002 7047     		bx	lr
  3055              		.cfi_endproc
  3056              	.LFE152:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 90
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 90
 
 
  3058              		.section	.text.osAbortDelay,"ax",%progbits
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1536:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** *          and stack usage high water mark.
 1537:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @param   buffer   A buffer into which the above mentioned details
 1538:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** *          will be written
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 91
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 91
 
 
 1539:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** * @retval  status code that indicates the execution status of the function.
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3130              		.loc 1 1557 3 is_stmt 1 view .LVU804
 1558:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   osEvent event;
  3131              		.loc 1 1558 3 view .LVU805
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 92
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 92
 
 
 1559:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3159              	.LVL254:
  3160              	.L238:
  3161              		.loc 1 1585 18 discriminator 4 view .LVU819
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 93
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 93
 
 
  3162 001c 0195     		str	r5, [sp, #4]
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3206              		.syntax unified
  3207              		.thumb
  3208              		.thumb_func
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 94
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 94
 
 
  3210              	osMessageWaiting:
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3246              	.LFE156:
  3248              		.section	.text.osMessageAvailableSpace,"ax",%progbits
  3249              		.align	1
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 95
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 95
 
 
  3250              		.global	osMessageAvailableSpace
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3289              		@ frame_needed = 0, uses_anonymous_args = 0
  3290              		.loc 1 1623 1 is_stmt 0 view .LVU846
  3291 0000 10B5     		push	{r4, lr}
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 96
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 96
 
 
  3292              		.cfi_def_cfa_offset 8
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3331              		.cfi_startproc
  3332              		@ args = 0, pretend = 0, frame = 0
  3333              		@ frame_needed = 0, uses_anonymous_args = 0
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 97
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 97
 
 
  3334              		@ link register save eliminated.
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1671:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     result = osErrorOS;
 1672:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
 1673:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   return result;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 98
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 98
 
 
 1674:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c **** #else
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
 1706:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****     }
 1707:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   }
 1708:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 99
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 99
 
 
 1709:Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c ****   if (xSemaphoreTakeRecursive(mutex_id, ticks) != pdTRUE) 
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3421              	.Letext0:
  3422              		.file 4 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
  3423              		.file 5 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 100
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 100
 
 
  3424              		.file 6 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
@@ -5951,127 +5951,127 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 1
  3431              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
  3432              		.file 14 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
  3433              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/portable.h"
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 101
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 101
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 cmsis_os.c
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:21     .text.makeFreeRtosPriority:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:26     .text.makeFreeRtosPriority:0000000000000000 makeFreeRtosPriority
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:57     .text.makeCmsisPriority:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:62     .text.makeCmsisPriority:0000000000000000 makeCmsisPriority
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:96     .text.inHandlerMode:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:101    .text.inHandlerMode:0000000000000000 inHandlerMode
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:136    .text.osKernelStart:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:142    .text.osKernelStart:0000000000000000 osKernelStart
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:163    .text.osKernelRunning:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:169    .text.osKernelRunning:0000000000000000 osKernelRunning
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:199    .text.osKernelSysTick:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:205    .text.osKernelSysTick:0000000000000000 osKernelSysTick
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:238    .text.osThreadCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:244    .text.osThreadCreate:0000000000000000 osThreadCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:346    .text.osThreadGetId:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:352    .text.osThreadGetId:0000000000000000 osThreadGetId
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:372    .text.osThreadTerminate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:378    .text.osThreadTerminate:0000000000000000 osThreadTerminate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:401    .text.osThreadYield:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:407    .text.osThreadYield:0000000000000000 osThreadYield
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:438    .text.osThreadSetPriority:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:444    .text.osThreadSetPriority:0000000000000000 osThreadSetPriority
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:477    .text.osThreadGetPriority:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:483    .text.osThreadGetPriority:0000000000000000 osThreadGetPriority
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:526    .text.osDelay:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:532    .text.osDelay:0000000000000000 osDelay
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:562    .text.osTimerCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:568    .text.osTimerCreate:0000000000000000 osTimerCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:586    .text.osTimerStart:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:592    .text.osTimerStart:0000000000000000 osTimerStart
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:612    .text.osTimerStop:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:618    .text.osTimerStop:0000000000000000 osTimerStop
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:638    .text.osTimerDelete:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:644    .text.osTimerDelete:0000000000000000 osTimerDelete
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:664    .text.osSignalSet:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:670    .text.osSignalSet:0000000000000000 osSignalSet
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:769    .text.osSignalWait:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:775    .text.osSignalWait:0000000000000000 osSignalWait
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:876    .text.osMutexCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:882    .text.osMutexCreate:0000000000000000 osMutexCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:923    .text.osMutexWait:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:929    .text.osMutexWait:0000000000000000 osMutexWait
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1039   .text.osMutexRelease:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1045   .text.osMutexRelease:0000000000000000 osMutexRelease
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1142   .text.osMutexDelete:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1148   .text.osMutexDelete:0000000000000000 osMutexDelete
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1186   .text.osSemaphoreCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1192   .text.osSemaphoreCreate:0000000000000000 osSemaphoreCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1280   .text.osSemaphoreWait:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1286   .text.osSemaphoreWait:0000000000000000 osSemaphoreWait
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1391   .text.osSemaphoreRelease:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1397   .text.osSemaphoreRelease:0000000000000000 osSemaphoreRelease
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1494   .text.osSemaphoreDelete:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1500   .text.osSemaphoreDelete:0000000000000000 osSemaphoreDelete
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1538   .text.osPoolCreate:0000000000000000 $t
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 102
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:21     .text.makeFreeRtosPriority:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:26     .text.makeFreeRtosPriority:0000000000000000 makeFreeRtosPriority
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:57     .text.makeCmsisPriority:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:62     .text.makeCmsisPriority:0000000000000000 makeCmsisPriority
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:96     .text.inHandlerMode:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:101    .text.inHandlerMode:0000000000000000 inHandlerMode
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:136    .text.osKernelStart:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:142    .text.osKernelStart:0000000000000000 osKernelStart
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:163    .text.osKernelRunning:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:169    .text.osKernelRunning:0000000000000000 osKernelRunning
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:199    .text.osKernelSysTick:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:205    .text.osKernelSysTick:0000000000000000 osKernelSysTick
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:238    .text.osThreadCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:244    .text.osThreadCreate:0000000000000000 osThreadCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:346    .text.osThreadGetId:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:352    .text.osThreadGetId:0000000000000000 osThreadGetId
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:372    .text.osThreadTerminate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:378    .text.osThreadTerminate:0000000000000000 osThreadTerminate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:401    .text.osThreadYield:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:407    .text.osThreadYield:0000000000000000 osThreadYield
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:438    .text.osThreadSetPriority:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:444    .text.osThreadSetPriority:0000000000000000 osThreadSetPriority
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:477    .text.osThreadGetPriority:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:483    .text.osThreadGetPriority:0000000000000000 osThreadGetPriority
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:526    .text.osDelay:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:532    .text.osDelay:0000000000000000 osDelay
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:562    .text.osTimerCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:568    .text.osTimerCreate:0000000000000000 osTimerCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:586    .text.osTimerStart:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:592    .text.osTimerStart:0000000000000000 osTimerStart
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:612    .text.osTimerStop:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:618    .text.osTimerStop:0000000000000000 osTimerStop
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:638    .text.osTimerDelete:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:644    .text.osTimerDelete:0000000000000000 osTimerDelete
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:664    .text.osSignalSet:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:670    .text.osSignalSet:0000000000000000 osSignalSet
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:769    .text.osSignalWait:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:775    .text.osSignalWait:0000000000000000 osSignalWait
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:876    .text.osMutexCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:882    .text.osMutexCreate:0000000000000000 osMutexCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:923    .text.osMutexWait:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:929    .text.osMutexWait:0000000000000000 osMutexWait
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1039   .text.osMutexRelease:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1045   .text.osMutexRelease:0000000000000000 osMutexRelease
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1142   .text.osMutexDelete:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1148   .text.osMutexDelete:0000000000000000 osMutexDelete
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1186   .text.osSemaphoreCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1192   .text.osSemaphoreCreate:0000000000000000 osSemaphoreCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1280   .text.osSemaphoreWait:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1286   .text.osSemaphoreWait:0000000000000000 osSemaphoreWait
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1391   .text.osSemaphoreRelease:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1397   .text.osSemaphoreRelease:0000000000000000 osSemaphoreRelease
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1494   .text.osSemaphoreDelete:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1500   .text.osSemaphoreDelete:0000000000000000 osSemaphoreDelete
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1538   .text.osPoolCreate:0000000000000000 $t
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 102
 
 
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1544   .text.osPoolCreate:0000000000000000 osPoolCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1677   .text.osPoolAlloc:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1683   .text.osPoolAlloc:0000000000000000 osPoolAlloc
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1842   .text.osPoolCAlloc:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1848   .text.osPoolCAlloc:0000000000000000 osPoolCAlloc
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1878   .text.osPoolFree:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1884   .text.osPoolFree:0000000000000000 osPoolFree
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1975   .text.osMessageCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:1981   .text.osMessageCreate:0000000000000000 osMessageCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2040   .text.osMessagePut:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2046   .text.osMessagePut:0000000000000000 osMessagePut
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2155   .text.osMessageGet:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2161   .text.osMessageGet:0000000000000000 osMessageGet
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2307   .text.osMailCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2313   .text.osMailCreate:0000000000000000 osMailCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2434   .text.osMailAlloc:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2440   .text.osMailAlloc:0000000000000000 osMailAlloc
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2472   .text.osMailCAlloc:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2478   .text.osMailCAlloc:0000000000000000 osMailCAlloc
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2533   .text.osMailPut:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2539   .text.osMailPut:0000000000000000 osMailPut
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2648   .text.osMailGet:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2654   .text.osMailGet:0000000000000000 osMailGet
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2796   .text.osMailFree:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2802   .text.osMailFree:0000000000000000 osMailFree
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2840   .text.osSystickHandler:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2846   .text.osSystickHandler:0000000000000000 osSystickHandler
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2876   .text.osThreadSuspend:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2882   .text.osThreadSuspend:0000000000000000 osThreadSuspend
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2905   .text.osThreadResume:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2911   .text.osThreadResume:0000000000000000 osThreadResume
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2970   .text.osThreadSuspendAll:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2976   .text.osThreadSuspendAll:0000000000000000 osThreadSuspendAll
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:2997   .text.osThreadResumeAll:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3003   .text.osThreadResumeAll:0000000000000000 osThreadResumeAll
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3033   .text.osDelayUntil:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3039   .text.osDelayUntil:0000000000000000 osDelayUntil
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3059   .text.osAbortDelay:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3065   .text.osAbortDelay:0000000000000000 osAbortDelay
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3084   .text.osThreadList:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3090   .text.osThreadList:0000000000000000 osThreadList
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3108   .text.osMessagePeek:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3114   .text.osMessagePeek:0000000000000000 osMessagePeek
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3204   .text.osMessageWaiting:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3210   .text.osMessageWaiting:0000000000000000 osMessageWaiting
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3249   .text.osMessageAvailableSpace:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3255   .text.osMessageAvailableSpace:0000000000000000 osMessageAvailableSpace
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3277   .text.osMessageDelete:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3283   .text.osMessageDelete:0000000000000000 osMessageDelete
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3321   .text.osRecursiveMutexCreate:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3327   .text.osRecursiveMutexCreate:0000000000000000 osRecursiveMutexCreate
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3345   .text.osRecursiveMutexRelease:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3351   .text.osRecursiveMutexRelease:0000000000000000 osRecursiveMutexRelease
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3369   .text.osRecursiveMutexWait:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3375   .text.osRecursiveMutexWait:0000000000000000 osRecursiveMutexWait
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3393   .text.osSemaphoreGetCount:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\ccMitTTx.s:3399   .text.osSemaphoreGetCount:0000000000000000 osSemaphoreGetCount
-ARM GAS  C:\Users\billa\AppData\Local\Temp\ccMitTTx.s 			page 103
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1544   .text.osPoolCreate:0000000000000000 osPoolCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1677   .text.osPoolAlloc:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1683   .text.osPoolAlloc:0000000000000000 osPoolAlloc
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1842   .text.osPoolCAlloc:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1848   .text.osPoolCAlloc:0000000000000000 osPoolCAlloc
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1878   .text.osPoolFree:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1884   .text.osPoolFree:0000000000000000 osPoolFree
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1975   .text.osMessageCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:1981   .text.osMessageCreate:0000000000000000 osMessageCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2040   .text.osMessagePut:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2046   .text.osMessagePut:0000000000000000 osMessagePut
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2155   .text.osMessageGet:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2161   .text.osMessageGet:0000000000000000 osMessageGet
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2307   .text.osMailCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2313   .text.osMailCreate:0000000000000000 osMailCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2434   .text.osMailAlloc:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2440   .text.osMailAlloc:0000000000000000 osMailAlloc
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2472   .text.osMailCAlloc:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2478   .text.osMailCAlloc:0000000000000000 osMailCAlloc
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2533   .text.osMailPut:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2539   .text.osMailPut:0000000000000000 osMailPut
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2648   .text.osMailGet:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2654   .text.osMailGet:0000000000000000 osMailGet
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2796   .text.osMailFree:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2802   .text.osMailFree:0000000000000000 osMailFree
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2840   .text.osSystickHandler:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2846   .text.osSystickHandler:0000000000000000 osSystickHandler
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2876   .text.osThreadSuspend:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2882   .text.osThreadSuspend:0000000000000000 osThreadSuspend
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2905   .text.osThreadResume:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2911   .text.osThreadResume:0000000000000000 osThreadResume
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2970   .text.osThreadSuspendAll:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2976   .text.osThreadSuspendAll:0000000000000000 osThreadSuspendAll
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:2997   .text.osThreadResumeAll:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3003   .text.osThreadResumeAll:0000000000000000 osThreadResumeAll
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3033   .text.osDelayUntil:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3039   .text.osDelayUntil:0000000000000000 osDelayUntil
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3059   .text.osAbortDelay:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3065   .text.osAbortDelay:0000000000000000 osAbortDelay
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3084   .text.osThreadList:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3090   .text.osThreadList:0000000000000000 osThreadList
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3108   .text.osMessagePeek:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3114   .text.osMessagePeek:0000000000000000 osMessagePeek
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3204   .text.osMessageWaiting:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3210   .text.osMessageWaiting:0000000000000000 osMessageWaiting
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3249   .text.osMessageAvailableSpace:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3255   .text.osMessageAvailableSpace:0000000000000000 osMessageAvailableSpace
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3277   .text.osMessageDelete:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3283   .text.osMessageDelete:0000000000000000 osMessageDelete
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3321   .text.osRecursiveMutexCreate:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3327   .text.osRecursiveMutexCreate:0000000000000000 osRecursiveMutexCreate
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3345   .text.osRecursiveMutexRelease:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3351   .text.osRecursiveMutexRelease:0000000000000000 osRecursiveMutexRelease
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3369   .text.osRecursiveMutexWait:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3375   .text.osRecursiveMutexWait:0000000000000000 osRecursiveMutexWait
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3393   .text.osSemaphoreGetCount:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccHjQN57.s:3399   .text.osSemaphoreGetCount:0000000000000000 osSemaphoreGetCount
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccHjQN57.s 			page 103
 
 
 
