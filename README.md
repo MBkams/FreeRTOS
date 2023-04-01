@@ -15,3 +15,8 @@
 2. Le rôle de la macro portTICK_PERIOD_MS, définit à 1, est de définir la fréquence de FreeRTOS à 1 ms.
 La fonction VTaskDelay attend en paramètre le nombre de tick afin d'effectuer une temporisation.
 Donc, on va diviser le délais souhaité par la période du tick de l'OS. 
+
+### Sémaphores pour la synchronisation
+
+6. En changeant les priorités, par exmeple la tâche Take au dessus de la tâche Give, la sémaphore n'est pas bloqué par la tache Give et donc pas prise la tache Take.
+
