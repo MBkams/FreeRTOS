@@ -55,6 +55,14 @@
 /* Semaphore */
 SemaphoreHandle_t Semaphore;
 
+TaskHandle_t xHandlegive = NULL;
+TaskHandle_t xHandletake = NULL;
+
+
+
+/* Notification */
+
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -79,34 +87,37 @@ void taskGive(void *pvParameters) {
     uint8_t uartTxBuffer[100];
     char* s = pcTaskGetName(xTaskGetCurrentTaskHandle());
 
+    //Gestion erreur
+    uint16_t xCountError = 0;
+
+    //Fixation de la fréquence du sémaphore
+    TickType_t xLastWakeTime;
+    xLastWakeTime =  xTaskGetTickCount();
+    const TickType_t xFrequency = Delay;
+
 
     for(;;)
     {
 
+      //Délais avec précision 
+      vTaskDelayUntil(&xLastWakeTime,xFrequency);
+
       //Verification creation semaphore
       if ( Semaphore != NULL)
       {
-        // Affichage sur console
-        sprintf((char*)uartTxBuffer, "Je suis la tache %s avant de donner le semaphore\n", s);
-        HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
+      // Affichage sur console
+      sprintf((char*)uartTxBuffer, "Je suis la tache %s avant de donner le semaphore\n", s);
+      HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
 
-        //Prise du semaphore
-        xSemaphoreGive(Semaphore);
 
-        //Verification avec la LED
-        HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_RESET);
+      //Prise du semaphore
+      xSemaphoreGive(Semaphore);
 
-        /* Vérification du status binaire du semaphore*/
-        if(uxSemaphoreGetCount(Semaphore) > 0)
-        {
-          sprintf((char*)uartTxBuffer, "Je suis la tache %s apres avoir donner semaphore tous les %d ms\n", s, delay);
-          HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
+      //Verification avec la LED
+      HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_RESET);
 
-          
-        }
-        
-        //Delais pour semaphore
-        vTaskDelay(delay/portTICK_PERIOD_MS);
+      sprintf((char*)uartTxBuffer, "Je suis la tache %s apres avoir donner semaphore tous les %d ms\n", s, delay);
+      HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
 
       }
       else
@@ -114,8 +125,17 @@ void taskGive(void *pvParameters) {
         char *strsem = "Erreur : Semaphore non cree\n" ;
         HAL_UART_Transmit(&huart1, strsem, strlen(strsem), HAL_MAX_DELAY);
 
-        vTaskDelay(1000/portTICK_PERIOD_MS);
-        HAL_NVIC_SystemReset();
+        xCountError ++ ; 
+        vTaskDelay(Delay/portTICK_PERIOD_MS);
+
+        if(xCountError == 10)
+        {
+          char *str = "System Reset\n" ;
+          HAL_UART_Transmit(&huart1, str, strlen(str), HAL_MAX_DELAY);
+          HAL_NVIC_SystemReset();
+        }
+
+        
 
       }
       
@@ -144,24 +164,11 @@ void taskTake(void *unsued) {
         //Verification avec la LED
         HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_SET);
 
-        /* Vérification du status binaire du semaphore*/
-        if(uxSemaphoreGetCount(Semaphore) > 0)
-        {
-          sprintf((char*)uartTxBuffer, "Je suis la tache %s apres avoir pris le semaphore \n", s);
-          HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
-
-          
-        }
+        sprintf((char*)uartTxBuffer, "Je suis la tache %s apres avoir pris le semaphore \n", s);
+        HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
+      
 
       }
-      else
-      {
-        char *strsem = "Erreur : Semaphore non cree\n" ;
-        HAL_UART_Transmit(&huart1, strsem, strlen(strsem), HAL_MAX_DELAY);
-
-        vTaskDelay(1000/portTICK_PERIOD_MS);
-        HAL_NVIC_SystemReset();
-    }
   }
 }
 
@@ -175,11 +182,7 @@ void taskTake(void *unsued) {
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-  BaseType_t xReturned;
-  TaskHandle_t xHandle1 = NULL;
 
-  TaskHandle_t xHandlegive = NULL;
-  TaskHandle_t xHandletake = NULL;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -212,7 +215,7 @@ int main(void)
           "Give",         // Name of task
           STACK_SIZE,     // Stack size
           (void*) Delay,  // Parameter to pass to function
-          2,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+          3,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &xHandlegive       // Task handle (allows to find and manipulate the task)
           );
 
@@ -222,7 +225,7 @@ int main(void)
           "Take",         // Name of task
           STACK_SIZE,     // Stack size
           NULL,           // Parameter to pass to function
-          1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+          2,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &xHandletake       // Task handle (allows to find and manipulate the task)
           );
 

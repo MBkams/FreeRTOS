@@ -2,8 +2,10 @@
 CAD.formats=
 CAD.pinconfig=
 CAD.provider=
-FREERTOS.IPParameters=Tasks01
+FREERTOS.INCLUDE_vTaskDelayUntil=1
+FREERTOS.IPParameters=Tasks01,configTICK_RATE_HZ,INCLUDE_vTaskDelayUntil
 FREERTOS.Tasks01=defaultTask,0,128,StartDefaultTask,Default,NULL,Dynamic,NULL,NULL
+FREERTOS.configTICK_RATE_HZ=1000
 File.Version=6
 KeepUserPlacement=false
 Mcu.CPN=STM32F746NGH6
