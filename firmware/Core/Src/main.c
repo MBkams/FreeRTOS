@@ -39,7 +39,7 @@
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
 #define STACK_SIZE 1000
-#define Delay 1000
+#define Delay 100
 
 /* USER CODE END PD */
 
@@ -105,7 +105,7 @@ void taskGive(void *pvParameters) {
           
         }
         
-        //Delais
+        //Delais pour semaphore
         vTaskDelay(delay/portTICK_PERIOD_MS);
 
       }
@@ -212,7 +212,7 @@ int main(void)
           "Give",         // Name of task
           STACK_SIZE,     // Stack size
           (void*) Delay,  // Parameter to pass to function
-          1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+          2,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &xHandlegive       // Task handle (allows to find and manipulate the task)
           );
 
@@ -222,7 +222,7 @@ int main(void)
           "Take",         // Name of task
           STACK_SIZE,     // Stack size
           NULL,           // Parameter to pass to function
-          2,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+          1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &xHandletake       // Task handle (allows to find and manipulate the task)
           );
 

@@ -18,5 +18,5 @@ Donc, on va diviser le délais souhaité par la période du tick de l'OS.
 
 ### Sémaphores pour la synchronisation
 
-6. En changeant les priorités, par exmeple la tâche Take au dessus de la tâche Give, la sémaphore n'est pas bloqué par la tache Give et donc pas prise la tache Take.
+6. En changeant les priorités, par exmeple la tâche Take au dessus de la tâche Give, la sémaphore n'a pas eu le temps d'être bloqué par la tache Give et donc pas prise la tache Take.
 
