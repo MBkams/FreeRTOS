@@ -1,0 +1,1379 @@
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/main.c"
+  20              		.section	.rodata.task1.str1.4,"aMS",%progbits,1
+  21              		.align	2
+  22              	.LC0:
+  23 0000 4A652073 		.ascii	"Je suis la tache 1 et je m'endors pour %d ticks\015"
+  23      75697320 
+  23      6C612074 
+  23      61636865 
+  23      20312065 
+  24 0030 0A00     		.ascii	"\012\000"
+  25              		.section	.text.task1,"ax",%progbits
+  26              		.align	1
+  27              		.global	task1
+  28              		.syntax unified
+  29              		.thumb
+  30              		.thumb_func
+  32              	task1:
+  33              	.LVL0:
+  34              	.LFB150:
+   1:Core/Src/main.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/main.c **** /**
+   3:Core/Src/main.c ****  ******************************************************************************
+   4:Core/Src/main.c ****  * @file           : main.c
+   5:Core/Src/main.c ****  * @brief          : Main program body
+   6:Core/Src/main.c ****  ******************************************************************************
+   7:Core/Src/main.c ****  * @attention
+   8:Core/Src/main.c ****  *
+   9:Core/Src/main.c ****  * Copyright (c) 2022 STMicroelectronics.
+  10:Core/Src/main.c ****  * All rights reserved.
+  11:Core/Src/main.c ****  *
+  12:Core/Src/main.c ****  * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/main.c ****  * in the root directory of this software component.
+  14:Core/Src/main.c ****  * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/main.c ****  *
+  16:Core/Src/main.c ****  ******************************************************************************
+  17:Core/Src/main.c ****  */
+  18:Core/Src/main.c **** /* USER CODE END Header */
+  19:Core/Src/main.c **** /* Includes ------------------------------------------------------------------*/
+  20:Core/Src/main.c **** #include "main.h"
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 2
+
+
+  21:Core/Src/main.c **** #include "cmsis_os.h"
+  22:Core/Src/main.c **** #include "usart.h"
+  23:Core/Src/main.c **** #include "gpio.h"
+  24:Core/Src/main.c **** 
+  25:Core/Src/main.c **** /* Private includes ----------------------------------------------------------*/
+  26:Core/Src/main.c **** /* USER CODE BEGIN Includes */
+  27:Core/Src/main.c **** #include <stdio.h>
+  28:Core/Src/main.c **** #include "FreeRTOS.h"
+  29:Core/Src/main.c **** #include "semphr.h"
+  30:Core/Src/main.c **** /* USER CODE END Includes */
+  31:Core/Src/main.c **** 
+  32:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
+  33:Core/Src/main.c **** /* USER CODE BEGIN PTD */
+  34:Core/Src/main.c **** 
+  35:Core/Src/main.c **** /* USER CODE END PTD */
+  36:Core/Src/main.c **** 
+  37:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
+  38:Core/Src/main.c **** /* USER CODE BEGIN PD */
+  39:Core/Src/main.c **** #define STACK_SIZE 256
+  40:Core/Src/main.c **** 
+  41:Core/Src/main.c **** #define TASK1_PRIORITY 1
+  42:Core/Src/main.c **** #define TASK2_PRIORITY 2
+  43:Core/Src/main.c **** 
+  44:Core/Src/main.c **** #define TASK1_DELAY 1
+  45:Core/Src/main.c **** #define TASK2_DELAY 2
+  46:Core/Src/main.c **** /* USER CODE END PD */
+  47:Core/Src/main.c **** 
+  48:Core/Src/main.c **** /* Private macro -------------------------------------------------------------*/
+  49:Core/Src/main.c **** /* USER CODE BEGIN PM */
+  50:Core/Src/main.c **** 
+  51:Core/Src/main.c **** /* USER CODE END PM */
+  52:Core/Src/main.c **** 
+  53:Core/Src/main.c **** /* Private variables ---------------------------------------------------------*/
+  54:Core/Src/main.c **** 
+  55:Core/Src/main.c **** /* USER CODE BEGIN PV */
+  56:Core/Src/main.c **** SemaphoreHandle_t xSemaphore;
+  57:Core/Src/main.c **** /* USER CODE END PV */
+  58:Core/Src/main.c **** 
+  59:Core/Src/main.c **** /* Private function prototypes -----------------------------------------------*/
+  60:Core/Src/main.c **** void SystemClock_Config(void);
+  61:Core/Src/main.c **** void MX_FREERTOS_Init(void);
+  62:Core/Src/main.c **** /* USER CODE BEGIN PFP */
+  63:Core/Src/main.c **** 
+  64:Core/Src/main.c **** /* USER CODE END PFP */
+  65:Core/Src/main.c **** 
+  66:Core/Src/main.c **** /* Private user code ---------------------------------------------------------*/
+  67:Core/Src/main.c **** /* USER CODE BEGIN 0 */
+  68:Core/Src/main.c **** int __io_putchar(int ch)
+  69:Core/Src/main.c **** {
+  70:Core/Src/main.c **** 	HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+  71:Core/Src/main.c **** 	return ch;
+  72:Core/Src/main.c **** }
+  73:Core/Src/main.c **** 
+  74:Core/Src/main.c **** void task1(void * pvParameters)
+  75:Core/Src/main.c **** {
+  35              		.loc 1 75 1 view -0
+  36              		.cfi_startproc
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 3
+
+
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              		.loc 1 75 1 is_stmt 0 view .LVU1
+  40 0000 38B5     		push	{r3, r4, r5, lr}
+  41              		.cfi_def_cfa_offset 16
+  42              		.cfi_offset 3, -16
+  43              		.cfi_offset 4, -12
+  44              		.cfi_offset 5, -8
+  45              		.cfi_offset 14, -4
+  46 0002 0546     		mov	r5, r0
+  76:Core/Src/main.c **** 	int delay = (int) pvParameters;
+  47              		.loc 1 76 2 is_stmt 1 view .LVU2
+  48              	.LVL1:
+  49              	.L2:
+  77:Core/Src/main.c **** 
+  78:Core/Src/main.c **** 	for(;;)
+  50              		.loc 1 78 2 discriminator 1 view .LVU3
+  79:Core/Src/main.c **** 	{
+  80:Core/Src/main.c ****     xSemaphoreTake(xSemaphore,portMAX_DELAY);
+  51              		.loc 1 80 5 discriminator 1 view .LVU4
+  52 0004 094C     		ldr	r4, .L4
+  53 0006 4FF0FF31 		mov	r1, #-1
+  54 000a 2068     		ldr	r0, [r4]
+  55 000c FFF7FEFF 		bl	xQueueSemaphoreTake
+  56              	.LVL2:
+  81:Core/Src/main.c **** 
+  82:Core/Src/main.c **** 		printf("Je suis la tache 1 et je m'endors pour %d ticks\r\n", delay);
+  57              		.loc 1 82 3 discriminator 1 view .LVU5
+  58 0010 2946     		mov	r1, r5
+  59 0012 0748     		ldr	r0, .L4+4
+  60 0014 FFF7FEFF 		bl	printf
+  61              	.LVL3:
+  83:Core/Src/main.c **** 
+  84:Core/Src/main.c ****     xSemaphoreGive(xSemaphore);
+  62              		.loc 1 84 5 discriminator 1 view .LVU6
+  63 0018 0023     		movs	r3, #0
+  64 001a 1A46     		mov	r2, r3
+  65 001c 1946     		mov	r1, r3
+  66 001e 2068     		ldr	r0, [r4]
+  67 0020 FFF7FEFF 		bl	xQueueGenericSend
+  68              	.LVL4:
+  85:Core/Src/main.c **** 
+  86:Core/Src/main.c ****     vTaskDelay(delay);
+  69              		.loc 1 86 5 discriminator 1 view .LVU7
+  70 0024 2846     		mov	r0, r5
+  71 0026 FFF7FEFF 		bl	vTaskDelay
+  72              	.LVL5:
+  78:Core/Src/main.c **** 	{
+  73              		.loc 1 78 2 discriminator 1 view .LVU8
+  74 002a EBE7     		b	.L2
+  75              	.L5:
+  76              		.align	2
+  77              	.L4:
+  78 002c 00000000 		.word	xSemaphore
+  79 0030 00000000 		.word	.LC0
+  80              		.cfi_endproc
+  81              	.LFE150:
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 4
+
+
+  83              		.section	.rodata.task2.str1.4,"aMS",%progbits,1
+  84              		.align	2
+  85              	.LC1:
+  86 0000 4A652073 		.ascii	"Je suis la tache 2 et je m'endors pour %d ticks\015"
+  86      75697320 
+  86      6C612074 
+  86      61636865 
+  86      20322065 
+  87 0030 0A00     		.ascii	"\012\000"
+  88              		.section	.text.task2,"ax",%progbits
+  89              		.align	1
+  90              		.global	task2
+  91              		.syntax unified
+  92              		.thumb
+  93              		.thumb_func
+  95              	task2:
+  96              	.LVL6:
+  97              	.LFB151:
+  87:Core/Src/main.c ****     
+  88:Core/Src/main.c **** 	}
+  89:Core/Src/main.c **** }
+  90:Core/Src/main.c **** 
+  91:Core/Src/main.c **** void task2(void * pvParameters)
+  92:Core/Src/main.c **** {
+  98              		.loc 1 92 1 view -0
+  99              		.cfi_startproc
+ 100              		@ args = 0, pretend = 0, frame = 0
+ 101              		@ frame_needed = 0, uses_anonymous_args = 0
+ 102              		.loc 1 92 1 is_stmt 0 view .LVU10
+ 103 0000 38B5     		push	{r3, r4, r5, lr}
+ 104              		.cfi_def_cfa_offset 16
+ 105              		.cfi_offset 3, -16
+ 106              		.cfi_offset 4, -12
+ 107              		.cfi_offset 5, -8
+ 108              		.cfi_offset 14, -4
+ 109 0002 0546     		mov	r5, r0
+  93:Core/Src/main.c **** 	int delay = (int) pvParameters;
+ 110              		.loc 1 93 2 is_stmt 1 view .LVU11
+ 111              	.LVL7:
+ 112              	.L7:
+  94:Core/Src/main.c **** 
+  95:Core/Src/main.c **** 	for(;;)
+ 113              		.loc 1 95 2 discriminator 1 view .LVU12
+  96:Core/Src/main.c **** 	{
+  97:Core/Src/main.c ****     xSemaphoreTake(xSemaphore,portMAX_DELAY);
+ 114              		.loc 1 97 5 discriminator 1 view .LVU13
+ 115 0004 094C     		ldr	r4, .L9
+ 116 0006 4FF0FF31 		mov	r1, #-1
+ 117 000a 2068     		ldr	r0, [r4]
+ 118 000c FFF7FEFF 		bl	xQueueSemaphoreTake
+ 119              	.LVL8:
+  98:Core/Src/main.c **** 
+  99:Core/Src/main.c **** 		printf("Je suis la tache 2 et je m'endors pour %d ticks\r\n", delay);
+ 120              		.loc 1 99 3 discriminator 1 view .LVU14
+ 121 0010 2946     		mov	r1, r5
+ 122 0012 0748     		ldr	r0, .L9+4
+ 123 0014 FFF7FEFF 		bl	printf
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 5
+
+
+ 124              	.LVL9:
+ 100:Core/Src/main.c **** 
+ 101:Core/Src/main.c **** 
+ 102:Core/Src/main.c ****     xSemaphoreGive(xSemaphore);
+ 125              		.loc 1 102 5 discriminator 1 view .LVU15
+ 126 0018 0023     		movs	r3, #0
+ 127 001a 1A46     		mov	r2, r3
+ 128 001c 1946     		mov	r1, r3
+ 129 001e 2068     		ldr	r0, [r4]
+ 130 0020 FFF7FEFF 		bl	xQueueGenericSend
+ 131              	.LVL10:
+ 103:Core/Src/main.c **** 
+ 104:Core/Src/main.c ****     vTaskDelay(delay);
+ 132              		.loc 1 104 5 discriminator 1 view .LVU16
+ 133 0024 2846     		mov	r0, r5
+ 134 0026 FFF7FEFF 		bl	vTaskDelay
+ 135              	.LVL11:
+  95:Core/Src/main.c **** 	{
+ 136              		.loc 1 95 2 discriminator 1 view .LVU17
+ 137 002a EBE7     		b	.L7
+ 138              	.L10:
+ 139              		.align	2
+ 140              	.L9:
+ 141 002c 00000000 		.word	xSemaphore
+ 142 0030 00000000 		.word	.LC1
+ 143              		.cfi_endproc
+ 144              	.LFE151:
+ 146              		.section	.text.__io_putchar,"ax",%progbits
+ 147              		.align	1
+ 148              		.global	__io_putchar
+ 149              		.syntax unified
+ 150              		.thumb
+ 151              		.thumb_func
+ 153              	__io_putchar:
+ 154              	.LVL12:
+ 155              	.LFB149:
+  69:Core/Src/main.c **** 	HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+ 156              		.loc 1 69 1 view -0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 8
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+  69:Core/Src/main.c **** 	HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
+ 160              		.loc 1 69 1 is_stmt 0 view .LVU19
+ 161 0000 00B5     		push	{lr}
+ 162              		.cfi_def_cfa_offset 4
+ 163              		.cfi_offset 14, -4
+ 164 0002 83B0     		sub	sp, sp, #12
+ 165              		.cfi_def_cfa_offset 16
+ 166 0004 0190     		str	r0, [sp, #4]
+  70:Core/Src/main.c **** 	return ch;
+ 167              		.loc 1 70 2 is_stmt 1 view .LVU20
+ 168 0006 4FF0FF33 		mov	r3, #-1
+ 169 000a 0122     		movs	r2, #1
+ 170 000c 01A9     		add	r1, sp, #4
+ 171 000e 0348     		ldr	r0, .L13
+ 172              	.LVL13:
+  70:Core/Src/main.c **** 	return ch;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 6
+
+
+ 173              		.loc 1 70 2 is_stmt 0 view .LVU21
+ 174 0010 FFF7FEFF 		bl	HAL_UART_Transmit
+ 175              	.LVL14:
+  71:Core/Src/main.c **** }
+ 176              		.loc 1 71 2 is_stmt 1 view .LVU22
+  72:Core/Src/main.c **** 
+ 177              		.loc 1 72 1 is_stmt 0 view .LVU23
+ 178 0014 0198     		ldr	r0, [sp, #4]
+ 179 0016 03B0     		add	sp, sp, #12
+ 180              		.cfi_def_cfa_offset 4
+ 181              		@ sp needed
+ 182 0018 5DF804FB 		ldr	pc, [sp], #4
+ 183              	.L14:
+ 184              		.align	2
+ 185              	.L13:
+ 186 001c 00000000 		.word	huart1
+ 187              		.cfi_endproc
+ 188              	.LFE149:
+ 190              		.section	.text.Error_Handler,"ax",%progbits
+ 191              		.align	1
+ 192              		.global	Error_Handler
+ 193              		.syntax unified
+ 194              		.thumb
+ 195              		.thumb_func
+ 197              	Error_Handler:
+ 198              	.LFB154:
+ 105:Core/Src/main.c **** 	}
+ 106:Core/Src/main.c **** }
+ 107:Core/Src/main.c **** /* USER CODE END 0 */
+ 108:Core/Src/main.c **** 
+ 109:Core/Src/main.c **** /**
+ 110:Core/Src/main.c ****   * @brief  The application entry point.
+ 111:Core/Src/main.c ****   * @retval int
+ 112:Core/Src/main.c ****   */
+ 113:Core/Src/main.c **** int main(void)
+ 114:Core/Src/main.c **** {
+ 115:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 116:Core/Src/main.c **** 
+ 117:Core/Src/main.c ****   /* USER CODE END 1 */
+ 118:Core/Src/main.c **** 
+ 119:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
+ 120:Core/Src/main.c **** 
+ 121:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 122:Core/Src/main.c ****   HAL_Init();
+ 123:Core/Src/main.c **** 
+ 124:Core/Src/main.c ****   /* USER CODE BEGIN Init */
+ 125:Core/Src/main.c **** 
+ 126:Core/Src/main.c ****   /* USER CODE END Init */
+ 127:Core/Src/main.c **** 
+ 128:Core/Src/main.c ****   /* Configure the system clock */
+ 129:Core/Src/main.c ****   SystemClock_Config();
+ 130:Core/Src/main.c **** 
+ 131:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
+ 132:Core/Src/main.c **** 
+ 133:Core/Src/main.c ****   /* USER CODE END SysInit */
+ 134:Core/Src/main.c **** 
+ 135:Core/Src/main.c ****   /* Initialize all configured peripherals */
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 7
+
+
+ 136:Core/Src/main.c ****   MX_GPIO_Init();
+ 137:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 138:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 139:Core/Src/main.c **** 	BaseType_t ret;
+ 140:Core/Src/main.c **** 	TaskHandle_t h_task1 = NULL;
+ 141:Core/Src/main.c **** 	TaskHandle_t h_task2 = NULL;
+ 142:Core/Src/main.c **** 
+ 143:Core/Src/main.c **** 
+ 144:Core/Src/main.c **** 	/* Create the task, storing the handle. */
+ 145:Core/Src/main.c **** 	ret = xTaskCreate(task1, "Tache 1", STACK_SIZE, (void *) TASK1_DELAY, TASK1_PRIORITY, &h_task1);
+ 146:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 147:Core/Src/main.c **** 	ret = xTaskCreate(task2, "Tache 2", STACK_SIZE, (void *) TASK2_DELAY, TASK2_PRIORITY, &h_task2);
+ 148:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 149:Core/Src/main.c **** 
+ 150:Core/Src/main.c ****   /* Creation semaphore mutex*/
+ 151:Core/Src/main.c ****   xSemaphore = xSemaphoreCreateMutex();
+ 152:Core/Src/main.c **** 
+ 153:Core/Src/main.c **** 	vTaskStartScheduler();
+ 154:Core/Src/main.c ****   /* USER CODE END 2 */
+ 155:Core/Src/main.c **** 
+ 156:Core/Src/main.c ****   /* Call init function for freertos objects (in freertos.c) */
+ 157:Core/Src/main.c ****   MX_FREERTOS_Init();
+ 158:Core/Src/main.c **** 
+ 159:Core/Src/main.c ****   /* Start scheduler */
+ 160:Core/Src/main.c ****   osKernelStart();
+ 161:Core/Src/main.c ****   /* We should never get here as control is now taken by the scheduler */
+ 162:Core/Src/main.c ****   /* Infinite loop */
+ 163:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
+ 164:Core/Src/main.c **** 	while (1)
+ 165:Core/Src/main.c **** 	{
+ 166:Core/Src/main.c **** 
+ 167:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 168:Core/Src/main.c **** 
+ 169:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
+ 170:Core/Src/main.c **** 	}
+ 171:Core/Src/main.c ****   /* USER CODE END 3 */
+ 172:Core/Src/main.c **** }
+ 173:Core/Src/main.c **** 
+ 174:Core/Src/main.c **** /**
+ 175:Core/Src/main.c ****   * @brief System Clock Configuration
+ 176:Core/Src/main.c ****   * @retval None
+ 177:Core/Src/main.c ****   */
+ 178:Core/Src/main.c **** void SystemClock_Config(void)
+ 179:Core/Src/main.c **** {
+ 180:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 181:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 182:Core/Src/main.c **** 
+ 183:Core/Src/main.c ****   /** Configure the main internal regulator output voltage
+ 184:Core/Src/main.c ****   */
+ 185:Core/Src/main.c ****   __HAL_RCC_PWR_CLK_ENABLE();
+ 186:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 187:Core/Src/main.c **** 
+ 188:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 189:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
+ 190:Core/Src/main.c ****   */
+ 191:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+ 192:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 8
+
+
+ 193:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 194:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 195:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 25;
+ 196:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 432;
+ 197:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 198:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = 2;
+ 199:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 200:Core/Src/main.c ****   {
+ 201:Core/Src/main.c ****     Error_Handler();
+ 202:Core/Src/main.c ****   }
+ 203:Core/Src/main.c **** 
+ 204:Core/Src/main.c ****   /** Activate the Over-Drive mode
+ 205:Core/Src/main.c ****   */
+ 206:Core/Src/main.c ****   if (HAL_PWREx_EnableOverDrive() != HAL_OK)
+ 207:Core/Src/main.c ****   {
+ 208:Core/Src/main.c ****     Error_Handler();
+ 209:Core/Src/main.c ****   }
+ 210:Core/Src/main.c **** 
+ 211:Core/Src/main.c ****   /** Initializes the CPU, AHB and APB buses clocks
+ 212:Core/Src/main.c ****   */
+ 213:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 214:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 215:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 216:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 217:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 218:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+ 219:Core/Src/main.c **** 
+ 220:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_7) != HAL_OK)
+ 221:Core/Src/main.c ****   {
+ 222:Core/Src/main.c ****     Error_Handler();
+ 223:Core/Src/main.c ****   }
+ 224:Core/Src/main.c **** }
+ 225:Core/Src/main.c **** 
+ 226:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 227:Core/Src/main.c **** 
+ 228:Core/Src/main.c **** /* USER CODE END 4 */
+ 229:Core/Src/main.c **** 
+ 230:Core/Src/main.c **** /**
+ 231:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
+ 232:Core/Src/main.c ****   * @retval None
+ 233:Core/Src/main.c ****   */
+ 234:Core/Src/main.c **** void Error_Handler(void)
+ 235:Core/Src/main.c **** {
+ 199              		.loc 1 235 1 is_stmt 1 view -0
+ 200              		.cfi_startproc
+ 201              		@ Volatile: function does not return.
+ 202              		@ args = 0, pretend = 0, frame = 0
+ 203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 204              		@ link register save eliminated.
+ 236:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 237:Core/Src/main.c **** 	/* User can add his own implementation to report the HAL error return state */
+ 238:Core/Src/main.c **** 	__disable_irq();
+ 205              		.loc 1 238 2 view .LVU25
+ 206              	.LBB8:
+ 207              	.LBI8:
+ 208              		.file 2 "Drivers/CMSIS/Include/cmsis_gcc.h"
+   1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 9
+
+
+   2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
+   4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.0.4
+   5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     09. April 2018
+   6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
+   8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2018 Arm Limited. All rights reserved.
+   9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  10:Drivers/CMSIS/Include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  12:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:Drivers/CMSIS/Include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
+  14:Drivers/CMSIS/Include/cmsis_gcc.h ****  * You may obtain a copy of the License at
+  15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
+  22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
+  23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  25:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  26:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+  31:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  32:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  34:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
+  35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __has_builtin
+  36:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __has_builtin(x) (0)
+  37:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  38:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
+  40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
+  41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
+  42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
+  44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
+  45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
+  47:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_INLINE                        static inline
+  48:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE                 
+  50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
+  51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
+  52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
+  53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
+  54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
+  56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
+  57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  58:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 10
+
+
+  59:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
+  60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
+  62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
+  63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
+  65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
+  66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  67:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_UNION
+  68:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_UNION                         union __attribute__((packed, aligned(1)))
+  69:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  70:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32        /* deprecated */
+  71:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
+  75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
+  77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
+  79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  82:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
+  83:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
+  85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
+  87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  88:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  89:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  90:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
+  91:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  92:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
+  93:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  94:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_WRITE
+  95:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
+  99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
+ 101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
+ 103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+ 104:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+ 105:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+ 106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
+ 107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
+ 109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
+ 111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
+ 112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
+ 114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
+ 115:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 11
+
+
+ 116:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 117:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 118:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+ 119:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+ 120:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+ 121:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
+ 122:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 124:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 125:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+ 126:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+ 127:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 128:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 129:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __enable_irq(void)
+ 130:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 131:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+ 132:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 133:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 134:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 135:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 136:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
+ 137:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+ 138:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 139:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 140:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
+ 209              		.loc 2 140 27 view .LVU26
+ 210              	.LBB9:
+ 141:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 142:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
+ 211              		.loc 2 142 3 view .LVU27
+ 212              		.syntax unified
+ 213              	@ 142 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 214 0000 72B6     		cpsid i
+ 215              	@ 0 "" 2
+ 216              		.thumb
+ 217              		.syntax unified
+ 218              	.L16:
+ 219              	.LBE9:
+ 220              	.LBE8:
+ 239:Core/Src/main.c **** 	while (1)
+ 221              		.loc 1 239 2 discriminator 1 view .LVU28
+ 240:Core/Src/main.c **** 	{
+ 241:Core/Src/main.c **** 	}
+ 222              		.loc 1 241 2 discriminator 1 view .LVU29
+ 239:Core/Src/main.c **** 	while (1)
+ 223              		.loc 1 239 8 discriminator 1 view .LVU30
+ 224 0002 FEE7     		b	.L16
+ 225              		.cfi_endproc
+ 226              	.LFE154:
+ 228              		.section	.text.SystemClock_Config,"ax",%progbits
+ 229              		.align	1
+ 230              		.global	SystemClock_Config
+ 231              		.syntax unified
+ 232              		.thumb
+ 233              		.thumb_func
+ 235              	SystemClock_Config:
+ 236              	.LFB153:
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 12
+
+
+ 179:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 237              		.loc 1 179 1 view -0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 80
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241 0000 00B5     		push	{lr}
+ 242              		.cfi_def_cfa_offset 4
+ 243              		.cfi_offset 14, -4
+ 244 0002 95B0     		sub	sp, sp, #84
+ 245              		.cfi_def_cfa_offset 88
+ 180:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 246              		.loc 1 180 3 view .LVU32
+ 180:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 247              		.loc 1 180 22 is_stmt 0 view .LVU33
+ 248 0004 3022     		movs	r2, #48
+ 249 0006 0021     		movs	r1, #0
+ 250 0008 08A8     		add	r0, sp, #32
+ 251 000a FFF7FEFF 		bl	memset
+ 252              	.LVL15:
+ 181:Core/Src/main.c **** 
+ 253              		.loc 1 181 3 is_stmt 1 view .LVU34
+ 181:Core/Src/main.c **** 
+ 254              		.loc 1 181 22 is_stmt 0 view .LVU35
+ 255 000e 0023     		movs	r3, #0
+ 256 0010 0393     		str	r3, [sp, #12]
+ 257 0012 0493     		str	r3, [sp, #16]
+ 258 0014 0593     		str	r3, [sp, #20]
+ 259 0016 0693     		str	r3, [sp, #24]
+ 260 0018 0793     		str	r3, [sp, #28]
+ 185:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 261              		.loc 1 185 3 is_stmt 1 view .LVU36
+ 262              	.LBB10:
+ 185:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 263              		.loc 1 185 3 view .LVU37
+ 185:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 264              		.loc 1 185 3 view .LVU38
+ 265 001a 234B     		ldr	r3, .L25
+ 266 001c 1A6C     		ldr	r2, [r3, #64]
+ 267 001e 42F08052 		orr	r2, r2, #268435456
+ 268 0022 1A64     		str	r2, [r3, #64]
+ 185:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 269              		.loc 1 185 3 view .LVU39
+ 270 0024 1B6C     		ldr	r3, [r3, #64]
+ 271 0026 03F08053 		and	r3, r3, #268435456
+ 272 002a 0193     		str	r3, [sp, #4]
+ 185:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 273              		.loc 1 185 3 view .LVU40
+ 274 002c 019B     		ldr	r3, [sp, #4]
+ 275              	.LBE10:
+ 185:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 276              		.loc 1 185 3 view .LVU41
+ 186:Core/Src/main.c **** 
+ 277              		.loc 1 186 3 view .LVU42
+ 278              	.LBB11:
+ 186:Core/Src/main.c **** 
+ 279              		.loc 1 186 3 view .LVU43
+ 186:Core/Src/main.c **** 
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 13
+
+
+ 280              		.loc 1 186 3 view .LVU44
+ 281 002e 1F4B     		ldr	r3, .L25+4
+ 282 0030 1A68     		ldr	r2, [r3]
+ 283 0032 42F44042 		orr	r2, r2, #49152
+ 284 0036 1A60     		str	r2, [r3]
+ 186:Core/Src/main.c **** 
+ 285              		.loc 1 186 3 view .LVU45
+ 286 0038 1B68     		ldr	r3, [r3]
+ 287 003a 03F44043 		and	r3, r3, #49152
+ 288 003e 0293     		str	r3, [sp, #8]
+ 186:Core/Src/main.c **** 
+ 289              		.loc 1 186 3 view .LVU46
+ 290 0040 029B     		ldr	r3, [sp, #8]
+ 291              	.LBE11:
+ 186:Core/Src/main.c **** 
+ 292              		.loc 1 186 3 view .LVU47
+ 191:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 293              		.loc 1 191 3 view .LVU48
+ 191:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 294              		.loc 1 191 36 is_stmt 0 view .LVU49
+ 295 0042 0123     		movs	r3, #1
+ 296 0044 0893     		str	r3, [sp, #32]
+ 192:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 297              		.loc 1 192 3 is_stmt 1 view .LVU50
+ 192:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 298              		.loc 1 192 30 is_stmt 0 view .LVU51
+ 299 0046 4FF48033 		mov	r3, #65536
+ 300 004a 0993     		str	r3, [sp, #36]
+ 193:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 301              		.loc 1 193 3 is_stmt 1 view .LVU52
+ 193:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 302              		.loc 1 193 34 is_stmt 0 view .LVU53
+ 303 004c 0223     		movs	r3, #2
+ 304 004e 0E93     		str	r3, [sp, #56]
+ 194:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 25;
+ 305              		.loc 1 194 3 is_stmt 1 view .LVU54
+ 194:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = 25;
+ 306              		.loc 1 194 35 is_stmt 0 view .LVU55
+ 307 0050 4FF48002 		mov	r2, #4194304
+ 308 0054 0F92     		str	r2, [sp, #60]
+ 195:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 432;
+ 309              		.loc 1 195 3 is_stmt 1 view .LVU56
+ 195:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 432;
+ 310              		.loc 1 195 30 is_stmt 0 view .LVU57
+ 311 0056 1922     		movs	r2, #25
+ 312 0058 1092     		str	r2, [sp, #64]
+ 196:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 313              		.loc 1 196 3 is_stmt 1 view .LVU58
+ 196:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 314              		.loc 1 196 30 is_stmt 0 view .LVU59
+ 315 005a 4FF4D872 		mov	r2, #432
+ 316 005e 1192     		str	r2, [sp, #68]
+ 197:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = 2;
+ 317              		.loc 1 197 3 is_stmt 1 view .LVU60
+ 197:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = 2;
+ 318              		.loc 1 197 30 is_stmt 0 view .LVU61
+ 319 0060 1293     		str	r3, [sp, #72]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 14
+
+
+ 198:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 320              		.loc 1 198 3 is_stmt 1 view .LVU62
+ 198:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 321              		.loc 1 198 30 is_stmt 0 view .LVU63
+ 322 0062 1393     		str	r3, [sp, #76]
+ 199:Core/Src/main.c ****   {
+ 323              		.loc 1 199 3 is_stmt 1 view .LVU64
+ 199:Core/Src/main.c ****   {
+ 324              		.loc 1 199 7 is_stmt 0 view .LVU65
+ 325 0064 08A8     		add	r0, sp, #32
+ 326 0066 FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 327              	.LVL16:
+ 199:Core/Src/main.c ****   {
+ 328              		.loc 1 199 6 view .LVU66
+ 329 006a B0B9     		cbnz	r0, .L22
+ 206:Core/Src/main.c ****   {
+ 330              		.loc 1 206 3 is_stmt 1 view .LVU67
+ 206:Core/Src/main.c ****   {
+ 331              		.loc 1 206 7 is_stmt 0 view .LVU68
+ 332 006c FFF7FEFF 		bl	HAL_PWREx_EnableOverDrive
+ 333              	.LVL17:
+ 206:Core/Src/main.c ****   {
+ 334              		.loc 1 206 6 view .LVU69
+ 335 0070 A8B9     		cbnz	r0, .L23
+ 213:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 336              		.loc 1 213 3 is_stmt 1 view .LVU70
+ 213:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 337              		.loc 1 213 31 is_stmt 0 view .LVU71
+ 338 0072 0F23     		movs	r3, #15
+ 339 0074 0393     		str	r3, [sp, #12]
+ 215:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 340              		.loc 1 215 3 is_stmt 1 view .LVU72
+ 215:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 341              		.loc 1 215 34 is_stmt 0 view .LVU73
+ 342 0076 0223     		movs	r3, #2
+ 343 0078 0493     		str	r3, [sp, #16]
+ 216:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 344              		.loc 1 216 3 is_stmt 1 view .LVU74
+ 216:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+ 345              		.loc 1 216 35 is_stmt 0 view .LVU75
+ 346 007a 0023     		movs	r3, #0
+ 347 007c 0593     		str	r3, [sp, #20]
+ 217:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+ 348              		.loc 1 217 3 is_stmt 1 view .LVU76
+ 217:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+ 349              		.loc 1 217 36 is_stmt 0 view .LVU77
+ 350 007e 4FF4A053 		mov	r3, #5120
+ 351 0082 0693     		str	r3, [sp, #24]
+ 218:Core/Src/main.c **** 
+ 352              		.loc 1 218 3 is_stmt 1 view .LVU78
+ 218:Core/Src/main.c **** 
+ 353              		.loc 1 218 36 is_stmt 0 view .LVU79
+ 354 0084 4FF48053 		mov	r3, #4096
+ 355 0088 0793     		str	r3, [sp, #28]
+ 220:Core/Src/main.c ****   {
+ 356              		.loc 1 220 3 is_stmt 1 view .LVU80
+ 220:Core/Src/main.c ****   {
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 15
+
+
+ 357              		.loc 1 220 7 is_stmt 0 view .LVU81
+ 358 008a 0721     		movs	r1, #7
+ 359 008c 03A8     		add	r0, sp, #12
+ 360 008e FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 361              	.LVL18:
+ 220:Core/Src/main.c ****   {
+ 362              		.loc 1 220 6 view .LVU82
+ 363 0092 30B9     		cbnz	r0, .L24
+ 224:Core/Src/main.c **** 
+ 364              		.loc 1 224 1 view .LVU83
+ 365 0094 15B0     		add	sp, sp, #84
+ 366              		.cfi_remember_state
+ 367              		.cfi_def_cfa_offset 4
+ 368              		@ sp needed
+ 369 0096 5DF804FB 		ldr	pc, [sp], #4
+ 370              	.L22:
+ 371              		.cfi_restore_state
+ 201:Core/Src/main.c ****   }
+ 372              		.loc 1 201 5 is_stmt 1 view .LVU84
+ 373 009a FFF7FEFF 		bl	Error_Handler
+ 374              	.LVL19:
+ 375              	.L23:
+ 208:Core/Src/main.c ****   }
+ 376              		.loc 1 208 5 view .LVU85
+ 377 009e FFF7FEFF 		bl	Error_Handler
+ 378              	.LVL20:
+ 379              	.L24:
+ 222:Core/Src/main.c ****   }
+ 380              		.loc 1 222 5 view .LVU86
+ 381 00a2 FFF7FEFF 		bl	Error_Handler
+ 382              	.LVL21:
+ 383              	.L26:
+ 384 00a6 00BF     		.align	2
+ 385              	.L25:
+ 386 00a8 00380240 		.word	1073887232
+ 387 00ac 00700040 		.word	1073770496
+ 388              		.cfi_endproc
+ 389              	.LFE153:
+ 391              		.section	.rodata.main.str1.4,"aMS",%progbits,1
+ 392              		.align	2
+ 393              	.LC2:
+ 394 0000 54616368 		.ascii	"Tache 1\000"
+ 394      65203100 
+ 395              		.align	2
+ 396              	.LC3:
+ 397 0008 54616368 		.ascii	"Tache 2\000"
+ 397      65203200 
+ 398              		.section	.text.main,"ax",%progbits
+ 399              		.align	1
+ 400              		.global	main
+ 401              		.syntax unified
+ 402              		.thumb
+ 403              		.thumb_func
+ 405              	main:
+ 406              	.LFB152:
+ 114:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 407              		.loc 1 114 1 view -0
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 16
+
+
+ 408              		.cfi_startproc
+ 409              		@ args = 0, pretend = 0, frame = 8
+ 410              		@ frame_needed = 0, uses_anonymous_args = 0
+ 411 0000 00B5     		push	{lr}
+ 412              		.cfi_def_cfa_offset 4
+ 413              		.cfi_offset 14, -4
+ 414 0002 85B0     		sub	sp, sp, #20
+ 415              		.cfi_def_cfa_offset 24
+ 122:Core/Src/main.c **** 
+ 416              		.loc 1 122 3 view .LVU88
+ 417 0004 FFF7FEFF 		bl	HAL_Init
+ 418              	.LVL22:
+ 129:Core/Src/main.c **** 
+ 419              		.loc 1 129 3 view .LVU89
+ 420 0008 FFF7FEFF 		bl	SystemClock_Config
+ 421              	.LVL23:
+ 136:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 422              		.loc 1 136 3 view .LVU90
+ 423 000c FFF7FEFF 		bl	MX_GPIO_Init
+ 424              	.LVL24:
+ 137:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 425              		.loc 1 137 3 view .LVU91
+ 426 0010 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 427              	.LVL25:
+ 139:Core/Src/main.c **** 	TaskHandle_t h_task1 = NULL;
+ 428              		.loc 1 139 2 view .LVU92
+ 140:Core/Src/main.c **** 	TaskHandle_t h_task2 = NULL;
+ 429              		.loc 1 140 2 view .LVU93
+ 140:Core/Src/main.c **** 	TaskHandle_t h_task2 = NULL;
+ 430              		.loc 1 140 15 is_stmt 0 view .LVU94
+ 431 0014 0023     		movs	r3, #0
+ 432 0016 0393     		str	r3, [sp, #12]
+ 141:Core/Src/main.c **** 
+ 433              		.loc 1 141 2 is_stmt 1 view .LVU95
+ 141:Core/Src/main.c **** 
+ 434              		.loc 1 141 15 is_stmt 0 view .LVU96
+ 435 0018 0293     		str	r3, [sp, #8]
+ 145:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 436              		.loc 1 145 2 is_stmt 1 view .LVU97
+ 145:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 437              		.loc 1 145 8 is_stmt 0 view .LVU98
+ 438 001a 03AB     		add	r3, sp, #12
+ 439 001c 0193     		str	r3, [sp, #4]
+ 440 001e 0123     		movs	r3, #1
+ 441 0020 0093     		str	r3, [sp]
+ 442 0022 4FF48072 		mov	r2, #256
+ 443 0026 1A49     		ldr	r1, .L34
+ 444 0028 1A48     		ldr	r0, .L34+4
+ 445 002a FFF7FEFF 		bl	xTaskCreate
+ 446              	.LVL26:
+ 146:Core/Src/main.c **** 	ret = xTaskCreate(task2, "Tache 2", STACK_SIZE, (void *) TASK2_DELAY, TASK2_PRIORITY, &h_task2);
+ 447              		.loc 1 146 2 is_stmt 1 view .LVU99
+ 448 002e 0128     		cmp	r0, #1
+ 449 0030 0AD0     		beq	.L28
+ 146:Core/Src/main.c **** 	ret = xTaskCreate(task2, "Tache 2", STACK_SIZE, (void *) TASK2_DELAY, TASK2_PRIORITY, &h_task2);
+ 450              		.loc 1 146 2 view .LVU100
+ 451              	.LBB12:
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 17
+
+
+ 452              	.LBI12:
+ 453              		.file 3 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h"
+   1:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*
+   2:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * FreeRTOS Kernel V10.2.1
+   3:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * Copyright (C) 2019 Amazon.com, Inc. or its affiliates.  All Rights Reserved.
+   4:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+   5:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * Permission is hereby granted, free of charge, to any person obtaining a copy of
+   6:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * this software and associated documentation files (the "Software"), to deal in
+   7:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * the Software without restriction, including without limitation the rights to
+   8:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+   9:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * the Software, and to permit persons to whom the Software is furnished to do so,
+  10:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * subject to the following conditions:
+  11:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+  12:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * The above copyright notice and this permission notice shall be included in all
+  13:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * copies or substantial portions of the Software.
+  14:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+  15:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  16:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+  17:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+  18:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+  19:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+  20:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+  21:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+  22:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * http://www.FreeRTOS.org
+  23:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * http://aws.amazon.com/freertos
+  24:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+  25:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * 1 tab == 4 spaces!
+  26:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  */
+  27:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  28:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  29:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #ifndef PORTMACRO_H
+  30:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define PORTMACRO_H
+  31:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  32:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #ifdef __cplusplus
+  33:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** extern "C" {
+  34:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
+  35:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  36:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------
+  37:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * Port specific definitions.
+  38:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+  39:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * The settings in this file configure FreeRTOS correctly for the
+  40:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * given hardware and compiler.
+  41:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *
+  42:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  * These settings should not be altered.
+  43:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  *-----------------------------------------------------------
+  44:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h ****  */
+  45:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  46:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Type definitions. */
+  47:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portCHAR		char
+  48:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portFLOAT		float
+  49:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portDOUBLE		double
+  50:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portLONG		long
+  51:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portSHORT		short
+  52:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portSTACK_TYPE	uint32_t
+  53:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portBASE_TYPE	long
+  54:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  55:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** typedef portSTACK_TYPE StackType_t;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 18
+
+
+  56:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** typedef long BaseType_t;
+  57:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** typedef unsigned long UBaseType_t;
+  58:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  59:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #if( configUSE_16_BIT_TICKS == 1 )
+  60:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	typedef uint16_t TickType_t;
+  61:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portMAX_DELAY ( TickType_t ) 0xffff
+  62:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #else
+  63:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	typedef uint32_t TickType_t;
+  64:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portMAX_DELAY ( TickType_t ) 0xffffffffUL
+  65:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  66:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* 32-bit tick type on a 32-bit architecture, so reads of the tick count do
+  67:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	not need to be guarded with a critical section. */
+  68:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portTICK_TYPE_IS_ATOMIC 1
+  69:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
+  70:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+  71:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  72:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Architecture specifics. */
+  73:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portSTACK_GROWTH			( -1 )
+  74:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portTICK_PERIOD_MS			( ( TickType_t ) 1000 / configTICK_RATE_HZ )
+  75:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portBYTE_ALIGNMENT			8
+  76:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+  77:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  78:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Scheduler utilities. */
+  79:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portYIELD() 															\
+  80:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** {																				\
+  81:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* Set a PendSV to request a context switch. */								\
+  82:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;								\
+  83:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 																				\
+  84:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* Barriers are normally not required but do ensure the code is completely	\
+  85:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	within the specified behaviour for the architecture. */						\
+  86:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	__asm volatile( "dsb" ::: "memory" );										\
+  87:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	__asm volatile( "isb" );													\
+  88:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** }
+  89:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  90:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portNVIC_INT_CTRL_REG		( * ( ( volatile uint32_t * ) 0xe000ed04 ) )
+  91:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portNVIC_PENDSVSET_BIT		( 1UL << 28UL )
+  92:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portEND_SWITCHING_ISR( xSwitchRequired ) if( xSwitchRequired != pdFALSE ) portYIELD()
+  93:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portYIELD_FROM_ISR( x ) portEND_SWITCHING_ISR( x )
+  94:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+  95:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+  96:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Critical section management. */
+  97:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** extern void vPortEnterCritical( void );
+  98:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** extern void vPortExitCritical( void );
+  99:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portSET_INTERRUPT_MASK_FROM_ISR()		ulPortRaiseBASEPRI()
+ 100:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portCLEAR_INTERRUPT_MASK_FROM_ISR(x)	vPortSetBASEPRI(x)
+ 101:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portDISABLE_INTERRUPTS()				vPortRaiseBASEPRI()
+ 102:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portENABLE_INTERRUPTS()					vPortSetBASEPRI(0)
+ 103:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portENTER_CRITICAL()					vPortEnterCritical()
+ 104:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portEXIT_CRITICAL()						vPortExitCritical()
+ 105:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 106:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+ 107:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 108:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Task function macros as described on the FreeRTOS.org WEB site.  These are
+ 109:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** not necessary for to use this port.  They are defined so the common demo files
+ 110:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** (which build with all the ports) will build. */
+ 111:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portTASK_FUNCTION_PROTO( vFunction, pvParameters ) void vFunction( void *pvParameters )
+ 112:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portTASK_FUNCTION( vFunction, pvParameters ) void vFunction( void *pvParameters )
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 19
+
+
+ 113:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+ 114:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 115:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Tickless idle/low power functionality. */
+ 116:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #ifndef portSUPPRESS_TICKS_AND_SLEEP
+ 117:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
+ 118:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdl
+ 119:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
+ 120:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+ 121:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 122:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* Architecture specific optimisations. */
+ 123:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #ifndef configUSE_PORT_OPTIMISED_TASK_SELECTION
+ 124:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define configUSE_PORT_OPTIMISED_TASK_SELECTION 1
+ 125:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
+ 126:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 127:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #if configUSE_PORT_OPTIMISED_TASK_SELECTION == 1
+ 128:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 129:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* Generic helper function. */
+ 130:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	__attribute__( ( always_inline ) ) static inline uint8_t ucPortCountLeadingZeros( uint32_t ulBitma
+ 131:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	{
+ 132:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	uint8_t ucReturn;
+ 133:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 134:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		__asm volatile ( "clz %0, %1" : "=r" ( ucReturn ) : "r" ( ulBitmap ) : "memory" );
+ 135:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		return ucReturn;
+ 136:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	}
+ 137:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 138:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* Check the configuration. */
+ 139:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#if( configMAX_PRIORITIES > 32 )
+ 140:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		#error configUSE_PORT_OPTIMISED_TASK_SELECTION can only be set to 1 when configMAX_PRIORITIES is 
+ 141:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#endif
+ 142:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 143:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* Store/clear the ready priorities in a bit map. */
+ 144:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portRECORD_READY_PRIORITY( uxPriority, uxReadyPriorities ) ( uxReadyPriorities ) |= ( 1UL 
+ 145:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portRESET_READY_PRIORITY( uxPriority, uxReadyPriorities ) ( uxReadyPriorities ) &= ~( 1UL 
+ 146:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 147:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/*-----------------------------------------------------------*/
+ 148:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 149:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portGET_HIGHEST_PRIORITY( uxTopPriority, uxReadyPriorities ) uxTopPriority = ( 31UL - ( ui
+ 150:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 151:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif /* configUSE_PORT_OPTIMISED_TASK_SELECTION */
+ 152:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 153:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+ 154:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 155:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #ifdef configASSERT
+ 156:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	void vPortValidateInterruptPriority( void );
+ 157:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portASSERT_IF_INTERRUPT_PRIORITY_INVALID() 	vPortValidateInterruptPriority()
+ 158:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
+ 159:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 160:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /* portNOP() is not required by this port. */
+ 161:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portNOP()
+ 162:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 163:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #define portINLINE	__inline
+ 164:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 165:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #ifndef portFORCE_INLINE
+ 166:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	#define portFORCE_INLINE inline __attribute__(( always_inline))
+ 167:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** #endif
+ 168:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 169:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** portFORCE_INLINE static BaseType_t xPortIsInsideInterrupt( void )
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 20
+
+
+ 170:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** {
+ 171:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** uint32_t ulCurrentInterrupt;
+ 172:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** BaseType_t xReturn;
+ 173:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 174:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	/* Obtain the number of the currently executing interrupt. */
+ 175:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	__asm volatile( "mrs %0, ipsr" : "=r"( ulCurrentInterrupt ) :: "memory" );
+ 176:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 177:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	if( ulCurrentInterrupt == 0 )
+ 178:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	{
+ 179:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		xReturn = pdFALSE;
+ 180:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	}
+ 181:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	else
+ 182:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	{
+ 183:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 		xReturn = pdTRUE;
+ 184:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	}
+ 185:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 186:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	return xReturn;
+ 187:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** }
+ 188:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 189:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** /*-----------------------------------------------------------*/
+ 190:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 191:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** portFORCE_INLINE static void vPortRaiseBASEPRI( void )
+ 454              		.loc 3 191 30 view .LVU101
+ 455              	.LBB13:
+ 192:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** {
+ 193:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** uint32_t ulNewBASEPRI;
+ 456              		.loc 3 193 1 view .LVU102
+ 194:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 195:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 	__asm volatile
+ 457              		.loc 3 195 2 view .LVU103
+ 458              		.syntax unified
+ 459              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 460 0032 4FF05003 			mov r3, #80												
+ 461 0036 72B6     		cpsid i													
+ 462 0038 83F31188 		msr basepri, r3											
+ 463 003c BFF36F8F 		isb														
+ 464 0040 BFF34F8F 		dsb														
+ 465 0044 62B6     		cpsie i													
+ 466              	
+ 467              	@ 0 "" 2
+ 468              	.LVL27:
+ 469              		.thumb
+ 470              		.syntax unified
+ 471              	.L29:
+ 472              		.loc 3 195 2 is_stmt 0 view .LVU104
+ 473              	.LBE13:
+ 474              	.LBE12:
+ 146:Core/Src/main.c **** 	ret = xTaskCreate(task2, "Tache 2", STACK_SIZE, (void *) TASK2_DELAY, TASK2_PRIORITY, &h_task2);
+ 475              		.loc 1 146 2 is_stmt 1 discriminator 1 view .LVU105
+ 146:Core/Src/main.c **** 	ret = xTaskCreate(task2, "Tache 2", STACK_SIZE, (void *) TASK2_DELAY, TASK2_PRIORITY, &h_task2);
+ 476              		.loc 1 146 2 discriminator 1 view .LVU106
+ 477 0046 FEE7     		b	.L29
+ 478              	.L28:
+ 146:Core/Src/main.c **** 	ret = xTaskCreate(task2, "Tache 2", STACK_SIZE, (void *) TASK2_DELAY, TASK2_PRIORITY, &h_task2);
+ 479              		.loc 1 146 29 discriminator 2 view .LVU107
+ 147:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 480              		.loc 1 147 2 discriminator 2 view .LVU108
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 21
+
+
+ 147:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 481              		.loc 1 147 8 is_stmt 0 discriminator 2 view .LVU109
+ 482 0048 02AB     		add	r3, sp, #8
+ 483 004a 0193     		str	r3, [sp, #4]
+ 484 004c 0223     		movs	r3, #2
+ 485 004e 0093     		str	r3, [sp]
+ 486 0050 4FF48072 		mov	r2, #256
+ 487 0054 1049     		ldr	r1, .L34+8
+ 488 0056 1148     		ldr	r0, .L34+12
+ 489              	.LVL28:
+ 147:Core/Src/main.c **** 	configASSERT(pdPASS == ret);
+ 490              		.loc 1 147 8 discriminator 2 view .LVU110
+ 491 0058 FFF7FEFF 		bl	xTaskCreate
+ 492              	.LVL29:
+ 148:Core/Src/main.c **** 
+ 493              		.loc 1 148 2 is_stmt 1 discriminator 2 view .LVU111
+ 494 005c 0128     		cmp	r0, #1
+ 495 005e 0AD0     		beq	.L30
+ 148:Core/Src/main.c **** 
+ 496              		.loc 1 148 2 view .LVU112
+ 497              	.LBB14:
+ 498              	.LBI14:
+ 191:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** {
+ 499              		.loc 3 191 30 view .LVU113
+ 500              	.LBB15:
+ 193:Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h **** 
+ 501              		.loc 3 193 1 view .LVU114
+ 502              		.loc 3 195 2 view .LVU115
+ 503              		.syntax unified
+ 504              	@ 195 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h" 1
+ 505 0060 4FF05003 			mov r3, #80												
+ 506 0064 72B6     		cpsid i													
+ 507 0066 83F31188 		msr basepri, r3											
+ 508 006a BFF36F8F 		isb														
+ 509 006e BFF34F8F 		dsb														
+ 510 0072 62B6     		cpsie i													
+ 511              	
+ 512              	@ 0 "" 2
+ 513              	.LVL30:
+ 514              		.thumb
+ 515              		.syntax unified
+ 516              	.L31:
+ 517              		.loc 3 195 2 is_stmt 0 view .LVU116
+ 518              	.LBE15:
+ 519              	.LBE14:
+ 148:Core/Src/main.c **** 
+ 520              		.loc 1 148 2 is_stmt 1 discriminator 2 view .LVU117
+ 148:Core/Src/main.c **** 
+ 521              		.loc 1 148 2 discriminator 2 view .LVU118
+ 522 0074 FEE7     		b	.L31
+ 523              	.L30:
+ 148:Core/Src/main.c **** 
+ 524              		.loc 1 148 29 discriminator 2 view .LVU119
+ 151:Core/Src/main.c **** 
+ 525              		.loc 1 151 3 discriminator 2 view .LVU120
+ 151:Core/Src/main.c **** 
+ 526              		.loc 1 151 16 is_stmt 0 discriminator 2 view .LVU121
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 22
+
+
+ 527 0076 0120     		movs	r0, #1
+ 528              	.LVL31:
+ 151:Core/Src/main.c **** 
+ 529              		.loc 1 151 16 discriminator 2 view .LVU122
+ 530 0078 FFF7FEFF 		bl	xQueueCreateMutex
+ 531              	.LVL32:
+ 151:Core/Src/main.c **** 
+ 532              		.loc 1 151 14 discriminator 2 view .LVU123
+ 533 007c 084B     		ldr	r3, .L34+16
+ 534 007e 1860     		str	r0, [r3]
+ 153:Core/Src/main.c ****   /* USER CODE END 2 */
+ 535              		.loc 1 153 2 is_stmt 1 discriminator 2 view .LVU124
+ 536 0080 FFF7FEFF 		bl	vTaskStartScheduler
+ 537              	.LVL33:
+ 157:Core/Src/main.c **** 
+ 538              		.loc 1 157 3 discriminator 2 view .LVU125
+ 539 0084 FFF7FEFF 		bl	MX_FREERTOS_Init
+ 540              	.LVL34:
+ 160:Core/Src/main.c ****   /* We should never get here as control is now taken by the scheduler */
+ 541              		.loc 1 160 3 discriminator 2 view .LVU126
+ 542 0088 FFF7FEFF 		bl	osKernelStart
+ 543              	.LVL35:
+ 544              	.L32:
+ 164:Core/Src/main.c **** 	{
+ 545              		.loc 1 164 2 discriminator 3 view .LVU127
+ 170:Core/Src/main.c ****   /* USER CODE END 3 */
+ 546              		.loc 1 170 2 discriminator 3 view .LVU128
+ 164:Core/Src/main.c **** 	{
+ 547              		.loc 1 164 8 discriminator 3 view .LVU129
+ 548 008c FEE7     		b	.L32
+ 549              	.L35:
+ 550 008e 00BF     		.align	2
+ 551              	.L34:
+ 552 0090 00000000 		.word	.LC2
+ 553 0094 00000000 		.word	task1
+ 554 0098 08000000 		.word	.LC3
+ 555 009c 00000000 		.word	task2
+ 556 00a0 00000000 		.word	xSemaphore
+ 557              		.cfi_endproc
+ 558              	.LFE152:
+ 560              		.global	xSemaphore
+ 561              		.section	.bss.xSemaphore,"aw",%nobits
+ 562              		.align	2
+ 565              	xSemaphore:
+ 566 0000 00000000 		.space	4
+ 567              		.text
+ 568              	.Letext0:
+ 569              		.file 4 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 570              		.file 5 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 571              		.file 6 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 572              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 573              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc_ex.h"
+ 574              		.file 9 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h"
+ 575              		.file 10 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 576              		.file 11 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
+ 577              		.file 12 "Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h"
+ 578              		.file 13 "Middlewares/Third_Party/FreeRTOS/Source/include/task.h"
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 23
+
+
+ 579              		.file 14 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 580              		.file 15 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 581              		.file 16 "Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h"
+ 582              		.file 17 "Core/Inc/usart.h"
+ 583              		.file 18 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_pwr_ex.h"
+ 584              		.file 19 "Core/Inc/gpio.h"
+ 585              		.file 20 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h"
+ 586              		.file 21 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 587              		.file 22 "<built-in>"
+ARM GAS  C:\Users\billa\AppData\Local\Temp\cchwWBc7.s 			page 24
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 main.c
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:21     .rodata.task1.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:26     .text.task1:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:32     .text.task1:0000000000000000 task1
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:78     .text.task1:000000000000002c $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:565    .bss.xSemaphore:0000000000000000 xSemaphore
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:84     .rodata.task2.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:89     .text.task2:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:95     .text.task2:0000000000000000 task2
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:141    .text.task2:000000000000002c $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:147    .text.__io_putchar:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:153    .text.__io_putchar:0000000000000000 __io_putchar
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:186    .text.__io_putchar:000000000000001c $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:191    .text.Error_Handler:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:197    .text.Error_Handler:0000000000000000 Error_Handler
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:229    .text.SystemClock_Config:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:235    .text.SystemClock_Config:0000000000000000 SystemClock_Config
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:386    .text.SystemClock_Config:00000000000000a8 $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:392    .rodata.main.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:399    .text.main:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:405    .text.main:0000000000000000 main
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:552    .text.main:0000000000000090 $d
+C:\Users\billa\AppData\Local\Temp\cchwWBc7.s:562    .bss.xSemaphore:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+xQueueSemaphoreTake
+printf
+xQueueGenericSend
+vTaskDelay
+HAL_UART_Transmit
+huart1
+memset
+HAL_RCC_OscConfig
+HAL_PWREx_EnableOverDrive
+HAL_RCC_ClockConfig
+HAL_Init
+MX_GPIO_Init
+MX_USART1_UART_Init
+xTaskCreate
+xQueueCreateMutex
+vTaskStartScheduler
+MX_FREERTOS_Init
+osKernelStart
