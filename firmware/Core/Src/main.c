@@ -41,6 +41,8 @@
 #define STACK_SIZE 1000
 #define Delay 100
 
+#define QUEUE_LENGTH 1
+#define QUEUE_ITEM_SIZE sizeof(uint16_t)
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -55,14 +57,12 @@
 /* Semaphore */
 SemaphoreHandle_t Semaphore;
 
-
 /* Handle */
 TaskHandle_t xHandlegive = NULL;
 TaskHandle_t xHandletake = NULL;
 
-
-/* Notification */
-
+/* Queue */
+QueueHandle_t q_time = NULL;
 
 /* USER CODE END PV */
 
@@ -79,8 +79,6 @@ void taskTake(void *unsued);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-
-
 /* Fonction Give*/
 void taskGive(void *pvParameters) {
 
@@ -88,13 +86,10 @@ void taskGive(void *pvParameters) {
     uint8_t uartTxBuffer[100];
     char* s = pcTaskGetName(xTaskGetCurrentTaskHandle());
 
-    //Gestion erreur
-    uint16_t xCountError = 0;
-
     //Fixation de la fréquence du sémaphore
     TickType_t xLastWakeTime;
     xLastWakeTime =  xTaskGetTickCount();
-    const TickType_t xFrequency = Delay;
+    const TickType_t xFrequency = delay;
 
 
     for(;;)
@@ -108,6 +103,8 @@ void taskGive(void *pvParameters) {
       sprintf((char*)uartTxBuffer, "Je suis la tache %s avant de donner la notification\n", s);
       HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
 
+      //Envoi de la valeur du Timer dans la queue
+      xQueueSend(q_time,(void*) &delay,portMAX_DELAY);
 
       //Envoi de la notification à la tache take
       xTaskNotifyGive(xHandletake);
@@ -125,27 +122,24 @@ void taskGive(void *pvParameters) {
 
 }
 
+/* Focntion Take*/
 void taskTake(void *unsued) {
 
     uint8_t uartTxBuffer[100];
-    char* s = pcTaskGetName(xTaskGetCurrentTaskHandle());
+    uint8_t timer;
 
     for(;;)
     {
-
-
-        // Affichage sur console
-        sprintf((char*)uartTxBuffer, "Je suis la tache %s avant de prendre la notification\n", s);
-        HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
-
         /* Attente de la prise de notification */
         ulTaskNotifyTake( pdTRUE, portMAX_DELAY );
-
 
         //Verification avec la LED
         HAL_GPIO_WritePin(LED_GPIO_Port,LED_Pin,GPIO_PIN_SET);
 
-        sprintf((char*)uartTxBuffer, "Je suis la tache %s apres avoir pris la notification \n", s);
+        /* Reception d'élément de la queue*/
+        xQueueReceive(q_time,(void*)&timer,portMAX_DELAY);
+
+        sprintf((char*)uartTxBuffer,"La valeur du Timer de la tache Give est %d\n", timer);
         HAL_UART_Transmit(&huart1, uartTxBuffer, strlen((char*)uartTxBuffer), HAL_MAX_DELAY);
 
         //Envoi de la notification à la tache Give
@@ -189,7 +183,6 @@ int main(void)
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
 
-
   /* Create a taskGive*/
   xTaskCreate(
           taskGive,       // Function to be called
@@ -209,6 +202,9 @@ int main(void)
           2,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &xHandletake       // Task handle (allows to find and manipulate the task)
           );
+
+  /* Create a queue*/
+  q_time = xQueueCreate(QUEUE_LENGTH,QUEUE_ITEM_SIZE);
 
   /* USER CODE END 2 */
 
