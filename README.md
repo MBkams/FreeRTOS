@@ -21,3 +21,8 @@
 ### Réentrance et exclusion mutuelle
 
 11. Le problème vient du fait que les tâches accèdent à la fonction affichage simultanément, sans prise en compte de la disponibilité. En utilsiant un sémaphore ou un mutex, on pourra garantir l'accès à la fonction d'afficahge selon les priorités des tâches.
+
+## On joue avec le Shell
+
+2. Si on respecte pas les mécanismes de priorité défini par FreeRTOS, l'interruption n'a pas eu lieu dans l'OS.
+

@@ -1,0 +1,1161 @@
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 1
+
+
+   1              		.cpu cortex-m7
+   2              		.arch armv7e-m
+   3              		.fpu fpv5-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"shell.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "shell/shell.c"
+  20              		.section	.text.uart_write,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	uart_write:
+  27              	.LVL0:
+  28              	.LFB151:
+   1:shell/shell.c **** /*
+   2:shell/shell.c ****  * shell.c
+   3:shell/shell.c ****  *
+   4:shell/shell.c ****  *  Created on: 7 juin 2019
+   5:shell/shell.c ****  *      Author: Laurent Fiack
+   6:shell/shell.c ****  */
+   7:shell/shell.c **** 
+   8:shell/shell.c **** #include "shell.h"
+   9:shell/shell.c **** 
+  10:shell/shell.c **** #include <stdio.h>
+  11:shell/shell.c **** 
+  12:shell/shell.c **** #include "usart.h"
+  13:shell/shell.c **** #include "gpio.h"
+  14:shell/shell.c **** #include "FreeRTOS.h"
+  15:shell/shell.c **** #include "semphr.h"
+  16:shell/shell.c **** 
+  17:shell/shell.c **** typedef struct{
+  18:shell/shell.c **** 	char c;
+  19:shell/shell.c **** 	int (* func)(int argc, char ** argv);
+  20:shell/shell.c **** 	char * description;
+  21:shell/shell.c **** } shell_func_t;
+  22:shell/shell.c **** 
+  23:shell/shell.c **** static int shell_func_list_size = 0;
+  24:shell/shell.c **** static shell_func_t shell_func_list[SHELL_FUNC_LIST_MAX_SIZE];
+  25:shell/shell.c **** 
+  26:shell/shell.c **** static char print_buffer[BUFFER_SIZE];
+  27:shell/shell.c **** 
+  28:shell/shell.c **** static SemaphoreHandle_t sem_uart_read = NULL;
+  29:shell/shell.c **** 
+  30:shell/shell.c **** void shell_uart_receive_irq_cb(void)
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 2
+
+
+  31:shell/shell.c **** {
+  32:shell/shell.c **** 	BaseType_t pxHigherPriorityTaskWoken = pdFALSE;
+  33:shell/shell.c **** 
+  34:shell/shell.c **** 	xSemaphoreGiveFromISR(sem_uart_read, &pxHigherPriorityTaskWoken);
+  35:shell/shell.c **** 
+  36:shell/shell.c **** 	portYIELD_FROM_ISR(pxHigherPriorityTaskWoken);
+  37:shell/shell.c **** }
+  38:shell/shell.c **** 
+  39:shell/shell.c **** static char uart_read() {
+  40:shell/shell.c **** 	char c;
+  41:shell/shell.c **** 
+  42:shell/shell.c **** 	HAL_UART_Receive_IT(&UART_DEVICE, (uint8_t*)(&c), 1);
+  43:shell/shell.c **** 	// il faut mettre la tâche shell dans l'état bloqué, jusqu'à l'interruption de réception de c
+  44:shell/shell.c **** 	// prendre un sémaphore vide par exemple
+  45:shell/shell.c **** 	xSemaphoreTake(sem_uart_read, portMAX_DELAY);
+  46:shell/shell.c **** 
+  47:shell/shell.c **** 	return c;
+  48:shell/shell.c **** }
+  49:shell/shell.c **** 
+  50:shell/shell.c **** static int uart_write(char * s, uint16_t size) {
+  29              		.loc 1 50 48 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		.loc 1 50 48 is_stmt 0 view .LVU1
+  34 0000 10B5     		push	{r4, lr}
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 4, -8
+  37              		.cfi_offset 14, -4
+  38 0002 0C46     		mov	r4, r1
+  51:shell/shell.c **** 	HAL_UART_Transmit(&UART_DEVICE, (uint8_t*)s, size, HAL_MAX_DELAY);
+  39              		.loc 1 51 2 is_stmt 1 view .LVU2
+  40 0004 4FF0FF33 		mov	r3, #-1
+  41 0008 0A46     		mov	r2, r1
+  42 000a 0146     		mov	r1, r0
+  43              	.LVL1:
+  44              		.loc 1 51 2 is_stmt 0 view .LVU3
+  45 000c 0248     		ldr	r0, .L3
+  46              	.LVL2:
+  47              		.loc 1 51 2 view .LVU4
+  48 000e FFF7FEFF 		bl	HAL_UART_Transmit
+  49              	.LVL3:
+  52:shell/shell.c **** 	return size;
+  50              		.loc 1 52 2 is_stmt 1 view .LVU5
+  53:shell/shell.c **** }
+  51              		.loc 1 53 1 is_stmt 0 view .LVU6
+  52 0012 2046     		mov	r0, r4
+  53 0014 10BD     		pop	{r4, pc}
+  54              	.L4:
+  55 0016 00BF     		.align	2
+  56              	.L3:
+  57 0018 00000000 		.word	huart1
+  58              		.cfi_endproc
+  59              	.LFE151:
+  61              		.section	.rodata.sh_help.str1.4,"aMS",%progbits,1
+  62              		.align	2
+  63              	.LC0:
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 3
+
+
+  64 0000 25633A20 		.ascii	"%c: %s\015\012\000"
+  64      25730D0A 
+  64      00
+  65              		.section	.text.sh_help,"ax",%progbits
+  66              		.align	1
+  67              		.syntax unified
+  68              		.thumb
+  69              		.thumb_func
+  71              	sh_help:
+  72              	.LVL4:
+  73              	.LFB152:
+  54:shell/shell.c **** 
+  55:shell/shell.c **** static int sh_help(int argc, char ** argv) {
+  74              		.loc 1 55 44 is_stmt 1 view -0
+  75              		.cfi_startproc
+  76              		@ args = 0, pretend = 0, frame = 0
+  77              		@ frame_needed = 0, uses_anonymous_args = 0
+  78              		.loc 1 55 44 is_stmt 0 view .LVU8
+  79 0000 30B5     		push	{r4, r5, lr}
+  80              		.cfi_def_cfa_offset 12
+  81              		.cfi_offset 4, -12
+  82              		.cfi_offset 5, -8
+  83              		.cfi_offset 14, -4
+  84 0002 83B0     		sub	sp, sp, #12
+  85              		.cfi_def_cfa_offset 24
+  56:shell/shell.c **** 	int i;
+  86              		.loc 1 56 2 is_stmt 1 view .LVU9
+  57:shell/shell.c **** 	for(i = 0 ; i < shell_func_list_size ; i++) {
+  87              		.loc 1 57 2 view .LVU10
+  88              	.LVL5:
+  89              		.loc 1 57 8 is_stmt 0 view .LVU11
+  90 0004 0024     		movs	r4, #0
+  91              		.loc 1 57 2 view .LVU12
+  92 0006 13E0     		b	.L6
+  93              	.LVL6:
+  94              	.L7:
+  95              	.LBB2:
+  58:shell/shell.c **** 		int size;
+  96              		.loc 1 58 3 is_stmt 1 discriminator 3 view .LVU13
+  59:shell/shell.c **** 		size = snprintf (print_buffer, BUFFER_SIZE, "%c: %s\r\n", shell_func_list[i].c, shell_func_list[i
+  97              		.loc 1 59 3 discriminator 3 view .LVU14
+  98              		.loc 1 59 79 is_stmt 0 discriminator 3 view .LVU15
+  99 0008 0D4B     		ldr	r3, .L9
+ 100 000a 04EB4402 		add	r2, r4, r4, lsl #1
+ 101 000e 03EB8201 		add	r1, r3, r2, lsl #2
+ 102              		.loc 1 59 10 discriminator 3 view .LVU16
+ 103 0012 0C4D     		ldr	r5, .L9+4
+ 104 0014 8968     		ldr	r1, [r1, #8]
+ 105 0016 0091     		str	r1, [sp]
+ 106 0018 13F82230 		ldrb	r3, [r3, r2, lsl #2]	@ zero_extendqisi2
+ 107 001c 0A4A     		ldr	r2, .L9+8
+ 108 001e 2821     		movs	r1, #40
+ 109 0020 2846     		mov	r0, r5
+ 110 0022 FFF7FEFF 		bl	snprintf
+ 111              	.LVL7:
+  60:shell/shell.c **** 		uart_write(print_buffer, size);
+ 112              		.loc 1 60 3 is_stmt 1 discriminator 3 view .LVU17
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 4
+
+
+ 113 0026 81B2     		uxth	r1, r0
+ 114 0028 2846     		mov	r0, r5
+ 115              	.LVL8:
+ 116              		.loc 1 60 3 is_stmt 0 discriminator 3 view .LVU18
+ 117 002a FFF7FEFF 		bl	uart_write
+ 118              	.LVL9:
+ 119              	.LBE2:
+  57:shell/shell.c **** 		int size;
+ 120              		.loc 1 57 42 is_stmt 1 discriminator 3 view .LVU19
+ 121 002e 0134     		adds	r4, r4, #1
+ 122              	.LVL10:
+ 123              	.L6:
+  57:shell/shell.c **** 		int size;
+ 124              		.loc 1 57 16 discriminator 1 view .LVU20
+ 125 0030 064B     		ldr	r3, .L9+12
+ 126 0032 1B68     		ldr	r3, [r3]
+ 127 0034 A342     		cmp	r3, r4
+ 128 0036 E7DC     		bgt	.L7
+  61:shell/shell.c **** 	}
+  62:shell/shell.c **** 
+  63:shell/shell.c **** 	return 0;
+ 129              		.loc 1 63 2 view .LVU21
+  64:shell/shell.c **** }
+ 130              		.loc 1 64 1 is_stmt 0 view .LVU22
+ 131 0038 0020     		movs	r0, #0
+ 132 003a 03B0     		add	sp, sp, #12
+ 133              		.cfi_def_cfa_offset 12
+ 134              		@ sp needed
+ 135 003c 30BD     		pop	{r4, r5, pc}
+ 136              	.LVL11:
+ 137              	.L10:
+ 138              		.loc 1 64 1 view .LVU23
+ 139 003e 00BF     		.align	2
+ 140              	.L9:
+ 141 0040 00000000 		.word	shell_func_list
+ 142 0044 00000000 		.word	print_buffer
+ 143 0048 00000000 		.word	.LC0
+ 144 004c 00000000 		.word	shell_func_list_size
+ 145              		.cfi_endproc
+ 146              	.LFE152:
+ 148              		.section	.rodata.shell_exec.str1.4,"aMS",%progbits,1
+ 149              		.align	2
+ 150              	.LC1:
+ 151 0000 25633A20 		.ascii	"%c: no such command\015\012\000"
+ 151      6E6F2073 
+ 151      75636820 
+ 151      636F6D6D 
+ 151      616E640D 
+ 152              		.section	.text.shell_exec,"ax",%progbits
+ 153              		.align	1
+ 154              		.syntax unified
+ 155              		.thumb
+ 156              		.thumb_func
+ 158              	shell_exec:
+ 159              	.LVL12:
+ 160              	.LFB155:
+  65:shell/shell.c **** 
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 5
+
+
+  66:shell/shell.c **** void shell_init() {
+  67:shell/shell.c **** 	int size = 0;
+  68:shell/shell.c **** 
+  69:shell/shell.c **** 	size = snprintf (print_buffer, BUFFER_SIZE, "\r\n\r\n===== Monsieur Shell v0.2 =====\r\n");
+  70:shell/shell.c **** 	uart_write(print_buffer, size);
+  71:shell/shell.c **** 
+  72:shell/shell.c **** 	sem_uart_read = xSemaphoreCreateBinary();
+  73:shell/shell.c **** 	if (sem_uart_read == NULL)
+  74:shell/shell.c **** 	{
+  75:shell/shell.c **** 		printf("Error semaphore shell\r\n");
+  76:shell/shell.c **** 		while(1);
+  77:shell/shell.c **** 	}
+  78:shell/shell.c **** 
+  79:shell/shell.c **** 	shell_add('h', sh_help, "Help");
+  80:shell/shell.c **** }
+  81:shell/shell.c **** 
+  82:shell/shell.c **** int shell_add(char c, int (* pfunc)(int argc, char ** argv), char * description) {
+  83:shell/shell.c **** 	if (shell_func_list_size < SHELL_FUNC_LIST_MAX_SIZE) {
+  84:shell/shell.c **** 		shell_func_list[shell_func_list_size].c = c;
+  85:shell/shell.c **** 		shell_func_list[shell_func_list_size].func = pfunc;
+  86:shell/shell.c **** 		shell_func_list[shell_func_list_size].description = description;
+  87:shell/shell.c **** 		shell_func_list_size++;
+  88:shell/shell.c **** 		return 0;
+  89:shell/shell.c **** 	}
+  90:shell/shell.c **** 
+  91:shell/shell.c **** 	return -1;
+  92:shell/shell.c **** }
+  93:shell/shell.c **** 
+  94:shell/shell.c **** static int shell_exec(char * buf) {
+ 161              		.loc 1 94 35 is_stmt 1 view -0
+ 162              		.cfi_startproc
+ 163              		@ args = 0, pretend = 0, frame = 32
+ 164              		@ frame_needed = 0, uses_anonymous_args = 0
+ 165              		.loc 1 94 35 is_stmt 0 view .LVU25
+ 166 0000 10B5     		push	{r4, lr}
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 4, -8
+ 169              		.cfi_offset 14, -4
+ 170 0002 88B0     		sub	sp, sp, #32
+ 171              		.cfi_def_cfa_offset 40
+ 172 0004 0446     		mov	r4, r0
+  95:shell/shell.c **** 	int i;
+ 173              		.loc 1 95 2 is_stmt 1 view .LVU26
+  96:shell/shell.c **** 
+  97:shell/shell.c **** 	char c = buf[0];
+ 174              		.loc 1 97 2 view .LVU27
+ 175              		.loc 1 97 7 is_stmt 0 view .LVU28
+ 176 0006 0378     		ldrb	r3, [r0]	@ zero_extendqisi2
+ 177              	.LVL13:
+  98:shell/shell.c **** 
+  99:shell/shell.c **** 	int argc;
+ 178              		.loc 1 99 2 is_stmt 1 view .LVU29
+ 100:shell/shell.c **** 	char * argv[ARGC_MAX];
+ 179              		.loc 1 100 2 view .LVU30
+ 101:shell/shell.c **** 	char *p;
+ 180              		.loc 1 101 2 view .LVU31
+ 102:shell/shell.c **** 
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 6
+
+
+ 103:shell/shell.c **** 	for(i = 0 ; i < shell_func_list_size ; i++) {
+ 181              		.loc 1 103 2 view .LVU32
+ 182              		.loc 1 103 8 is_stmt 0 view .LVU33
+ 183 0008 0022     		movs	r2, #0
+ 184              		.loc 1 103 2 view .LVU34
+ 185 000a 1BE0     		b	.L12
+ 186              	.LVL14:
+ 187              	.L15:
+ 104:shell/shell.c **** 		if (shell_func_list[i].c == c) {
+ 105:shell/shell.c **** 			argc = 1;
+ 106:shell/shell.c **** 			argv[0] = buf;
+ 107:shell/shell.c **** 
+ 108:shell/shell.c **** 			for(p = buf ; *p != '\0' && argc < ARGC_MAX ; p++){
+ 188              		.loc 1 108 51 is_stmt 1 discriminator 2 view .LVU35
+ 189 000c 0134     		adds	r4, r4, #1
+ 190              	.LVL15:
+ 191              	.L14:
+ 192              		.loc 1 108 29 discriminator 1 view .LVU36
+ 193              		.loc 1 108 18 is_stmt 0 discriminator 1 view .LVU37
+ 194 000e 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 195              		.loc 1 108 29 discriminator 1 view .LVU38
+ 196 0010 73B1     		cbz	r3, .L16
+ 197              		.loc 1 108 29 discriminator 3 view .LVU39
+ 198 0012 0728     		cmp	r0, #7
+ 199 0014 0CDC     		bgt	.L16
+ 109:shell/shell.c **** 				if(*p == ' ') {
+ 200              		.loc 1 109 5 is_stmt 1 view .LVU40
+ 201              		.loc 1 109 7 is_stmt 0 view .LVU41
+ 202 0016 202B     		cmp	r3, #32
+ 203 0018 F8D1     		bne	.L15
+ 110:shell/shell.c **** 					*p = '\0';
+ 204              		.loc 1 110 6 is_stmt 1 view .LVU42
+ 205              		.loc 1 110 9 is_stmt 0 view .LVU43
+ 206 001a 2346     		mov	r3, r4
+ 207 001c 0021     		movs	r1, #0
+ 208 001e 03F8011B 		strb	r1, [r3], #1
+ 111:shell/shell.c **** 					argv[argc++] = p+1;
+ 209              		.loc 1 111 6 is_stmt 1 view .LVU44
+ 210              	.LVL16:
+ 211              		.loc 1 111 19 is_stmt 0 view .LVU45
+ 212 0022 08A9     		add	r1, sp, #32
+ 213 0024 01EB8001 		add	r1, r1, r0, lsl #2
+ 214 0028 41F8203C 		str	r3, [r1, #-32]
+ 215              		.loc 1 111 15 view .LVU46
+ 216 002c 0130     		adds	r0, r0, #1
+ 217              	.LVL17:
+ 218              		.loc 1 111 15 view .LVU47
+ 219 002e EDE7     		b	.L15
+ 220              	.L16:
+ 112:shell/shell.c **** 				}
+ 113:shell/shell.c **** 			}
+ 114:shell/shell.c **** 
+ 115:shell/shell.c **** 			return shell_func_list[i].func(argc, argv);
+ 221              		.loc 1 115 4 is_stmt 1 view .LVU48
+ 222              		.loc 1 115 29 is_stmt 0 view .LVU49
+ 223 0030 02EB4202 		add	r2, r2, r2, lsl #1
+ 224              	.LVL18:
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 7
+
+
+ 225              		.loc 1 115 29 view .LVU50
+ 226 0034 114B     		ldr	r3, .L22
+ 227 0036 03EB8203 		add	r3, r3, r2, lsl #2
+ 228 003a 5B68     		ldr	r3, [r3, #4]
+ 229              		.loc 1 115 11 view .LVU51
+ 230 003c 6946     		mov	r1, sp
+ 231 003e 9847     		blx	r3
+ 232              	.LVL19:
+ 233              		.loc 1 115 11 view .LVU52
+ 234 0040 1AE0     		b	.L11
+ 235              	.LVL20:
+ 236              	.L13:
+ 103:shell/shell.c **** 		if (shell_func_list[i].c == c) {
+ 237              		.loc 1 103 42 is_stmt 1 discriminator 2 view .LVU53
+ 238 0042 0132     		adds	r2, r2, #1
+ 239              	.LVL21:
+ 240              	.L12:
+ 103:shell/shell.c **** 		if (shell_func_list[i].c == c) {
+ 241              		.loc 1 103 16 discriminator 1 view .LVU54
+ 242 0044 0E49     		ldr	r1, .L22+4
+ 243 0046 0968     		ldr	r1, [r1]
+ 244 0048 9142     		cmp	r1, r2
+ 245 004a 09DD     		ble	.L21
+ 104:shell/shell.c **** 			argc = 1;
+ 246              		.loc 1 104 3 view .LVU55
+ 104:shell/shell.c **** 			argc = 1;
+ 247              		.loc 1 104 25 is_stmt 0 view .LVU56
+ 248 004c 02EB4201 		add	r1, r2, r2, lsl #1
+ 249 0050 0A48     		ldr	r0, .L22
+ 250 0052 10F82110 		ldrb	r1, [r0, r1, lsl #2]	@ zero_extendqisi2
+ 104:shell/shell.c **** 			argc = 1;
+ 251              		.loc 1 104 6 view .LVU57
+ 252 0056 9942     		cmp	r1, r3
+ 253 0058 F3D1     		bne	.L13
+ 105:shell/shell.c **** 			argv[0] = buf;
+ 254              		.loc 1 105 4 is_stmt 1 view .LVU58
+ 255              	.LVL22:
+ 106:shell/shell.c **** 
+ 256              		.loc 1 106 4 view .LVU59
+ 106:shell/shell.c **** 
+ 257              		.loc 1 106 12 is_stmt 0 view .LVU60
+ 258 005a 0094     		str	r4, [sp]
+ 108:shell/shell.c **** 				if(*p == ' ') {
+ 259              		.loc 1 108 4 is_stmt 1 view .LVU61
+ 260              	.LVL23:
+ 105:shell/shell.c **** 			argv[0] = buf;
+ 261              		.loc 1 105 9 is_stmt 0 view .LVU62
+ 262 005c 0120     		movs	r0, #1
+ 108:shell/shell.c **** 				if(*p == ' ') {
+ 263              		.loc 1 108 4 view .LVU63
+ 264 005e D6E7     		b	.L14
+ 265              	.LVL24:
+ 266              	.L21:
+ 116:shell/shell.c **** 		}
+ 117:shell/shell.c **** 	}
+ 118:shell/shell.c **** 
+ 119:shell/shell.c **** 	int size;
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 8
+
+
+ 267              		.loc 1 119 2 is_stmt 1 view .LVU64
+ 120:shell/shell.c **** 	size = snprintf (print_buffer, BUFFER_SIZE, "%c: no such command\r\n", c);
+ 268              		.loc 1 120 2 view .LVU65
+ 269              		.loc 1 120 9 is_stmt 0 view .LVU66
+ 270 0060 084C     		ldr	r4, .L22+8
+ 271              	.LVL25:
+ 272              		.loc 1 120 9 view .LVU67
+ 273 0062 094A     		ldr	r2, .L22+12
+ 274              	.LVL26:
+ 275              		.loc 1 120 9 view .LVU68
+ 276 0064 2821     		movs	r1, #40
+ 277 0066 2046     		mov	r0, r4
+ 278 0068 FFF7FEFF 		bl	snprintf
+ 279              	.LVL27:
+ 121:shell/shell.c **** 	uart_write(print_buffer, size);
+ 280              		.loc 1 121 2 is_stmt 1 view .LVU69
+ 281 006c 1421     		movs	r1, #20
+ 282 006e 2046     		mov	r0, r4
+ 283 0070 FFF7FEFF 		bl	uart_write
+ 284              	.LVL28:
+ 122:shell/shell.c **** 	return -1;
+ 285              		.loc 1 122 2 view .LVU70
+ 286              		.loc 1 122 9 is_stmt 0 view .LVU71
+ 287 0074 4FF0FF30 		mov	r0, #-1
+ 288              	.LVL29:
+ 289              	.L11:
+ 123:shell/shell.c **** }
+ 290              		.loc 1 123 1 view .LVU72
+ 291 0078 08B0     		add	sp, sp, #32
+ 292              		.cfi_def_cfa_offset 8
+ 293              		@ sp needed
+ 294 007a 10BD     		pop	{r4, pc}
+ 295              	.L23:
+ 296              		.align	2
+ 297              	.L22:
+ 298 007c 00000000 		.word	shell_func_list
+ 299 0080 00000000 		.word	shell_func_list_size
+ 300 0084 00000000 		.word	print_buffer
+ 301 0088 00000000 		.word	.LC1
+ 302              		.cfi_endproc
+ 303              	.LFE155:
+ 305              		.section	.text.uart_read,"ax",%progbits
+ 306              		.align	1
+ 307              		.syntax unified
+ 308              		.thumb
+ 309              		.thumb_func
+ 311              	uart_read:
+ 312              	.LFB150:
+  39:shell/shell.c **** 	char c;
+ 313              		.loc 1 39 25 is_stmt 1 view -0
+ 314              		.cfi_startproc
+ 315              		@ args = 0, pretend = 0, frame = 8
+ 316              		@ frame_needed = 0, uses_anonymous_args = 0
+ 317 0000 00B5     		push	{lr}
+ 318              		.cfi_def_cfa_offset 4
+ 319              		.cfi_offset 14, -4
+ 320 0002 83B0     		sub	sp, sp, #12
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 9
+
+
+ 321              		.cfi_def_cfa_offset 16
+  40:shell/shell.c **** 
+ 322              		.loc 1 40 2 view .LVU74
+  42:shell/shell.c **** 	// il faut mettre la tâche shell dans l'état bloqué, jusqu'à l'interruption de réception de c
+ 323              		.loc 1 42 2 view .LVU75
+ 324 0004 0122     		movs	r2, #1
+ 325 0006 0DF10701 		add	r1, sp, #7
+ 326 000a 0748     		ldr	r0, .L26
+ 327 000c FFF7FEFF 		bl	HAL_UART_Receive_IT
+ 328              	.LVL30:
+  45:shell/shell.c **** 
+ 329              		.loc 1 45 2 view .LVU76
+ 330 0010 4FF0FF31 		mov	r1, #-1
+ 331 0014 054B     		ldr	r3, .L26+4
+ 332 0016 1868     		ldr	r0, [r3]
+ 333 0018 FFF7FEFF 		bl	xQueueSemaphoreTake
+ 334              	.LVL31:
+  47:shell/shell.c **** }
+ 335              		.loc 1 47 2 view .LVU77
+  48:shell/shell.c **** 
+ 336              		.loc 1 48 1 is_stmt 0 view .LVU78
+ 337 001c 9DF80700 		ldrb	r0, [sp, #7]	@ zero_extendqisi2
+ 338 0020 03B0     		add	sp, sp, #12
+ 339              		.cfi_def_cfa_offset 4
+ 340              		@ sp needed
+ 341 0022 5DF804FB 		ldr	pc, [sp], #4
+ 342              	.L27:
+ 343 0026 00BF     		.align	2
+ 344              	.L26:
+ 345 0028 00000000 		.word	huart1
+ 346 002c 00000000 		.word	sem_uart_read
+ 347              		.cfi_endproc
+ 348              	.LFE150:
+ 350              		.section	.text.shell_uart_receive_irq_cb,"ax",%progbits
+ 351              		.align	1
+ 352              		.global	shell_uart_receive_irq_cb
+ 353              		.syntax unified
+ 354              		.thumb
+ 355              		.thumb_func
+ 357              	shell_uart_receive_irq_cb:
+ 358              	.LFB149:
+  31:shell/shell.c **** 	BaseType_t pxHigherPriorityTaskWoken = pdFALSE;
+ 359              		.loc 1 31 1 is_stmt 1 view -0
+ 360              		.cfi_startproc
+ 361              		@ args = 0, pretend = 0, frame = 8
+ 362              		@ frame_needed = 0, uses_anonymous_args = 0
+ 363 0000 00B5     		push	{lr}
+ 364              		.cfi_def_cfa_offset 4
+ 365              		.cfi_offset 14, -4
+ 366 0002 83B0     		sub	sp, sp, #12
+ 367              		.cfi_def_cfa_offset 16
+  32:shell/shell.c **** 
+ 368              		.loc 1 32 2 view .LVU80
+  32:shell/shell.c **** 
+ 369              		.loc 1 32 13 is_stmt 0 view .LVU81
+ 370 0004 0023     		movs	r3, #0
+ 371 0006 0193     		str	r3, [sp, #4]
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 10
+
+
+  34:shell/shell.c **** 
+ 372              		.loc 1 34 2 is_stmt 1 view .LVU82
+ 373 0008 01A9     		add	r1, sp, #4
+ 374 000a 094B     		ldr	r3, .L31
+ 375 000c 1868     		ldr	r0, [r3]
+ 376 000e FFF7FEFF 		bl	xQueueGiveFromISR
+ 377              	.LVL32:
+  36:shell/shell.c **** }
+ 378              		.loc 1 36 2 view .LVU83
+ 379 0012 019B     		ldr	r3, [sp, #4]
+ 380 0014 4BB1     		cbz	r3, .L28
+  36:shell/shell.c **** }
+ 381              		.loc 1 36 2 discriminator 1 view .LVU84
+ 382 0016 4FF0E023 		mov	r3, #-536813568
+ 383 001a 4FF08052 		mov	r2, #268435456
+ 384 001e C3F8042D 		str	r2, [r3, #3332]
+  36:shell/shell.c **** }
+ 385              		.loc 1 36 2 discriminator 1 view .LVU85
+ 386              		.syntax unified
+ 387              	@ 36 "shell/shell.c" 1
+ 388 0022 BFF34F8F 		dsb
+ 389              	@ 0 "" 2
+  36:shell/shell.c **** }
+ 390              		.loc 1 36 2 discriminator 1 view .LVU86
+ 391              	@ 36 "shell/shell.c" 1
+ 392 0026 BFF36F8F 		isb
+ 393              	@ 0 "" 2
+  36:shell/shell.c **** }
+ 394              		.loc 1 36 47 discriminator 1 view .LVU87
+ 395              		.thumb
+ 396              		.syntax unified
+ 397              	.L28:
+  37:shell/shell.c **** 
+ 398              		.loc 1 37 1 is_stmt 0 view .LVU88
+ 399 002a 03B0     		add	sp, sp, #12
+ 400              		.cfi_def_cfa_offset 4
+ 401              		@ sp needed
+ 402 002c 5DF804FB 		ldr	pc, [sp], #4
+ 403              	.L32:
+ 404              		.align	2
+ 405              	.L31:
+ 406 0030 00000000 		.word	sem_uart_read
+ 407              		.cfi_endproc
+ 408              	.LFE149:
+ 410              		.section	.text.shell_add,"ax",%progbits
+ 411              		.align	1
+ 412              		.global	shell_add
+ 413              		.syntax unified
+ 414              		.thumb
+ 415              		.thumb_func
+ 417              	shell_add:
+ 418              	.LVL33:
+ 419              	.LFB154:
+  82:shell/shell.c **** 	if (shell_func_list_size < SHELL_FUNC_LIST_MAX_SIZE) {
+ 420              		.loc 1 82 82 is_stmt 1 view -0
+ 421              		.cfi_startproc
+ 422              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 11
+
+
+ 423              		@ frame_needed = 0, uses_anonymous_args = 0
+  83:shell/shell.c **** 		shell_func_list[shell_func_list_size].c = c;
+ 424              		.loc 1 83 2 view .LVU90
+  83:shell/shell.c **** 		shell_func_list[shell_func_list_size].c = c;
+ 425              		.loc 1 83 27 is_stmt 0 view .LVU91
+ 426 0000 0B4B     		ldr	r3, .L40
+ 427 0002 1B68     		ldr	r3, [r3]
+  83:shell/shell.c **** 		shell_func_list[shell_func_list_size].c = c;
+ 428              		.loc 1 83 5 view .LVU92
+ 429 0004 3F2B     		cmp	r3, #63
+ 430 0006 10DC     		bgt	.L35
+  82:shell/shell.c **** 	if (shell_func_list_size < SHELL_FUNC_LIST_MAX_SIZE) {
+ 431              		.loc 1 82 82 view .LVU93
+ 432 0008 10B5     		push	{r4, lr}
+ 433              		.cfi_def_cfa_offset 8
+ 434              		.cfi_offset 4, -8
+ 435              		.cfi_offset 14, -4
+  84:shell/shell.c **** 		shell_func_list[shell_func_list_size].func = pfunc;
+ 436              		.loc 1 84 3 is_stmt 1 view .LVU94
+  84:shell/shell.c **** 		shell_func_list[shell_func_list_size].func = pfunc;
+ 437              		.loc 1 84 43 is_stmt 0 view .LVU95
+ 438 000a 0A4C     		ldr	r4, .L40+4
+ 439 000c 03EB430E 		add	lr, r3, r3, lsl #1
+ 440 0010 04EB8E0C 		add	ip, r4, lr, lsl #2
+ 441 0014 04F82E00 		strb	r0, [r4, lr, lsl #2]
+  85:shell/shell.c **** 		shell_func_list[shell_func_list_size].description = description;
+ 442              		.loc 1 85 3 is_stmt 1 view .LVU96
+  85:shell/shell.c **** 		shell_func_list[shell_func_list_size].description = description;
+ 443              		.loc 1 85 46 is_stmt 0 view .LVU97
+ 444 0018 CCF80410 		str	r1, [ip, #4]
+  86:shell/shell.c **** 		shell_func_list_size++;
+ 445              		.loc 1 86 3 is_stmt 1 view .LVU98
+  86:shell/shell.c **** 		shell_func_list_size++;
+ 446              		.loc 1 86 53 is_stmt 0 view .LVU99
+ 447 001c CCF80820 		str	r2, [ip, #8]
+  87:shell/shell.c **** 		return 0;
+ 448              		.loc 1 87 3 is_stmt 1 view .LVU100
+  87:shell/shell.c **** 		return 0;
+ 449              		.loc 1 87 23 is_stmt 0 view .LVU101
+ 450 0020 0133     		adds	r3, r3, #1
+ 451 0022 034A     		ldr	r2, .L40
+ 452              	.LVL34:
+  87:shell/shell.c **** 		return 0;
+ 453              		.loc 1 87 23 view .LVU102
+ 454 0024 1360     		str	r3, [r2]
+  88:shell/shell.c **** 	}
+ 455              		.loc 1 88 3 is_stmt 1 view .LVU103
+  88:shell/shell.c **** 	}
+ 456              		.loc 1 88 10 is_stmt 0 view .LVU104
+ 457 0026 0020     		movs	r0, #0
+ 458              	.LVL35:
+  92:shell/shell.c **** 
+ 459              		.loc 1 92 1 view .LVU105
+ 460 0028 10BD     		pop	{r4, pc}
+ 461              	.LVL36:
+ 462              	.L35:
+ 463              		.cfi_def_cfa_offset 0
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 12
+
+
+ 464              		.cfi_restore 4
+ 465              		.cfi_restore 14
+  91:shell/shell.c **** }
+ 466              		.loc 1 91 9 view .LVU106
+ 467 002a 4FF0FF30 		mov	r0, #-1
+ 468              	.LVL37:
+  92:shell/shell.c **** 
+ 469              		.loc 1 92 1 view .LVU107
+ 470 002e 7047     		bx	lr
+ 471              	.L41:
+ 472              		.align	2
+ 473              	.L40:
+ 474 0030 00000000 		.word	shell_func_list_size
+ 475 0034 00000000 		.word	shell_func_list
+ 476              		.cfi_endproc
+ 477              	.LFE154:
+ 479              		.section	.rodata.shell_init.str1.4,"aMS",%progbits,1
+ 480              		.align	2
+ 481              	.LC2:
+ 482 0000 0D0A0D0A 		.ascii	"\015\012\015\012===== Monsieur Shell v0.2 =====\015"
+ 482      3D3D3D3D 
+ 482      3D204D6F 
+ 482      6E736965 
+ 482      75722053 
+ 483 0024 0A00     		.ascii	"\012\000"
+ 484 0026 0000     		.align	2
+ 485              	.LC3:
+ 486 0028 4572726F 		.ascii	"Error semaphore shell\015\000"
+ 486      72207365 
+ 486      6D617068 
+ 486      6F726520 
+ 486      7368656C 
+ 487 003f 00       		.align	2
+ 488              	.LC4:
+ 489 0040 48656C70 		.ascii	"Help\000"
+ 489      00
+ 490              		.section	.text.shell_init,"ax",%progbits
+ 491              		.align	1
+ 492              		.global	shell_init
+ 493              		.syntax unified
+ 494              		.thumb
+ 495              		.thumb_func
+ 497              	shell_init:
+ 498              	.LFB153:
+  66:shell/shell.c **** 	int size = 0;
+ 499              		.loc 1 66 19 is_stmt 1 view -0
+ 500              		.cfi_startproc
+ 501              		@ args = 0, pretend = 0, frame = 0
+ 502              		@ frame_needed = 0, uses_anonymous_args = 0
+ 503 0000 38B5     		push	{r3, r4, r5, lr}
+ 504              		.cfi_def_cfa_offset 16
+ 505              		.cfi_offset 3, -16
+ 506              		.cfi_offset 4, -12
+ 507              		.cfi_offset 5, -8
+ 508              		.cfi_offset 14, -4
+  67:shell/shell.c **** 
+ 509              		.loc 1 67 2 view .LVU109
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 13
+
+
+ 510              	.LVL38:
+  69:shell/shell.c **** 	uart_write(print_buffer, size);
+ 511              		.loc 1 69 2 view .LVU110
+  69:shell/shell.c **** 	uart_write(print_buffer, size);
+ 512              		.loc 1 69 9 is_stmt 0 view .LVU111
+ 513 0002 124D     		ldr	r5, .L47
+ 514 0004 AC46     		mov	ip, r5
+ 515 0006 124C     		ldr	r4, .L47+4
+ 516 0008 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 517 000a ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 518 000e 0FCC     		ldmia	r4!, {r0, r1, r2, r3}
+ 519 0010 ACE80F00 		stmia	ip!, {r0, r1, r2, r3}
+ 520 0014 94E80300 		ldm	r4, {r0, r1}
+ 521 0018 4CF8040B 		str	r0, [ip], #4
+ 522 001c ACF80010 		strh	r1, [ip]	@ movhi
+ 523              	.LVL39:
+  70:shell/shell.c **** 
+ 524              		.loc 1 70 2 is_stmt 1 view .LVU112
+ 525 0020 2521     		movs	r1, #37
+ 526 0022 2846     		mov	r0, r5
+ 527 0024 FFF7FEFF 		bl	uart_write
+ 528              	.LVL40:
+  72:shell/shell.c **** 	if (sem_uart_read == NULL)
+ 529              		.loc 1 72 2 view .LVU113
+  72:shell/shell.c **** 	if (sem_uart_read == NULL)
+ 530              		.loc 1 72 18 is_stmt 0 view .LVU114
+ 531 0028 0322     		movs	r2, #3
+ 532 002a 0021     		movs	r1, #0
+ 533 002c 0120     		movs	r0, #1
+ 534 002e FFF7FEFF 		bl	xQueueGenericCreate
+ 535              	.LVL41:
+  72:shell/shell.c **** 	if (sem_uart_read == NULL)
+ 536              		.loc 1 72 16 view .LVU115
+ 537 0032 084B     		ldr	r3, .L47+8
+ 538 0034 1860     		str	r0, [r3]
+  73:shell/shell.c **** 	{
+ 539              		.loc 1 73 2 is_stmt 1 view .LVU116
+  73:shell/shell.c **** 	{
+ 540              		.loc 1 73 5 is_stmt 0 view .LVU117
+ 541 0036 28B1     		cbz	r0, .L46
+  79:shell/shell.c **** }
+ 542              		.loc 1 79 2 is_stmt 1 view .LVU118
+ 543 0038 074A     		ldr	r2, .L47+12
+ 544 003a 0849     		ldr	r1, .L47+16
+ 545 003c 6820     		movs	r0, #104
+ 546 003e FFF7FEFF 		bl	shell_add
+ 547              	.LVL42:
+  80:shell/shell.c **** 
+ 548              		.loc 1 80 1 is_stmt 0 view .LVU119
+ 549 0042 38BD     		pop	{r3, r4, r5, pc}
+ 550              	.L46:
+  75:shell/shell.c **** 		while(1);
+ 551              		.loc 1 75 3 is_stmt 1 view .LVU120
+ 552 0044 0648     		ldr	r0, .L47+20
+ 553 0046 FFF7FEFF 		bl	puts
+ 554              	.LVL43:
+ 555              	.L44:
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 14
+
+
+  76:shell/shell.c **** 	}
+ 556              		.loc 1 76 3 discriminator 1 view .LVU121
+  76:shell/shell.c **** 	}
+ 557              		.loc 1 76 8 discriminator 1 view .LVU122
+ 558 004a FEE7     		b	.L44
+ 559              	.L48:
+ 560              		.align	2
+ 561              	.L47:
+ 562 004c 00000000 		.word	print_buffer
+ 563 0050 00000000 		.word	.LC2
+ 564 0054 00000000 		.word	sem_uart_read
+ 565 0058 40000000 		.word	.LC4
+ 566 005c 00000000 		.word	sh_help
+ 567 0060 28000000 		.word	.LC3
+ 568              		.cfi_endproc
+ 569              	.LFE153:
+ 571              		.section	.rodata.shell_run.str1.4,"aMS",%progbits,1
+ 572              		.align	2
+ 573              	.LC5:
+ 574 0000 0D0A00   		.ascii	"\015\012\000"
+ 575 0003 00       		.align	2
+ 576              	.LC6:
+ 577 0004 3A25730D 		.ascii	":%s\015\012\000"
+ 577      0A00
+ 578              		.section	.text.shell_run,"ax",%progbits
+ 579              		.align	1
+ 580              		.global	shell_run
+ 581              		.syntax unified
+ 582              		.thumb
+ 583              		.thumb_func
+ 585              	shell_run:
+ 586              	.LFB156:
+ 124:shell/shell.c **** 
+ 125:shell/shell.c **** static char backspace[] = "\b \b";
+ 126:shell/shell.c **** static char prompt[] = "> ";
+ 127:shell/shell.c **** 
+ 128:shell/shell.c **** int shell_run() {
+ 587              		.loc 1 128 17 view -0
+ 588              		.cfi_startproc
+ 589              		@ args = 0, pretend = 0, frame = 8
+ 590              		@ frame_needed = 0, uses_anonymous_args = 0
+ 591 0000 70B5     		push	{r4, r5, r6, lr}
+ 592              		.cfi_def_cfa_offset 16
+ 593              		.cfi_offset 4, -16
+ 594              		.cfi_offset 5, -12
+ 595              		.cfi_offset 6, -8
+ 596              		.cfi_offset 14, -4
+ 597 0002 82B0     		sub	sp, sp, #8
+ 598              		.cfi_def_cfa_offset 24
+ 129:shell/shell.c **** 	int reading = 0;
+ 599              		.loc 1 129 2 view .LVU124
+ 600              	.LVL44:
+ 130:shell/shell.c **** 	int pos = 0;
+ 601              		.loc 1 130 2 view .LVU125
+ 602              		.loc 1 130 6 is_stmt 0 view .LVU126
+ 603 0004 0026     		movs	r6, #0
+ 604 0006 23E0     		b	.L55
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 15
+
+
+ 605              	.LVL45:
+ 606              	.L54:
+ 607              	.LBB3:
+ 131:shell/shell.c **** 
+ 132:shell/shell.c **** 	static char cmd_buffer[BUFFER_SIZE];
+ 133:shell/shell.c **** 
+ 134:shell/shell.c **** 	while (1) {
+ 135:shell/shell.c **** 		uart_write(prompt, 2);
+ 136:shell/shell.c **** 		reading = 1;
+ 137:shell/shell.c **** 
+ 138:shell/shell.c **** 		while(reading) {
+ 139:shell/shell.c **** 			char c = uart_read();
+ 608              		.loc 1 139 4 is_stmt 1 view .LVU127
+ 609              		.loc 1 139 13 is_stmt 0 view .LVU128
+ 610 0008 FFF7FEFF 		bl	uart_read
+ 611              	.LVL46:
+ 612              		.loc 1 139 9 view .LVU129
+ 613 000c 8DF80700 		strb	r0, [sp, #7]
+ 140:shell/shell.c **** 			int size;
+ 614              		.loc 1 140 4 is_stmt 1 view .LVU130
+ 141:shell/shell.c **** 
+ 142:shell/shell.c **** 			switch (c) {
+ 615              		.loc 1 142 4 view .LVU131
+ 616 0010 0828     		cmp	r0, #8
+ 617 0012 23D0     		beq	.L51
+ 618 0014 0D28     		cmp	r0, #13
+ 619 0016 29D1     		bne	.L52
+ 143:shell/shell.c **** 			//process RETURN key
+ 144:shell/shell.c **** 			case '\r':
+ 145:shell/shell.c **** 				//case '\n':
+ 146:shell/shell.c **** 				size = snprintf (print_buffer, BUFFER_SIZE, "\r\n");
+ 620              		.loc 1 146 5 view .LVU132
+ 621              		.loc 1 146 12 is_stmt 0 view .LVU133
+ 622 0018 1B4D     		ldr	r5, .L57
+ 623 001a 1C4B     		ldr	r3, .L57+4
+ 624 001c 1B68     		ldr	r3, [r3]
+ 625 001e 2B80     		strh	r3, [r5]	@ movhi
+ 626 0020 1B0C     		lsrs	r3, r3, #16
+ 627 0022 AB70     		strb	r3, [r5, #2]
+ 628              	.LVL47:
+ 147:shell/shell.c **** 				uart_write(print_buffer, size);
+ 629              		.loc 1 147 5 is_stmt 1 view .LVU134
+ 630 0024 0221     		movs	r1, #2
+ 631 0026 2846     		mov	r0, r5
+ 632 0028 FFF7FEFF 		bl	uart_write
+ 633              	.LVL48:
+ 148:shell/shell.c **** 				cmd_buffer[pos++] = 0;     //add \0 char at end of string
+ 634              		.loc 1 148 5 view .LVU135
+ 635              		.loc 1 148 23 is_stmt 0 view .LVU136
+ 636 002c 184B     		ldr	r3, .L57+8
+ 637 002e 0024     		movs	r4, #0
+ 638              	.LVL49:
+ 639              		.loc 1 148 23 view .LVU137
+ 640 0030 9C55     		strb	r4, [r3, r6]
+ 149:shell/shell.c **** 				size = snprintf (print_buffer, BUFFER_SIZE, ":%s\r\n", cmd_buffer);
+ 641              		.loc 1 149 5 is_stmt 1 view .LVU138
+ 642              		.loc 1 149 12 is_stmt 0 view .LVU139
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 16
+
+
+ 643 0032 184A     		ldr	r2, .L57+12
+ 644 0034 2821     		movs	r1, #40
+ 645 0036 2846     		mov	r0, r5
+ 646 0038 FFF7FEFF 		bl	snprintf
+ 647              	.LVL50:
+ 150:shell/shell.c **** 				uart_write(print_buffer, size);
+ 648              		.loc 1 150 5 is_stmt 1 view .LVU140
+ 649 003c 81B2     		uxth	r1, r0
+ 650 003e 2846     		mov	r0, r5
+ 651              	.LVL51:
+ 652              		.loc 1 150 5 is_stmt 0 view .LVU141
+ 653 0040 FFF7FEFF 		bl	uart_write
+ 654              	.LVL52:
+ 151:shell/shell.c **** 				reading = 0;        //exit read loop
+ 655              		.loc 1 151 5 is_stmt 1 view .LVU142
+ 152:shell/shell.c **** 				pos = 0;            //reset buffer
+ 656              		.loc 1 152 5 view .LVU143
+ 153:shell/shell.c **** 				break;
+ 657              		.loc 1 153 5 view .LVU144
+ 152:shell/shell.c **** 				pos = 0;            //reset buffer
+ 658              		.loc 1 152 9 is_stmt 0 view .LVU145
+ 659 0044 2646     		mov	r6, r4
+ 660              	.LVL53:
+ 661              	.L50:
+ 152:shell/shell.c **** 				pos = 0;            //reset buffer
+ 662              		.loc 1 152 9 view .LVU146
+ 663              	.LBE3:
+ 138:shell/shell.c **** 			char c = uart_read();
+ 664              		.loc 1 138 9 is_stmt 1 view .LVU147
+ 665 0046 002C     		cmp	r4, #0
+ 666 0048 DED1     		bne	.L54
+ 154:shell/shell.c **** 				//backspace
+ 155:shell/shell.c **** 			case '\b':
+ 156:shell/shell.c **** 				if (pos > 0) {      //is there a char to delete?
+ 157:shell/shell.c **** 					pos--;          //remove it in buffer
+ 158:shell/shell.c **** 
+ 159:shell/shell.c **** 					uart_write(backspace, 3);	// delete the char on the terminal
+ 160:shell/shell.c **** 				}
+ 161:shell/shell.c **** 				break;
+ 162:shell/shell.c **** 				//other characters
+ 163:shell/shell.c **** 			default:
+ 164:shell/shell.c **** 				//only store characters if buffer has space
+ 165:shell/shell.c **** 				if (pos < BUFFER_SIZE) {
+ 166:shell/shell.c **** 					uart_write(&c, 1);
+ 167:shell/shell.c **** 					cmd_buffer[pos++] = c; //store
+ 168:shell/shell.c **** 				}
+ 169:shell/shell.c **** 			}
+ 170:shell/shell.c **** 		}
+ 171:shell/shell.c **** 		shell_exec(cmd_buffer);
+ 667              		.loc 1 171 3 view .LVU148
+ 668 004a 1148     		ldr	r0, .L57+8
+ 669 004c FFF7FEFF 		bl	shell_exec
+ 670              	.LVL54:
+ 134:shell/shell.c **** 		uart_write(prompt, 2);
+ 671              		.loc 1 134 8 view .LVU149
+ 672              	.L55:
+ 132:shell/shell.c **** 
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 17
+
+
+ 673              		.loc 1 132 2 view .LVU150
+ 134:shell/shell.c **** 		uart_write(prompt, 2);
+ 674              		.loc 1 134 2 view .LVU151
+ 135:shell/shell.c **** 		reading = 1;
+ 675              		.loc 1 135 3 view .LVU152
+ 676 0050 0221     		movs	r1, #2
+ 677 0052 1148     		ldr	r0, .L57+16
+ 678 0054 FFF7FEFF 		bl	uart_write
+ 679              	.LVL55:
+ 136:shell/shell.c **** 
+ 680              		.loc 1 136 3 view .LVU153
+ 138:shell/shell.c **** 			char c = uart_read();
+ 681              		.loc 1 138 3 view .LVU154
+ 136:shell/shell.c **** 
+ 682              		.loc 1 136 11 is_stmt 0 view .LVU155
+ 683 0058 0124     		movs	r4, #1
+ 138:shell/shell.c **** 			char c = uart_read();
+ 684              		.loc 1 138 8 view .LVU156
+ 685 005a F4E7     		b	.L50
+ 686              	.LVL56:
+ 687              	.L51:
+ 688              	.LBB4:
+ 156:shell/shell.c **** 					pos--;          //remove it in buffer
+ 689              		.loc 1 156 5 is_stmt 1 view .LVU157
+ 156:shell/shell.c **** 					pos--;          //remove it in buffer
+ 690              		.loc 1 156 8 is_stmt 0 view .LVU158
+ 691 005c 002E     		cmp	r6, #0
+ 692 005e F2DD     		ble	.L50
+ 157:shell/shell.c **** 
+ 693              		.loc 1 157 6 is_stmt 1 view .LVU159
+ 157:shell/shell.c **** 
+ 694              		.loc 1 157 9 is_stmt 0 view .LVU160
+ 695 0060 013E     		subs	r6, r6, #1
+ 696              	.LVL57:
+ 159:shell/shell.c **** 				}
+ 697              		.loc 1 159 6 is_stmt 1 view .LVU161
+ 698 0062 0321     		movs	r1, #3
+ 699 0064 0D48     		ldr	r0, .L57+20
+ 700 0066 FFF7FEFF 		bl	uart_write
+ 701              	.LVL58:
+ 702 006a ECE7     		b	.L50
+ 703              	.L52:
+ 165:shell/shell.c **** 					uart_write(&c, 1);
+ 704              		.loc 1 165 5 view .LVU162
+ 165:shell/shell.c **** 					uart_write(&c, 1);
+ 705              		.loc 1 165 8 is_stmt 0 view .LVU163
+ 706 006c 272E     		cmp	r6, #39
+ 707 006e EADC     		bgt	.L50
+ 166:shell/shell.c **** 					cmd_buffer[pos++] = c; //store
+ 708              		.loc 1 166 6 is_stmt 1 view .LVU164
+ 709 0070 0121     		movs	r1, #1
+ 710 0072 0DF10700 		add	r0, sp, #7
+ 711 0076 FFF7FEFF 		bl	uart_write
+ 712              	.LVL59:
+ 167:shell/shell.c **** 				}
+ 713              		.loc 1 167 6 view .LVU165
+ 167:shell/shell.c **** 				}
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 18
+
+
+ 714              		.loc 1 167 24 is_stmt 0 view .LVU166
+ 715 007a 9DF80720 		ldrb	r2, [sp, #7]	@ zero_extendqisi2
+ 716 007e 044B     		ldr	r3, .L57+8
+ 717 0080 9A55     		strb	r2, [r3, r6]
+ 167:shell/shell.c **** 				}
+ 718              		.loc 1 167 20 view .LVU167
+ 719 0082 0136     		adds	r6, r6, #1
+ 720              	.LVL60:
+ 167:shell/shell.c **** 				}
+ 721              		.loc 1 167 20 view .LVU168
+ 722 0084 DFE7     		b	.L50
+ 723              	.L58:
+ 724 0086 00BF     		.align	2
+ 725              	.L57:
+ 726 0088 00000000 		.word	print_buffer
+ 727 008c 00000000 		.word	.LC5
+ 728 0090 00000000 		.word	cmd_buffer.0
+ 729 0094 04000000 		.word	.LC6
+ 730 0098 00000000 		.word	prompt
+ 731 009c 00000000 		.word	backspace
+ 732              	.LBE4:
+ 733              		.cfi_endproc
+ 734              	.LFE156:
+ 736              		.section	.bss.cmd_buffer.0,"aw",%nobits
+ 737              		.align	2
+ 740              	cmd_buffer.0:
+ 741 0000 00000000 		.space	40
+ 741      00000000 
+ 741      00000000 
+ 741      00000000 
+ 741      00000000 
+ 742              		.section	.data.prompt,"aw"
+ 743              		.align	2
+ 746              	prompt:
+ 747 0000 3E2000   		.ascii	"> \000"
+ 748              		.section	.data.backspace,"aw"
+ 749              		.align	2
+ 752              	backspace:
+ 753 0000 08200800 		.ascii	"\010 \010\000"
+ 754              		.section	.bss.sem_uart_read,"aw",%nobits
+ 755              		.align	2
+ 758              	sem_uart_read:
+ 759 0000 00000000 		.space	4
+ 760              		.section	.bss.print_buffer,"aw",%nobits
+ 761              		.align	2
+ 764              	print_buffer:
+ 765 0000 00000000 		.space	40
+ 765      00000000 
+ 765      00000000 
+ 765      00000000 
+ 765      00000000 
+ 766              		.section	.bss.shell_func_list,"aw",%nobits
+ 767              		.align	2
+ 770              	shell_func_list:
+ 771 0000 00000000 		.space	768
+ 771      00000000 
+ 771      00000000 
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 19
+
+
+ 771      00000000 
+ 771      00000000 
+ 772              		.section	.bss.shell_func_list_size,"aw",%nobits
+ 773              		.align	2
+ 776              	shell_func_list_size:
+ 777 0000 00000000 		.space	4
+ 778              		.text
+ 779              	.Letext0:
+ 780              		.file 2 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 781              		.file 3 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 782              		.file 4 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xpa
+ 783              		.file 5 "Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f746xx.h"
+ 784              		.file 6 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h"
+ 785              		.file 7 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_dma.h"
+ 786              		.file 8 "Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h"
+ 787              		.file 9 "Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1/portmacro.h"
+ 788              		.file 10 "Middlewares/Third_Party/FreeRTOS/Source/include/queue.h"
+ 789              		.file 11 "Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h"
+ 790              		.file 12 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
+ 791              		.file 13 "Core/Inc/usart.h"
+ 792              		.file 14 "<built-in>"
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccuNHMla.s 			page 20
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 shell.c
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:21     .text.uart_write:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:26     .text.uart_write:0000000000000000 uart_write
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:57     .text.uart_write:0000000000000018 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:62     .rodata.sh_help.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:66     .text.sh_help:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:71     .text.sh_help:0000000000000000 sh_help
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:141    .text.sh_help:0000000000000040 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:770    .bss.shell_func_list:0000000000000000 shell_func_list
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:764    .bss.print_buffer:0000000000000000 print_buffer
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:776    .bss.shell_func_list_size:0000000000000000 shell_func_list_size
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:149    .rodata.shell_exec.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:153    .text.shell_exec:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:158    .text.shell_exec:0000000000000000 shell_exec
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:298    .text.shell_exec:000000000000007c $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:306    .text.uart_read:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:311    .text.uart_read:0000000000000000 uart_read
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:345    .text.uart_read:0000000000000028 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:758    .bss.sem_uart_read:0000000000000000 sem_uart_read
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:351    .text.shell_uart_receive_irq_cb:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:357    .text.shell_uart_receive_irq_cb:0000000000000000 shell_uart_receive_irq_cb
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:406    .text.shell_uart_receive_irq_cb:0000000000000030 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:411    .text.shell_add:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:417    .text.shell_add:0000000000000000 shell_add
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:474    .text.shell_add:0000000000000030 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:480    .rodata.shell_init.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:491    .text.shell_init:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:497    .text.shell_init:0000000000000000 shell_init
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:562    .text.shell_init:000000000000004c $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:572    .rodata.shell_run.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:579    .text.shell_run:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:585    .text.shell_run:0000000000000000 shell_run
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:726    .text.shell_run:0000000000000088 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:740    .bss.cmd_buffer.0:0000000000000000 cmd_buffer.0
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:746    .data.prompt:0000000000000000 prompt
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:752    .data.backspace:0000000000000000 backspace
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:737    .bss.cmd_buffer.0:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:743    .data.prompt:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:749    .data.backspace:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:755    .bss.sem_uart_read:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:761    .bss.print_buffer:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:767    .bss.shell_func_list:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccuNHMla.s:773    .bss.shell_func_list_size:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Transmit
+huart1
+snprintf
+HAL_UART_Receive_IT
+xQueueSemaphoreTake
+xQueueGiveFromISR
+xQueueGenericCreate
+puts
