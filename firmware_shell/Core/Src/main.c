@@ -140,16 +140,18 @@ int timer(int argc, char ** argv)
   if (a == 0)
   {
     vTaskSuspend(h_task_led);
-  }
-  else {
+  } else {
     delay = a;
     printf("%d\r\n",delay);
 
     vTaskResume(h_task_led);
-
   }
+  return 0;
+}
 
-
+int spam(int argc, char **argv)
+{
+  printf("Je suis la fonction spam\r\n");
 }
 
 void task_shell(void * unused)
@@ -158,6 +160,7 @@ void task_shell(void * unused)
 	shell_add('f', fonction, "Une fonction inutile");
 	shell_add('a', addition, "Effectue une somme");
   shell_add('l',timer, "Change la période LED");
+  shell_add('s',spam,"Affichage sur console");
 	shell_run();	// boucle infinie
 }
 /* USER CODE END 0 */
