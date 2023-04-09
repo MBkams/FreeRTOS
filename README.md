@@ -26,3 +26,54 @@
 
 2. Si on respecte pas les mécanismes de priorité défini par FreeRTOS, l'interruption n'a pas eu lieu dans l'OS.
 
+## Debug, gestion d’erreur et statistiques
+
+1. Le nom de la zone réservée à l’allocation dynamique est le tas (heap).
+
+2. Le tas est géré par FreeRtos.
+
+4. Afin de connaitre l'espace de stockage disponible de la RAM et la FLASH, on retrouve les informations dans les fichiers .id générés par CubeMX.
+
+~~~
+/* Memories definition */
+MEMORY
+{
+  RAM    (xrw)    : ORIGIN = 0x20000000,   LENGTH = 320K
+  FLASH    (rx)    : ORIGIN = 0x8000000,   LENGTH = 1024K
+}
+~~~
+
+Concernant l'espace utilisé, on va intérpréter les résultats des commandes "arm-none-eabi-size" : 
+~~~
+   text    data     bss     dec     hex filename
+  13660      24   18096   31780    7c24 build/rtos_td_shell.elf
+~~~
+- La taille de la RAM utilisée est donné par l'addition des colonnes data et bss
+- La taille de la FLASH utilisé est donné par l'addition des colonnes data et text
+
+Dans un programme compilé sans tâche, 
+- la RAM utilisé est de 18 ko sur 320 ko disponible, soit  %.
+- la FLASH utilisé est de 13 ko sur 1024 ko disponible, soit  %.
+
+
+5. Tâche overflow avec incrémentation d'un pointeur
+
+6. Utilisation de le mémoire dans un programme avec la tâche overflow
+~~~
+   text    data     bss     dec     hex filename
+  18208     116   18436   36760    8f98 build/rtos_td_shell.elf
+~~~
+- la RAM utilisé est de 18 ko sur 320 ko disponible, soit  %.
+- la FLASH utilisé est de 18 ko sur 1024 ko disponible, soit %.
+
+7. En augmentant la taille du HEAP,
+~~~
+   text    data     bss     dec     hex filename
+  18212     116   28076   46404    b544 build/rtos_td_shell.elf
+~~~
+
+  - la RAM utilisé est de 28 ko sur 320 ko disponible, soit  %.
+- la FLASH utilisé est de 18 ko sur 1024 ko disponible, soit  %.
+
+
+

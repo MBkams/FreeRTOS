@@ -29,6 +29,7 @@
 #include "FreeRTOS.h"
 #include "shell.h"
 #include "semphr.h"
+#include "task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -54,9 +55,7 @@
 	TaskHandle_t h_task_shell = NULL;
   TaskHandle_t h_task_led = NULL;
 
-  SemaphoreHandle_t xSemaphore;
-
-  static int delay;
+  TaskHandle_t h_of = NULL;
 
 /* USER CODE END PV */
 
@@ -70,17 +69,30 @@ void blink_led(void *unsued);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void blink_led(void *unsued){
+void taskoverlfow(void *unused){
+  
+  while (1) {
 
-  vTaskSuspend(h_task_led);
+    int *dynptr;
 
-  while(1)
-  {
+    //Allocation dynamique
+    dynptr = (int)malloc( 32* sizeof(int));
 
-    HAL_GPIO_TogglePin(LED_GPIO_Port,LED_Pin);
-    vTaskDelay(delay);
+    if (dynptr == NULL) {
+      //Overflow
+      printf("Failed to allocate memory\r\n");
+
+      //Detextion erreur
+      Error_Handler();
+
+    }
+
+    //Incrémentation de la taille de l'allocation
+    dynptr ++;
     
-  }
+    printf("L'adresse du ptr est 0x%x \r\n",dynptr);
+
+}
 }
 
 int __io_putchar(int ch)
@@ -90,79 +102,6 @@ int __io_putchar(int ch)
 	return ch;
 }
 
-void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-{
-	if (huart->Instance == USART1)
-	{
-		shell_uart_receive_irq_cb();	// C'est la fonction qui donne le sémaphore!
-	}
-}
-
-int fonction(int argc, char ** argv)
-{
-	printf("Je suis une fonction bidon\r\n");
-
-	printf("argc = %d\r\n", argc);
-
-	for (int i = 0 ; i < argc ; i++)
-	{
-		printf("arg %d = %s\r\n", i, argv[i]);
-	}
-
-	return 0;
-}
-
-int addition(int argc, char ** argv)
-{
-	if (argc == 3)
-	{
-		int a, b;
-		a = atoi(argv[1]);
-		b = atoi(argv[2]);
-		printf("%d + %d = %d\r\n", a, b, a+b);
-
-		return 0;
-	}
-	else
-	{
-		printf("Erreur, pas le bon nombre d'arguments\r\n");
-		return -1;
-	}
-}
-
-int timer(int argc, char ** argv)
-{
-  printf("Je suis la fonction periode\r\n");
-  int a;
-  a = atoi(argv[1]);
-  printf("%d\r\n",a);
-
-  if (a == 0)
-  {
-    vTaskSuspend(h_task_led);
-  } else {
-    delay = a;
-    printf("%d\r\n",delay);
-
-    vTaskResume(h_task_led);
-  }
-  return 0;
-}
-
-int spam(int argc, char **argv)
-{
-  printf("Je suis la fonction spam\r\n");
-}
-
-void task_shell(void * unused)
-{
-	shell_init();
-	shell_add('f', fonction, "Une fonction inutile");
-	shell_add('a', addition, "Effectue une somme");
-  shell_add('l',timer, "Change la période LED");
-  shell_add('s',spam,"Affichage sur console");
-	shell_run();	// boucle infinie
-}
 /* USER CODE END 0 */
 
 /**
@@ -195,21 +134,16 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-	if (xTaskCreate(task_shell, "Shell", TASK_SHELL_STACK_DEPTH, NULL, 1, &h_task_shell) != pdPASS)
-	{
-		printf("Error creating task shell\r\n");
-		Error_Handler();
-	}
 
-  if(xTaskCreate(blink_led, "LED",STACK_SIZE,NULL,2,&h_task_led) != pdPASS)
-  {
-    printf("Error creating tak led\r\n");
-    Error_Handler();
-  }
-
-  xSemaphore = xSemaphoreCreateBinary();
-
-	vTaskStartScheduler();
+  /* Create a taskGive*/
+  xTaskCreate(
+          taskoverlfow,       // Function to be called
+          "Overflow",         // Name of task
+          1024,     // Stack size
+          NULL,  // Parameter to pass to function
+          1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+          &h_of       // Task handle (allows to find and manipulate the task)
+          );
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
