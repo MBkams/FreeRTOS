@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 1
 
 
    1              		.cpu cortex-m7
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
   28:shell/shell.c **** static SemaphoreHandle_t sem_uart_read = NULL;
   29:shell/shell.c **** 
   30:shell/shell.c **** void shell_uart_receive_irq_cb(void)
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 2
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 2
 
 
   31:shell/shell.c **** {
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
   61              		.section	.rodata.sh_help.str1.4,"aMS",%progbits,1
   62              		.align	2
   63              	.LC0:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 3
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 3
 
 
   64 0000 25633A20 		.ascii	"%c: %s\015\012\000"
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  111              	.LVL7:
   60:shell/shell.c **** 		uart_write(print_buffer, size);
  112              		.loc 1 60 3 is_stmt 1 discriminator 3 view .LVU17
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 4
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 4
 
 
  113 0026 81B2     		uxth	r1, r0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  159              	.LVL12:
  160              	.LFB155:
   65:shell/shell.c **** 
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 5
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 5
 
 
   66:shell/shell.c **** void shell_init() {
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  101:shell/shell.c **** 	char *p;
  180              		.loc 1 101 2 view .LVU31
  102:shell/shell.c **** 
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 6
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 6
 
 
  103:shell/shell.c **** 	for(i = 0 ; i < shell_func_list_size ; i++) {
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  222              		.loc 1 115 29 is_stmt 0 view .LVU49
  223 0030 02EB4202 		add	r2, r2, r2, lsl #1
  224              	.LVL18:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 7
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 7
 
 
  225              		.loc 1 115 29 view .LVU50
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  117:shell/shell.c **** 	}
  118:shell/shell.c **** 
  119:shell/shell.c **** 	int size;
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 8
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 8
 
 
  267              		.loc 1 119 2 is_stmt 1 view .LVU64
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  318              		.cfi_def_cfa_offset 4
  319              		.cfi_offset 14, -4
  320 0002 83B0     		sub	sp, sp, #12
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 9
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 9
 
 
  321              		.cfi_def_cfa_offset 16
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  369              		.loc 1 32 13 is_stmt 0 view .LVU81
  370 0004 0023     		movs	r3, #0
  371 0006 0193     		str	r3, [sp, #4]
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 10
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 10
 
 
   34:shell/shell.c **** 
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  420              		.loc 1 82 82 is_stmt 1 view -0
  421              		.cfi_startproc
  422              		@ args = 0, pretend = 0, frame = 0
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 11
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 11
 
 
  423              		@ frame_needed = 0, uses_anonymous_args = 0
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  461              	.LVL36:
  462              	.L35:
  463              		.cfi_def_cfa_offset 0
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 12
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 12
 
 
  464              		.cfi_restore 4
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  508              		.cfi_offset 14, -4
   67:shell/shell.c **** 
  509              		.loc 1 67 2 view .LVU109
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 13
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 13
 
 
  510              	.LVL38:
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  553 0046 FFF7FEFF 		bl	puts
  554              	.LVL43:
  555              	.L44:
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 14
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 14
 
 
   76:shell/shell.c **** 	}
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  602              		.loc 1 130 6 is_stmt 0 view .LVU126
  603 0004 0026     		movs	r6, #0
  604 0006 23E0     		b	.L55
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 15
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 15
 
 
  605              	.LVL45:
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  149:shell/shell.c **** 				size = snprintf (print_buffer, BUFFER_SIZE, ":%s\r\n", cmd_buffer);
  641              		.loc 1 149 5 is_stmt 1 view .LVU138
  642              		.loc 1 149 12 is_stmt 0 view .LVU139
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 16
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 16
 
 
  643 0032 184A     		ldr	r2, .L57+12
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  671              		.loc 1 134 8 view .LVU149
  672              	.L55:
  132:shell/shell.c **** 
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 17
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 17
 
 
  673              		.loc 1 132 2 view .LVU150
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  167:shell/shell.c **** 				}
  713              		.loc 1 167 6 view .LVU165
  167:shell/shell.c **** 				}
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 18
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 18
 
 
  714              		.loc 1 167 24 is_stmt 0 view .LVU166
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  771 0000 00000000 		.space	768
  771      00000000 
  771      00000000 
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 19
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 19
 
 
  771      00000000 
@@ -1102,53 +1102,53 @@ ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 1
  790              		.file 12 "c:\\users\\billa\\appdata\\roaming\\code\\user\\globalstorage\\bmd.stm32-for-vscode\\@xp
  791              		.file 13 "Core/Inc/usart.h"
  792              		.file 14 "<built-in>"
-ARM GAS  C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s 			page 20
+ARM GAS  C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s 			page 20
 
 
 DEFINED SYMBOLS
                             *ABS*:0000000000000000 shell.c
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:21     .text.uart_write:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:26     .text.uart_write:0000000000000000 uart_write
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:57     .text.uart_write:0000000000000018 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:62     .rodata.sh_help.str1.4:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:66     .text.sh_help:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:71     .text.sh_help:0000000000000000 sh_help
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:141    .text.sh_help:0000000000000040 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:770    .bss.shell_func_list:0000000000000000 shell_func_list
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:764    .bss.print_buffer:0000000000000000 print_buffer
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:776    .bss.shell_func_list_size:0000000000000000 shell_func_list_size
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:149    .rodata.shell_exec.str1.4:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:153    .text.shell_exec:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:158    .text.shell_exec:0000000000000000 shell_exec
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:298    .text.shell_exec:000000000000007c $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:306    .text.uart_read:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:311    .text.uart_read:0000000000000000 uart_read
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:345    .text.uart_read:0000000000000028 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:758    .bss.sem_uart_read:0000000000000000 sem_uart_read
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:351    .text.shell_uart_receive_irq_cb:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:357    .text.shell_uart_receive_irq_cb:0000000000000000 shell_uart_receive_irq_cb
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:406    .text.shell_uart_receive_irq_cb:0000000000000030 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:411    .text.shell_add:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:417    .text.shell_add:0000000000000000 shell_add
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:474    .text.shell_add:0000000000000030 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:480    .rodata.shell_init.str1.4:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:491    .text.shell_init:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:497    .text.shell_init:0000000000000000 shell_init
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:562    .text.shell_init:000000000000004c $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:572    .rodata.shell_run.str1.4:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:579    .text.shell_run:0000000000000000 $t
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:585    .text.shell_run:0000000000000000 shell_run
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:726    .text.shell_run:0000000000000088 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:740    .bss.cmd_buffer.0:0000000000000000 cmd_buffer.0
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:746    .data.prompt:0000000000000000 prompt
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:752    .data.backspace:0000000000000000 backspace
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:737    .bss.cmd_buffer.0:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:743    .data.prompt:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:749    .data.backspace:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:755    .bss.sem_uart_read:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:761    .bss.print_buffer:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:767    .bss.shell_func_list:0000000000000000 $d
-C:\Users\billa\AppData\Local\Temp\cc3iTKRi.s:773    .bss.shell_func_list_size:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:21     .text.uart_write:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:26     .text.uart_write:0000000000000000 uart_write
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:57     .text.uart_write:0000000000000018 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:62     .rodata.sh_help.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:66     .text.sh_help:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:71     .text.sh_help:0000000000000000 sh_help
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:141    .text.sh_help:0000000000000040 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:770    .bss.shell_func_list:0000000000000000 shell_func_list
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:764    .bss.print_buffer:0000000000000000 print_buffer
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:776    .bss.shell_func_list_size:0000000000000000 shell_func_list_size
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:149    .rodata.shell_exec.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:153    .text.shell_exec:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:158    .text.shell_exec:0000000000000000 shell_exec
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:298    .text.shell_exec:000000000000007c $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:306    .text.uart_read:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:311    .text.uart_read:0000000000000000 uart_read
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:345    .text.uart_read:0000000000000028 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:758    .bss.sem_uart_read:0000000000000000 sem_uart_read
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:351    .text.shell_uart_receive_irq_cb:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:357    .text.shell_uart_receive_irq_cb:0000000000000000 shell_uart_receive_irq_cb
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:406    .text.shell_uart_receive_irq_cb:0000000000000030 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:411    .text.shell_add:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:417    .text.shell_add:0000000000000000 shell_add
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:474    .text.shell_add:0000000000000030 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:480    .rodata.shell_init.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:491    .text.shell_init:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:497    .text.shell_init:0000000000000000 shell_init
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:562    .text.shell_init:000000000000004c $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:572    .rodata.shell_run.str1.4:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:579    .text.shell_run:0000000000000000 $t
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:585    .text.shell_run:0000000000000000 shell_run
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:726    .text.shell_run:0000000000000088 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:740    .bss.cmd_buffer.0:0000000000000000 cmd_buffer.0
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:746    .data.prompt:0000000000000000 prompt
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:752    .data.backspace:0000000000000000 backspace
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:737    .bss.cmd_buffer.0:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:743    .data.prompt:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:749    .data.backspace:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:755    .bss.sem_uart_read:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:761    .bss.print_buffer:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:767    .bss.shell_func_list:0000000000000000 $d
+C:\Users\billa\AppData\Local\Temp\ccqgxMIk.s:773    .bss.shell_func_list_size:0000000000000000 $d
 
 UNDEFINED SYMBOLS
 HAL_UART_Transmit

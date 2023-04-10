@@ -41,7 +41,7 @@
 /* USER CODE BEGIN PD */
 #define TASK_SHELL_STACK_DEPTH 512
 #define TASK_SHELL_PRIORITY 1
-#define STACK_SIZE 1024
+#define STACK_SIZE 1000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -74,11 +74,9 @@ void taskoverlfow(void *unused){
   char buffer[STACK_SIZE];
   int i;
   
-  
-
   while (1) {
 
-    for (i = 0; i < STACK_SIZE; i++) {
+    for (i = 0; i <= STACK_SIZE+1; i++) {
       printf("Task Overflow running \r\n");
       buffer[i] = 'A';
   }
@@ -95,9 +93,10 @@ int __io_putchar(int ch)
 
 void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName ){
 
-  
+  printf("ERROR: Stack overflow in task %s\n", pcTaskName);
+
   for(;;){
-    printf("ERROR: Stack overflow in task %s\n", pcTaskName);
+    
   }
 }
 /* USER CODE END 0 */
@@ -137,7 +136,7 @@ int main(void)
   xTaskCreate(
           taskoverlfow,       // Function to be called
           "Overflow",         // Name of task
-          1024,     // Stack size
+          STACK_SIZE,     // Stack size
           NULL,  // Parameter to pass to function
           1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
           &h_of       // Task handle (allows to find and manipulate the task)
