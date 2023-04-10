@@ -41,7 +41,7 @@
 /* USER CODE BEGIN PD */
 #define TASK_SHELL_STACK_DEPTH 512
 #define TASK_SHELL_PRIORITY 1
-#define STACK_SIZE 1000
+#define STACK_SIZE 1024
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -64,33 +64,24 @@ void SystemClock_Config(void);
 void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 void blink_led(void *unsued);
-
+void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName );
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 void taskoverlfow(void *unused){
   
+  char buffer[STACK_SIZE];
+  int i;
+  
+  
+
   while (1) {
 
-    int *dynptr;
-
-    //Allocation dynamique
-    dynptr = (int)malloc( 32* sizeof(int));
-
-    if (dynptr == NULL) {
-      //Overflow
-      printf("Failed to allocate memory\r\n");
-
-      //Detextion erreur
-      Error_Handler();
-
-    }
-
-    //Incrémentation de la taille de l'allocation
-    dynptr ++;
-    
-    printf("L'adresse du ptr est 0x%x \r\n",dynptr);
+    for (i = 0; i < STACK_SIZE; i++) {
+      printf("Task Overflow running \r\n");
+      buffer[i] = 'A';
+  }
 
 }
 }
@@ -102,6 +93,13 @@ int __io_putchar(int ch)
 	return ch;
 }
 
+void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName ){
+
+  
+  for(;;){
+    printf("ERROR: Stack overflow in task %s\n", pcTaskName);
+  }
+}
 /* USER CODE END 0 */
 
 /**
