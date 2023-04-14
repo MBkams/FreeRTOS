@@ -71,14 +71,14 @@ void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName 
 /* USER CODE BEGIN 0 */
 void taskoverlfow(void *unused){
   
-  char buffer[STACK_SIZE];
+  uint32_t buffer[STACK_SIZE];
   int i;
   
   while (1) {
 
     for (i = 0; i <= STACK_SIZE+1; i++) {
-      printf("Task Overflow running \r\n");
-      buffer[i] = 'A';
+      buffer[i] = i;
+      printf("Task Overflow running %d\r\n", buffer[i]);
   }
 
 }

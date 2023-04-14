@@ -28,6 +28,8 @@
 
 ## Debug, gestion d’erreur et statistiques
 
+### Gestion de tas
+
 1. Le nom de la zone réservée à l’allocation dynamique est le tas (heap).
 
 2. Le tas est géré par FreeRtos.
@@ -74,6 +76,19 @@ Dans un programme compilé sans tâche,
 
   - la RAM utilisé est de 28 ko sur 320 ko disponible, soit  %.
 - la FLASH utilisé est de 18 ko sur 1024 ko disponible, soit  %.
+
+
+#### Gestion des piles 
+
+4. En mode debug, on observe lors de d'un overlfow de la pile, la fonction vApplicationStackOverflowHook est appelé.
+![Hook](src/Hook_overflow_1.png)
+
+5. Pour le dépassement de la pile, il y a une seconde méthode.
+En configurant, CHECK_FOR_STACK_OVERFLOW à 2, la méthode de détection est similaire à la première méthode. Mais, elle vérifie en plus la disponibilité de la pile.
+![Hook](src/Hook_overflow_2.png)
+
+
+
 
 
 
