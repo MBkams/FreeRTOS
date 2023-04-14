@@ -19,6 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "cmsis_os.h"
+#include "tim.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -42,6 +43,7 @@
 #define TASK_SHELL_STACK_DEPTH 512
 #define TASK_SHELL_PRIORITY 1
 #define STACK_SIZE 1000
+#define DELAY 1000
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -56,7 +58,9 @@
   TaskHandle_t h_task_led = NULL;
 
   TaskHandle_t h_of = NULL;
+  TaskHandle_t h_stat = NULL;
 
+  SemaphoreHandle_t xSemaphore;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -69,21 +73,48 @@ void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName 
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void taskoverlfow(void *unused){
+void taskoverlfow(void *pvParameters){
   
-  uint32_t buffer[STACK_SIZE];
+  int delay = (int) pvParameters;
+  char buffer[STACK_SIZE];
   int i;
   
   while (1) {
 
     for (i = 0; i <= STACK_SIZE+1; i++) {
       buffer[i] = i;
+      
+      xSemaphoreTake(xSemaphore,portMAX_DELAY);
       printf("Task Overflow running %d\r\n", buffer[i]);
+
+      printf("Je suis la tache 1 et je m'endors pour %d ticks\r\n", delay);
+      
+      
+
+      vTaskDelay(delay);
   }
 
 }
 }
 
+void taskstats(void *pvParameters){
+
+int delay = (int) pvParameters;
+static char buffer[1024];
+
+  while(1){ 
+    xSemaphoreGive(xSemaphore);
+
+    vTaskGetRunTimeStats(buffer);
+    printf("Runtime stats:\n%s", buffer);
+
+    printf("Je suis la tache 2 et je m'endors pour %d ticks\r\n", delay);
+    
+    vTaskDelay(delay);
+
+  }   
+
+}
 int __io_putchar(int ch)
 {
 	HAL_UART_Transmit(&huart1, (uint8_t*)&ch, 1, HAL_MAX_DELAY);
@@ -99,6 +130,55 @@ void vApplicationStackOverflowHook( TaskHandle_t xTask, signed char *pcTaskName 
     
   }
 }
+
+void configureTimerForRunTimeStats(void)
+{
+  HAL_TIM_Base_Start(&htim2);
+}
+
+unsigned long getRunTimeCounterValue(void)
+{
+  return __HAL_TIM_GET_COUNTER(&htim2);
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if (huart->Instance == USART1)
+	{
+		shell_uart_receive_irq_cb();	// C'est la fonction qui donne le sémaphore!
+	}
+}
+
+int stat(int argc, char ** argv)
+{
+  static char buffer[1024];
+  static char buffer_i[1024];
+
+	if (argc == 1)
+	{
+		vTaskGetRunTimeStats(buffer);
+    printf("Runtime stats:\n%s", buffer);
+
+	  vTaskList(buffer_i);
+    printf("Runtime stats:\n%s", buffer_i);
+    
+
+		return 0;
+	}
+	else
+	{
+		printf("Erreur, pas le bon nombre d'arguments\r\n");
+		return -1;
+	}
+}
+
+void task_shell(void * unused)
+{
+	shell_init();
+  shell_add('s',stat, "Stats");
+	shell_run();	// boucle infinie
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -130,17 +210,37 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
 
   /* Create a taskGive*/
-  xTaskCreate(
-          taskoverlfow,       // Function to be called
-          "Overflow",         // Name of task
-          STACK_SIZE,     // Stack size
-          NULL,  // Parameter to pass to function
-          1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
-          &h_of       // Task handle (allows to find and manipulate the task)
-          );
+  // xTaskCreate(
+  //         taskoverlfow,       // Function to be called
+  //         "Overflow",         // Name of task
+  //         STACK_SIZE,     // Stack size
+  //         (void *)DELAY,  // Parameter to pass to function
+  //         1,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+  //         &h_of       // Task handle (allows to find and manipulate the task)
+  //         );
+
+  // xTaskCreate(
+  //         taskstats,       // Function to be called
+  //         "Stat",         // Name of task
+  //         STACK_SIZE,     // Stack size
+  //         (void *)DELAY,  // Parameter to pass to function
+  //         2,              // Task priority 0 to configMAX_PRIORITIES - 1 (FreeRTOSConfig.h)
+  //         &h_stat       // Task handle (allows to find and manipulate the task)
+  // );
+
+  if (xTaskCreate(task_shell, "Shell", TASK_SHELL_STACK_DEPTH, NULL, 3, &h_task_shell) != pdPASS)
+	{
+		printf("Error creating task shell\r\n");
+		Error_Handler();
+	}
+
+  // Create a semaphore
+  xSemaphore = xSemaphoreCreateBinary();
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */

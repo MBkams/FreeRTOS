@@ -87,6 +87,10 @@ Dans un programme compilé sans tâche,
 En configurant, CHECK_FOR_STACK_OVERFLOW à 2, la méthode de détection est similaire à la première méthode. Mais, elle vérifie en plus la disponibilité de la pile.
 ![Hook](src/Hook_overflow_2.png)
 
+#### Affichage des statistiques dans le shell  
+
+![Hook](src/Shell_stats.png)
+
 
 
 
