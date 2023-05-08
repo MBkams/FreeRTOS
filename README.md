@@ -98,7 +98,7 @@ Dans un programme compilé sans tâche,
 - la FLASH utilisé est de 18 ko sur 1024 ko disponible, soit 1,75 %.
 
 8. La RAM utilisé dépend des piles de chaque tâche crée sous FreeRTOS et le FLASH dépend des données statiques du code.
-En creant une nouvelle tâches overflow, on a pu augmenter la taille de la RAM utilisé et très légérement la taille de la FLASH. Pour pouvoir observer une augmententation significative de la taille du FLASH, il faudrait un code d'application contenenat plus d'instructions, données constantes.
+En creant une nouvelle tâche overflow, on a pu augmenter la taille de la RAM utilisé et très légérement la taille de la FLASH. Pour pouvoir observer une augmententation significative de la taille du FLASH, il faudrait un code d'application contenenat plus d'instructions, données constantes.
 
 
 #### Gestion des piles 
